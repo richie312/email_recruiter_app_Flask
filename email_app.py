@@ -6,11 +6,6 @@ Created on Tue Jan 15 14:13:25 2019
 """
 
 from tkinter import *
-import pandas as pd
-
-auth=pd.read_csv("auth.csv")
-
-
 
 root = Tk()
 
@@ -27,8 +22,11 @@ Label3 = Label(root,text = 'Enter email').grid(row = 3,column = 0, stick = W)
 textentry3 = Entry(root,width = 20,bg="green")
 textentry3.grid(row = 3,column=1)
 Label4 = Label(root,text = 'Enter password').grid(row = 4,column = 0, stick = W)
-textentry4 = Entry(root,width = 20,bg="green")
+textentry4 = Entry(root,width = 20,bg="green",show="*")
 textentry4.grid(row = 4,column=1)
+Label5 = Label(root,text = 'Subject Line').grid(row = 5,column = 0, stick = W)
+textentry5 = Entry(root,width = 20,bg="green")
+textentry5.grid(row = 5,column=1)
 
 
 
@@ -40,8 +38,14 @@ def SendMail():
     import mysql.connector
     import mysql
     import datetime
-    connection = mysql.connector.connect(host=auth['values'][0], user=auth['values'][3],port=auth['values'][1],
-                               passwd=auth['values'][4], db=auth['values'][2])
+    host="richie-database.cml5lvgzqjbw.us-east-1.rds.amazonaws.com"
+    port=3306
+    dbname="RDS_MySql"
+    user="richie31"
+    password="Nirvikalpa!123"
+    
+    connection = mysql.connector.connect(host=host, user=user,port=port,
+                               passwd=password, db=dbname)
     cursor = connection.cursor()
     
     password = textentry4.get()
@@ -49,15 +53,15 @@ def SendMail():
     yagmail.register("richie.chatterjee31@gmail.com", password)
     yag = yagmail.SMTP("richie.chatterjee31@gmail.com", password)
     
-    html_msg = [yagmail.inline(r"C:\Users\aritra.chatterjee\Desktop\Email_Python\profile2.jpg"),
-    r"C:\Users\aritra.chatterjee\Desktop\Email_Python\links.html",
-    "C:/Users/aritra.chatterjee/Desktop/Email_Python/Resume.pdf"]
+    html_msg = [yagmail.inline(r"C:\Users\Richie\Desktop\Email_Python\profile2.jpg"),
+    r"C:\Users\Richie\Desktop\Email_Python\links.html",
+    "C:/Users/Richie/Desktop/Email_Python/Resume.pdf"]
     
     sql_query = "INSERT INTO company_email1 (Company_Name, Location, Email_Address, Application_Date)\
         VALUES (%s, %s, %s,%s)"
 # =============================================================================
 #     sql_query_lastRow = "SELECT MAX(id) FROM company_email1"
-#     cursor.execute(sql_query_lastRow)
+#     cursor.execute(sql_query_lastR
 #     ID = cursor.fetchall()
 #     
 # =============================================================================
@@ -71,7 +75,13 @@ def SendMail():
     
     Applicaiton_Date = now.strftime('%Y-%m-%d %H:%M:%S')
 
+    Subject_line = textentry5.get()
     
+    if Subject_line == "":
+        default_subject = "Aritra_Chatterjee_Resume_DataScience_Python_Developer"
+    else:
+        default_subject = Subject_line
+
     val = (Company,Location,email,Applicaiton_Date)
     
     cursor.execute(sql_query,val)
@@ -82,16 +92,17 @@ def SendMail():
     
     """Send Email"""
     
-    yag.send(email, "Aritra_Chatterjee_Resume_DataScience", html_msg)
+    yag.send(email, default_subject, html_msg)
     output.insert("end","email has been sent to mentioned address.")
+    connection.close()
 
-theButton = Button(root,text = "Send Mail",bg = "white",fg="red",command = SendMail).grid(row = 5,column = 0)
+theButton = Button(root,text = "Send Mail",bg = "white",fg="red",command = SendMail).grid(row = 6,column = 0)
 
 
 """Show the output"""
 
 output = Text(root,width = 75,height = 6,wrap = WORD,background = "white")
-output.grid(row = 6,column = 0, columnspan = 2)
+output.grid(row = 7,column = 0, columnspan = 2)
 
 
 root.mainloop()

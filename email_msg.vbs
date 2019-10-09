@@ -1,0 +1,1 @@
+x= MsgBox ("Daily recruiter Email schedule.")
