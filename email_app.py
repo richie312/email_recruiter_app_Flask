@@ -53,9 +53,9 @@ def SendMail():
     yagmail.register("richie.chatterjee31@gmail.com", password)
     yag = yagmail.SMTP("richie.chatterjee31@gmail.com", password)
     
-    html_msg = [yagmail.inline(r"C:\Users\Richie\Desktop\Email_Python\profile2.jpg"),
-    r"C:\Users\Richie\Desktop\Email_Python\links.html",
-    "C:/Users/Richie/Desktop/Email_Python/Resume.pdf"]
+    html_msg = [yagmail.inline(r"C:\Users\CN261\Desktop\Email_Python\profile2.jpg"),
+    r"C:\Users\CN261\Desktop\Email_Python\links.html",
+    "C:/Users/CN261/Desktop/Email_Python/Resume.pdf"]
     
     sql_query = "INSERT INTO company_email1 (Company_Name, Location, Email_Address, Application_Date)\
         VALUES (%s, %s, %s,%s)"
