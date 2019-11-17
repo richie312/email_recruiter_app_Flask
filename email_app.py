@@ -38,6 +38,7 @@ def SendMail():
     import mysql.connector
     import mysql
     import datetime
+    import os
     host="richie-database.cml5lvgzqjbw.us-east-1.rds.amazonaws.com"
     port=3306
     dbname="RDS_MySql"
@@ -49,13 +50,15 @@ def SendMail():
     cursor = connection.cursor()
     
     password = textentry4.get()
+
+    main_dir = os.getcwd()
     
     yagmail.register("richie.chatterjee31@gmail.com", password)
     yag = yagmail.SMTP("richie.chatterjee31@gmail.com", password)
     
-    html_msg = [yagmail.inline(r"C:\Users\CN261\Desktop\Email_Python\profile2.jpg"),
-    r"C:\Users\CN261\Desktop\Email_Python\links.html",
-    "C:/Users/CN261/Desktop/Email_Python/Resume.pdf"]
+    html_msg = [yagmail.inline(main_dir + "\profile2.jpg"),
+    main_dir+"\links.html",
+    main_dir + "/Resume.pdf"]
     
     sql_query = "INSERT INTO company_email1 (Company_Name, Location, Email_Address, Application_Date)\
         VALUES (%s, %s, %s,%s)"
