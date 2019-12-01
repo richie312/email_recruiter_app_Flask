@@ -7,6 +7,7 @@ Created on Thu Apr 18 08:43:32 2019
 
 from tkinter import *
 root = Tk()
+
 root.title("Welcome to the Email form")
 root.configure(bg="white")
 
