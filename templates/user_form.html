@@ -37,6 +37,7 @@ input[type=submit]:hover {
 }
 </style>
 </head>
+
 <body>
 
 <h3>Enter Details</h3>
@@ -47,7 +48,19 @@ input[type=submit]:hover {
     <input type="text" id="company" name="Company" placeholder="Amazon">
     <input type="text" id="location" name="Location" placeholder="Pune">
     <input type="text" id="email" name="Email Address" placeholder="xxxx@capitalnumbers.com">
-    <input type="text" id="password" name="Password" placeholder="xxxx">
+    <input type="password" id="password" name="Password" value="FakePSW" placeholder="xxxx">
+    <input type="checkbox" onclick="myFunction()">Show Password
+    <script>
+    function myFunction() {
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+    </script>
+
     <input type="text" id="subject" name="Subject" placeholder="Data Science, R/Python Developer">
     <input type="submit" value="Send Mail">
   </form>
