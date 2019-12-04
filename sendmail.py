@@ -8,7 +8,7 @@ Created on Sun Dec  1 09:12:19 2019
 # -*- coding: utf-8 -*-
 
 import flask
-from flask import Flask, request, json,render_template
+from flask import Flask, request, json,render_template,redirect,url_for,jsonify
 import yagmail
 import urllib.request
 import mysql.connector
@@ -25,64 +25,10 @@ password="Nirvikalpa!123"
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-class BaseDataTables:
-    
-    def __init__(self, request, columns, collection):
-        
-        self.columns = columns
-
-        self.collection = collection
-         
-        # values specified by the datatable for filtering, sorting, paging
-        self.request_values = request.values
-         
- 
-        # results from the db
-        self.result_data = None
-         
-        # total in the table after filtering
-        self.cardinality_filtered = 0
- 
-        # total in the table unfiltered
-        self.cadinality = 0
- 
-        self.run_queries()
-    
-    def output_result(self):
-        
-        output = {}
-
-        # output['sEcho'] = str(int(self.request_values['sEcho']))
-        # output['iTotalRecords'] = str(self.cardinality)
-        # output['iTotalDisplayRecords'] = str(self.cardinality_filtered)
-        aaData_rows = []
-        
-        for row in self.result_data:
-            aaData_row = []
-            for i in range(len(self.columns)):
-                print (row, self.columns, self.columns[i])
-                aaData_row.append(str(row[ self.columns[i] ]).replace('"','\\"'))
-            aaData_rows.append(aaData_row)
-            
-        output['aaData'] = aaData_rows
-        
-        return output
-    
-    def run_queries(self):
-        
-         self.result_data = self.collection
-         self.cardinality_filtered = len(self.result_data)
-         self.cardinality = len(self.result_data)
-
 """ read the list of users"""
 @app.route("/")        # Standard Flask endpoint
 def homepage():
     return render_template("user_form.html")
-
-@app.route("/delete")        # Standard Flask endpoint
-def delete():
-    return render_template("delete_user.html")
-
 
 @app.route('/addDetails', methods=['POST'])
 def addDetails():
@@ -120,19 +66,36 @@ def addDetails():
 
 @app.route('/application_details', methods=['GET'])
 def application_details():
-    import requests
-    response = requests.get("http://13.235.246.186/get_data")
-    columns = response.json()['columns']
-    return render_template('index.html', columns=columns)
-    
-@app.route('/_server_data')
-def get_server_data():
+    return render_template('application_table.html')
+
+@app.route('/delete_form', methods=['GET'])
+def delete_form():
+    return render_template('delete_details.html')
+
+
+
+@app.route('/delete', methods=['POST'])
+def delete():
+    templateData = {}
+    connection = mysql.connector.connect(host=host, user=user,port=port,
+                            passwd=password, db=dbname)
+    cursor = connection.cursor()    
+    data = request.form
+    cursor.execute("""delete from company_email1 where Company_Name=%s;""",(data['Company'],))
+    connection.commit()
+    cursor.close()
+    connection.close()    
+    templateData['redirect_url'] = url_for('application_details')
+    return render_template('delete_details_response.html',**templateData)
+
+@app.route('/index_get_data')
+def stuff():
     import requests
     response = requests.get("http://13.235.246.186/get_data")    
-    columns = response.json()['columns']
-    collection = [dict(zip(columns, response.json()['data'])) for i in range(len(response.json()['data']))]
-    results = BaseDataTables(request, columns, collection).output_result()    
-    return json.dumps(results)
+    columns = response.json()['columns']    
+    collection = [dict(zip(columns, response.json()['data'][i])) for i in range(len(response.json()['data']))]
+    data = {"data": collection}
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0',debug=True,port=5001)
