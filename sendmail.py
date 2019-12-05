@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sun Dec  1 09:12:19 2019
-
-@author: Richie
-"""
-
-# -*- coding: utf-8 -*-
 
 import flask
 from flask import Flask, request, json,render_template,redirect,url_for,jsonify
