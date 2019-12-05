@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import flask
-from flask import Flask, request, json,render_template,redirect,url_for,jsonify
+from flask import Flask, request, json,render_template,redirect,url_for,jsonify,json
 import yagmail
 import urllib.request
 import mysql.connector
@@ -9,11 +9,32 @@ import mysql
 import datetime
 import os
 import sys
-host="richie-database.cml5lvgzqjbw.us-east-1.rds.amazonaws.com"
-port=3306
-dbname="RDS_MySql"
-user="richie31"
-password="Nirvikalpa!123"
+from decrypt import *
+
+with open(r'database_auth.json','r') as readfile:
+    db_auth = json.load(readfile)
+
+""" decrypt the database details"""
+main_dir = os.getcwd()
+os.listdir(os.path.join(main_dir,'auth'))
+
+db_auth = {'dbname.txt':'key_dbname.txt',
+           'db_pass.txt':'key_db_pass.txt',
+           'host.txt':'key_host.txt',
+           'dbuser.txt':'key_dbuser.txt'}
+filename = {}
+for i in db_auth.keys():
+    with open(r'auth/' +i, 'r') as readfile:
+        filename['{}'.format(i.split('.')[0])]= json.load(readfile)
+
+file_key = {}
+for i in db_auth.keys():
+    with open(r'auth/' +db_auth[i], 'r') as readfile:
+        file_key['{}'.format(db_auth[i].split('.')[0])]= json.load(readfile)
+
+db_auth = {}
+for i in filename.keys():
+    db_auth[i] = decrypt(eval(filename[i]),eval(file_key['key_'+i])).decode("utf-8")
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -25,17 +46,22 @@ def homepage():
 
 @app.route('/addDetails', methods=['POST'])
 def addDetails():
-    connection = mysql.connector.connect(host=host, user=user,port=port,
-                            passwd=password, db=dbname)
-    cursor = connection.cursor()    
+    connection = mysql.connector.connect(host=db_auth['host'], 
+                                         user=db_auth['dbuser'],
+                                         port=3306,
+                                         passwd=db_auth['db_pass'], 
+                                         db=db_auth['dbname'])
+    cursor = connection.cursor()
     data = request.form
     passw = data['Password']
     main_dir = os.getcwd()
     yagmail.register("richie.chatterjee31@gmail.com", passw)
     yag = yagmail.SMTP("richie.chatterjee31@gmail.com", passw)
-    html_msg = [yagmail.inline(os.path.join(main_dir,"profile2.jpg")),
-    os.path.join(main_dir,"links.html"),
-    main_dir + "/Resume.pdf"]    
+    image_folder = os.path.join(main_dir,'images')
+    template_folder = os.path.join(main_dir,'templates')
+    html_msg = [yagmail.inline(os.path.join(image_folder,"profile2.jpg")),
+    os.path.join(template_folder,"links.html"),
+    main_dir + "/docs/Resume.pdf"]    
     sql_query = "INSERT INTO company_email1 (Company_Name, Location, Email_Address, Application_Date)\
     VALUES (%s, %s, %s,%s)"
     Company = data['Company']
