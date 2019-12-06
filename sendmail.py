@@ -96,8 +96,12 @@ def delete_form():
 @app.route('/delete', methods=['POST'])
 def delete():
     templateData = {}
-    connection = mysql.connector.connect(host=host, user=user,port=port,
-                            passwd=password, db=dbname)
+    connection = mysql.connector.connect(host=db_auth['host'], 
+                                         user=db_auth['dbuser'],
+                                         port=3306,
+                                         passwd=db_auth['db_pass'], 
+                                         db=db_auth['dbname'])
+
     cursor = connection.cursor()    
     data = request.form
     cursor.execute("""delete from company_email1 where Company_Name=%s;""",(data['Company'],))
