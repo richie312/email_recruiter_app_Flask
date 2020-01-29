@@ -114,7 +114,7 @@ def delete():
 @app.route('/index_get_data')
 def stuff():
     import requests
-    response = requests.get("http://13.235.246.186/get_data")    
+    response = requests.get("http://13.235.246.186:8002/get_data")    
     columns = response.json()['columns']    
     collection = [dict(zip(columns, response.json()['data'][i])) for i in range(len(response.json()['data']))]
     data = {"data": collection}
