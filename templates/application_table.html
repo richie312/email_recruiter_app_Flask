@@ -24,10 +24,12 @@ function setupData() {
     $(document).ready(function () {
         $('#example').DataTable({
             "ajax": {
-                "url": "/index_get_data", // This now works too thanks to @kthorngren
-                "dataType": "json",
+                "url": "http://127.0.0.1:5001/index_get_data", // This now works too thanks to @kthorngren
+                "datatype": "json",
                 "dataSrc": "data",
-                "contentType":"application/json"
+                "type": "GET",
+                "contentType":"application/json",
+                "serverSide": true
             },
             "columns": [
                 {"data": "Company_Name"},

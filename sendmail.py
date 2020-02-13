@@ -10,7 +10,7 @@ import datetime
 import os
 import sys
 from decrypt import *
-
+import webbrowser
 with open(r'database_auth.json','r') as readfile:
     db_auth = json.load(readfile)
 
@@ -43,6 +43,11 @@ app.config['DEBUG'] = True
 @app.route("/")        # Standard Flask endpoint
 def homepage():
     return render_template("user_form.html")
+
+@app.route("/application_history")
+def application_history():
+    application_history_url = "http://13.235.246.186:5002/"
+    return redirect(webbrowser.open_new_tab(application_history_url))
 
 @app.route('/addDetails', methods=['POST'])
 def addDetails():
@@ -111,7 +116,7 @@ def delete():
     templateData['redirect_url'] = url_for('application_details')
     return render_template('delete_details_response.html',**templateData)
 
-@app.route('/index_get_data')
+@app.route('/index_get_data', methods=['GET'])
 def stuff():
     import requests
     response = requests.get("http://13.235.246.186:8002/get_data")    
