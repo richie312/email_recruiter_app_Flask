@@ -162,3 +162,48 @@ ModuleNotFoundError: No module named 'requests'
 127.0.0.1 - - [28/Jan/2020 12:05:22] "POST /addDetails HTTP/1.1" 200 -
 127.0.0.1 - - [29/Jan/2020 04:36:53] "GET / HTTP/1.1" 200 -
 127.0.0.1 - - [29/Jan/2020 04:37:22] "POST /addDetails HTTP/1.1" 200 -
+ * Serving Flask app "plot" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:5002/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 160-047-265
+111.93.173.178 - - [13/Feb/2020 07:43:06] "[37mGET / HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:06] "[37mGET /_dash-layout HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:06] "[37mGET /_dash-dependencies HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:06] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:06] "[37mGET /_dash-component-suites/dash_core_components/async~dropdown.v1_8_0m1580836772.js HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:07] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:17] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:23] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:23] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:23] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:23] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:24] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:27] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:27] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:28] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:29] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:29] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:29] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:31] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:38] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:41] "[37mGET / HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:45] "[37mGET /_dash-dependencies HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:45] "[37mGET /_dash-layout HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:45] "[37mGET /_favicon.ico?v=1.9.0 HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:45] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:45] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+111.93.173.178 - - [13/Feb/2020 07:43:50] "[37mPOST /_dash-update-component HTTP/1.1[0m" 200 -
+ * Serving Flask app "plot" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:5432/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 160-047-265
