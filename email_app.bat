@@ -1,0 +1,1 @@
+C:\Users\CN261\AppData\Local\Programs\Python\Python36\email_app\Scripts\Activate.bat
