@@ -1,0 +1,15 @@
+beautifulsoup4
+dash
+dash-core-components
+dash-html-components
+dash-renderer
+dash-table
+Flask
+keyring
+mysql-connector
+nltk
+num2words
+pandas
+pandocfilters
+plotly
+yagmail
