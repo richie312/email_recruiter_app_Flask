@@ -30,7 +30,6 @@ def pdfextract(file):
         corpus.append(t)
     return {"corpus": corpus,"page_count":count}
 
-file = 'C:\\Users\\CN261\\Desktop\\email_recruiter_app_Flask\\resume_match\\data\\Resume.pdf'
 #function that does phrase matching and builds a candidate profile
 def create_profile(file, main_dir):
     """create_profile functions takes the resume as an argument and
@@ -39,7 +38,7 @@ def create_profile(file, main_dir):
        of the project.
     """
     text = pdfextract(file) 
-    text = [str(text['corpus'][i]) for i in range(5)]
+    text = [str(text['corpus'][i]) for i in range(len(text['corpus']))]
     corpus = [text[i].replace("\n", "") for i in range(len(text))]
     corpus = [corpus[i].lower().strip() for i in range(len(corpus))]
     
