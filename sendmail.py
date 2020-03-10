@@ -7,6 +7,7 @@ import urllib.request
 import mysql.connector
 import mysql
 import datetime
+from dotenv import load_dotenv
 import os
 import sys
 from decrypt import *
@@ -39,6 +40,11 @@ for i in filename.keys():
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
+# load the environement variables
+
+load_dotenv('.env')
+url = os.getenv('url')
+plot_url = os.getenv('plot_url')
 """ read the list of users"""
 @app.route("/")        # Standard Flask endpoint
 def homepage():
@@ -46,7 +52,7 @@ def homepage():
 
 @app.route("/application_history")
 def application_history():
-    application_history_url = "http://13.235.246.186:5002/"
+    application_history_url = plot_url
     return redirect(webbrowser.open_new_tab(application_history_url))
 
 @app.route('/addDetails', methods=['POST'])
@@ -119,7 +125,7 @@ def delete():
 @app.route('/index_get_data', methods=['GET'])
 def stuff():
     import requests
-    response = requests.get("http://13.235.246.186:8002/get_data")    
+    response = requests.get(url)    
     columns = response.json()['columns']    
     collection = [dict(zip(columns, response.json()['data'][i])) for i in range(len(response.json()['data']))]
     data = {"data": collection}
