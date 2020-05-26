@@ -13,6 +13,7 @@ import sys
 from decrypt import *
 import webbrowser
 # =============================================================================
+
 # with open(r'database_auth.json','r') as readfile:
 #     db_auth = json.load(readfile)
 # 
