@@ -9,10 +9,10 @@ from helper_functions import collect_location_wise_count,tenure_dict
 from datetime import datetime
 from dotenv import load_dotenv
 import os
-#import pandas as pd
-#from dash.exceptions import PreventUpdate
 
-load_dotenv('.env')
+# loads the  env vars from the root project  folder
+main_dir = os.getcwd()
+load_dotenv(dotenv_path=os.path.join(main_dir,'.env'))
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 url = os.getenv('url')
