@@ -12,9 +12,11 @@ import os
 import sys
 from decrypt import *
 import webbrowser
-with open(r'database_auth.json','r') as readfile:
-    db_auth = json.load(readfile)
-
+# =============================================================================
+# with open(r'database_auth.json','r') as readfile:
+#     db_auth = json.load(readfile)
+# 
+# =============================================================================
 """ decrypt the database details"""
 main_dir = os.getcwd()
 os.listdir(os.path.join(main_dir,'auth'))
