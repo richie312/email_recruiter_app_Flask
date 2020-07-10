@@ -1,3 +1,4 @@
 *.csv
 database_auth.json
 encoder.py
+emailapp_local.bat
