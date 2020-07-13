@@ -1,0 +1,1 @@
+git clone https://github.com/richie312/email_recruiter_app_Flask 
