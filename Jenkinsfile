@@ -1,5 +1,13 @@
 pipeline {
     agent any
+    environment {
+            docker_user = 'richie31'
+            registryCredential = 'dockerhub'
+            project_name = "jban"
+            semi_colon = ':'
+            slash = '/'
+            ver = "ver"
+    }
 
     stages {
         stage('build_preparation') {
@@ -11,8 +19,27 @@ pipeline {
     }    
         stage('build_stage'){
             steps {
+                    
                     script {
-                        bat "docker build --no-cache -t jban:ver0.1 ."
+                        bat""" echo Intializing docker authentication &&
+                                docker login -u richie31 -p Kevalasya@123" &&
+                                set image_name = ${docker_user}${slash}${project_name}${semi_colon}${ver}${BUILD_NUMBER} &&
+                                docker build --no-cache -t ${image_name} . &&
+                                docker run -d %{$image_name}% &&
+                                Waiting for docker recently created container to initialize.
+                        """
+                    }
+                timeout(10){}
+                script{
+                    echo "The container is active and application is live @ localhost:5001"
+                    }
+                }
+            }
+        stage('post_build'){
+            steps {
+                    script {
+                        echo "Updating the docker hub with the recently created image."
+                        bat "docker push %{$image_name}%"
                     }
                 }
             }
