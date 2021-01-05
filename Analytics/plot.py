@@ -1,21 +1,24 @@
-# -*- coding: utf-8 -*-
 
 import flask
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
-from helper_functions import collect_location_wise_count,tenure_dict
+from helper_function import collect_location_wise_count,tenure_dict
 from datetime import datetime
 from dotenv import load_dotenv
 import os
 import inspect
 # load the environment variable from the root directory
-load_dotenv('.env')
-inspect.getargspec(load_dotenv)
+main_dir = os.getcwd()
+temp = main_dir.split("\\")
+temp.remove('Analytics')
+root_dir = "\\".join(temp)
+load_dotenv(os.path.join(root_dir,'.env'))
+url = os.getenv('url')
+#inspect.getargspec(load_dotenv)
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-url = os.getenv('url')
 
 data = collect_location_wise_count(url,180)
 months = list(set(data['month'].values.tolist()))    
