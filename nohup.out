@@ -207,3 +207,1408 @@ ModuleNotFoundError: No module named 'requests'
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 160-047-265
+ * Serving Flask app "sendmail" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 730-800-457
+183.83.147.108 - - [02/Apr/2021 11:47:05] "[37mGET / HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 11:47:15] "[37mGET / HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 11:57:25] "[37mGET / HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 11:59:08] "[37mGET / HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 11:59:10] "[37mGET / HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 11:59:29] "[37mGET / HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 11:59:36] "[37mGET / HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:02:24] "[37mGET / HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:03] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 97, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials o76sm7820543pfg.217 - gsmtp')
+183.83.147.108 - - [02/Apr/2021 12:03:03] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:03] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:03] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:04] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:04] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:04] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:18] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 97, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials y4sm7815876pfn.67 - gsmtp')
+183.83.147.108 - - [02/Apr/2021 12:03:18] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:18] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:18] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:19] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:19] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:59] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 97, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials s76sm8262448pfc.110 - gsmtp')
+183.83.147.108 - - [02/Apr/2021 12:03:59] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:59] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:59] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:59] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:03:59] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:09:35] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 97, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials d25sm7850381pfo.218 - gsmtp')
+183.83.147.108 - - [02/Apr/2021 12:09:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:09:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:09:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:09:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:09:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:10:34] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 97, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials u17sm955279pjx.10 - gsmtp')
+183.83.147.108 - - [02/Apr/2021 12:10:34] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:10:34] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:10:34] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:10:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:10:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:10:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:12:16] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 97, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbv\n5.7.14 jE-Zfr8GibGDv4uWmV8pKRncfa9H0EjwxmQhvStNJYFy29I4ZW_5p-Ox-OST8gPtOImy0\n5.7.14 tJWtXr0y8_t90ESAYl4Q1bZhK-9EGrsPiFBUMg0SU3E5EyJjDbLSElEO3_9qGepb>\n5.7.14 Please log in via your web browser and then try again.\n5.7.14  Learn more at\n5.7.14  https://support.google.com/mail/answer/78754 p25sm8359363pfe.100 - gsmtp')
+183.83.147.108 - - [02/Apr/2021 12:12:16] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:12:16] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:12:16] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:12:16] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:12:16] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:12:17] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:13:02] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 97, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials q184sm8083439pfc.78 - gsmtp')
+183.83.147.108 - - [02/Apr/2021 12:13:02] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:13:02] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:13:02] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:13:02] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 12:13:02] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:13:10] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 97, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials t7sm7724442pfg.69 - gsmtp')
+183.83.147.108 - - [02/Apr/2021 13:13:10] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:13:10] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:13:10] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:13:10] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:13:10] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:13:27] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 97, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbt\n5.7.14 nZ-f5EcqjJ8sF_tJlBlh9xV7kg8oXL96-39dCJ9-FAolAdc-vY8cnxCluV75O7xqWDH4O\n5.7.14 4IIvbkLVFvTHmYTs7bxiZjPdgxz0a5BHJsVZ3Na7iF0pWrQdSGgaWFJMvU-YiIx7>\n5.7.14 Please log in via your web browser and then try again.\n5.7.14  Learn more at\n5.7.14  https://support.google.com/mail/answer/78754 bg16sm8024751pjb.43 - gsmtp')
+183.83.147.108 - - [02/Apr/2021 13:13:27] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:13:27] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:13:27] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:13:27] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:13:27] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:17:05] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 97, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbs\n5.7.14 4MLgK-JGgDVxSSXWqvWYiTRaYCpOadNKl0xCuaqZytpgmm0tZpLMBmN37u-CFa2JAXn4i\n5.7.14 seOuArpQXIQObCf0hNRwnbMWOOZNsMoNw0izD7XzB11_QjC8mgiqjwClMpPQ_dxp>\n5.7.14 Please log in via your web browser and then try again.\n5.7.14  Learn more at\n5.7.14  https://support.google.com/mail/answer/78754 s28sm8421679pfd.155 - gsmtp')
+183.83.147.108 - - [02/Apr/2021 13:17:05] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:17:05] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:17:05] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:17:05] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:17:05] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:17:29] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 97, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbs\n5.7.14 kYP0DnXJap2P1LVipJcLze0dLESH8rl-ySYeZnvbLABoTqWIk4kHBTUp15Tz08yDrcQmr\n5.7.14 2hRHvqHF6lVdmBVMnNfyLckFRIqC3V0le_N0aldYBK0bvtFU-jv-YacqXDU4jrU9>\n5.7.14 Please log in via your web browser and then try again.\n5.7.14  Learn more at\n5.7.14  https://support.google.com/mail/answer/78754 k15sm8571853pfi.0 - gsmtp')
+183.83.147.108 - - [02/Apr/2021 13:17:29] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:17:29] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:17:29] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:17:30] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:17:30] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:18:46] "[32mGET /application_history HTTP/1.1[0m" 302 -
+183.83.147.108 - - [02/Apr/2021 13:18:46] "[33mGET /False HTTP/1.1[0m" 404 -
+183.83.147.108 - - [02/Apr/2021 13:20:07] "[33mGET /False HTTP/1.1[0m" 404 -
+183.83.147.108 - - [02/Apr/2021 13:20:13] "[32mGET /application_history HTTP/1.1[0m" 302 -
+183.83.147.108 - - [02/Apr/2021 13:20:13] "[33mGET /False HTTP/1.1[0m" 404 -
+183.83.147.108 - - [02/Apr/2021 13:23:24] "[37mGET /application_details HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:23:37] "[37mGET /application_details HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:23:37] "[37mGET /application_details HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:23:38] "[37mGET /application_details HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:23:39] "[37mGET /application_details HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:23:39] "[37mGET /application_details HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:23:39] "[37mGET /application_details HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:28:22] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 97, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials i14sm7858264pgl.79 - gsmtp')
+183.83.147.108 - - [02/Apr/2021 13:28:22] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:28:22] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:28:22] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:28:23] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:28:23] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:28:47] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 97, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbt\n5.7.14 EwHVxjkrIyC_JXx5cYgclnt622Ia49bfbLrGjEP9iTBnRHqhXAWxtlQ1Eci9f8j3DONbO\n5.7.14 5lvyT5C0P-MymS1tMPoRIJ0Qn2G4nbpuULZwxS4TfzbxY27KiRR1IERVbnc6fZ-f>\n5.7.14 Please log in via your web browser and then try again.\n5.7.14  Learn more at\n5.7.14  https://support.google.com/mail/answer/78754 15sm8148712pfx.167 - gsmtp')
+183.83.147.108 - - [02/Apr/2021 13:28:47] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:28:48] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:28:48] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:28:48] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+183.83.147.108 - - [02/Apr/2021 13:28:48] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+ * Detected change in '/home/ubuntu/email_recruiter_app_Flask/sendmail.py', reloading
+ * Restarting with stat
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 139
+    app.run(host = '0.0.0.0',debug=True,port=os.)
+                                                ^
+SyntaxError: invalid syntax
+  File "sendmail.py", line 139
+    app.run(host = '0.0.0.0',debug=True,port=os.)
+                                                ^
+SyntaxError: invalid syntax
+ * Serving Flask app "sendmail" (lazy loading)
+ * Environment: production
+   WARNING: This is a development server. Do not use it in a production deployment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+ * Running on http://0.0.0.0:5003/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 730-800-457
+157.47.127.135 - - [13/Apr/2021 06:50:37] "[37mGET / HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 06:51:06] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 98, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbu\n5.7.14 l0whsOhXP0Dnnke40HQE2QFG03cHSO6eNFWkvRpo2xUoY3VA9VEiJKoO2fbeP4hcZz53H\n5.7.14 r8J2WumOOXPByC3u6OMEACJeecSObDVEo_FcLbIOk4sirDoqf22wTu6rc8gyPLnS>\n5.7.14 Please log in via your web browser and then try again.\n5.7.14  Learn more at\n5.7.14  https://support.google.com/mail/answer/78754 x11sm1730784pjh.0 - gsmtp')
+157.47.127.135 - - [13/Apr/2021 06:51:06] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 06:51:06] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 06:53:06] "[37mGET / HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 06:55:19] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 98, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbu\n5.7.14 EePWjF3jFH8xRVx3LP6b4AIg5PITDunznLlW7ep2UduUiSu362ESTH4ddKXX-JYlwYecb\n5.7.14 rg-0xYgXxQKxZ5MqmWYrYi8-5G2aLCUbShDs9LBMnxkrHFm7u623goj52H0t6aEN>\n5.7.14 Please log in via your web browser and then try again.\n5.7.14  Learn more at\n5.7.14  https://support.google.com/mail/answer/78754 x69sm11495232pfd.161 - gsmtp')
+157.47.127.135 - - [13/Apr/2021 06:55:19] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 06:55:24] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+157.47.127.135 - - [13/Apr/2021 06:58:39] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 98, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (534, b'5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbu\n5.7.14 MjCv5iUalT0qORc01wPd5eGwYq9-fknfSd3F-NwqHld2zYhLFdjJ3x4crvgh9-wo7Nk8s\n5.7.14 ni9qDslQhWstWoJI1rtFSpDySAVADz2pBEeT6XbW1l2NaCX44PCQYAvukcMVUxB->\n5.7.14 Please log in via your web browser and then try again.\n5.7.14  Learn more at\n5.7.14  https://support.google.com/mail/answer/78754 x25sm11987975pfu.189 - gsmtp')
+157.47.127.135 - - [13/Apr/2021 06:58:40] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 06:59:01] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 07:00:23] "[37mGET / HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 07:01:08] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 98, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials g6sm10088358pfj.139 - gsmtp')
+157.47.127.135 - - [13/Apr/2021 07:01:08] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 07:01:08] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 07:01:08] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 07:01:09] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 07:01:09] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 07:03:01] "[37mPOST /addDetails HTTP/1.1[0m" 200 -
+157.47.127.135 - - [13/Apr/2021 07:03:30] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.54 - - [13/Apr/2021 07:26:32] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03Ã¶Ë\x98)âÐ\x0b\x8c0\x12"h\x90~.ô\x0b~o\x87{Õ¢{y¸RjÏó¼\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+162.142.125.54 - - [13/Apr/2021 07:26:32] "[35m[1m {  wÃ¶Ë)âÐ0"h~.ô~o{Õ¢{y¸RjÏó¼  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.54 - - [13/Apr/2021 07:26:33] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.54 - - [13/Apr/2021 07:26:34] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.38 - - [14/Apr/2021 07:53:25] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03Å¦]0_\x9ct\x1aÉñB:ýV²Í\x81\x03\x97ÍlañkêW\x19µË¶1³\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.38 - - [14/Apr/2021 07:53:25] "[35m[1m {  wÅ¦]0_tÉñB:ýV²ÍÍlañkêWµË¶1³  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.38 - - [14/Apr/2021 07:53:26] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.38 - - [14/Apr/2021 07:53:27] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [15/Apr/2021 08:00:12] code 400, message Bad request syntax ("\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x03ÚÝÂ%ì'²\x92\x0eB_Ð5v^Q\x19ÙÈÆJ=U9ÂLK")
+162.142.125.39 - - [15/Apr/2021 08:00:12] "[35m[1m {  wÚÝÂ%ì'²B_Ð5v^QÙÈÆJ=U9ÂLK[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.39 - - [15/Apr/2021 08:00:13] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [15/Apr/2021 08:00:14] "[37mGET / HTTP/1.1[0m" 200 -
+157.48.239.204 - - [15/Apr/2021 12:37:45] "[37mGET / HTTP/1.1[0m" 200 -
+157.48.239.204 - - [15/Apr/2021 12:37:46] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+157.48.239.204 - - [15/Apr/2021 12:38:46] "[37mPOST /addDetails HTTP/1.1[0m" 200 -
+185.202.2.66 - - [15/Apr/2021 13:57:17] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+185.202.2.66 - - [15/Apr/2021 13:57:17] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+194.61.25.4 - - [15/Apr/2021 21:17:23] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+194.61.25.4 - - [15/Apr/2021 21:17:23] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.55 - - [16/Apr/2021 03:26:51] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x9aé\x9ftsÀÀ\x86\x8bU>¼¿A\x1bn´N¯\x944\x9dºê=xutdª\x07±\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.55 - - [16/Apr/2021 03:26:51] "[35m[1m {  wétsÀÀU>¼¿An´N¯4ºê=xutdª±  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.55 - - [16/Apr/2021 03:26:52] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.55 - - [16/Apr/2021 03:26:53] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [16/Apr/2021 19:00:29] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x035ÒöÓÜ~\x8d\x91´Á\x83\x9b7«ù\x93\x90Òe\x7fF}$V\x860Ê\x94\x8boâ\x9f\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.56 - - [16/Apr/2021 19:00:29] "[35m[1m {  w5ÒöÓÜ~´Á7«ùÒeF}$V0Êoâ  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.56 - - [16/Apr/2021 19:00:31] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [16/Apr/2021 19:00:31] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.37 - - [17/Apr/2021 08:38:57] code 400, message Bad request version ('À\x14À')
+162.142.125.37 - - [17/Apr/2021 08:38:57] "[35m[1m {  wov#@ä/ñøÒª={|IíY_XüL)>O¦Ò_Á@~  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.37 - - [17/Apr/2021 08:38:58] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.37 - - [17/Apr/2021 08:38:59] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.54 - - [18/Apr/2021 09:24:13] code 400, message Bad request version ('À\x14À')
+162.142.125.54 - - [18/Apr/2021 09:24:13] "[35m[1m {  w SeÝ¡o¤!ýc¼&dÃÁ>ÛÍuþMì  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.54 - - [18/Apr/2021 09:24:14] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.54 - - [18/Apr/2021 09:24:15] "[37mGET / HTTP/1.1[0m" 200 -
+74.120.14.39 - - [18/Apr/2021 12:29:52] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.38 - - [19/Apr/2021 06:07:51] code 400, message Bad request version ('À\x14À')
+162.142.125.38 - - [19/Apr/2021 06:07:51] "[35m[1m {  wïyâÀã Åo×[GaRÞ5AÓ3~[öËºÝ  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.38 - - [19/Apr/2021 06:07:52] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.38 - - [19/Apr/2021 06:07:53] "[37mGET / HTTP/1.1[0m" 200 -
+206.189.139.245 - - [19/Apr/2021 23:02:17] "[37mGET / HTTP/1.0[0m" 200 -
+162.142.125.53 - - [20/Apr/2021 01:55:27] code 400, message Bad request version ('À\x14À')
+162.142.125.53 - - [20/Apr/2021 01:55:27] "[35m[1m {  wtÙÙ¿Æür{ÿªèãoµ>Þõ2?  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.53 - - [20/Apr/2021 01:55:29] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.53 - - [20/Apr/2021 01:55:29] "[37mGET / HTTP/1.1[0m" 200 -
+185.156.72.7 - - [20/Apr/2021 11:26:05] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+185.156.72.7 - - [20/Apr/2021 11:26:05] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+74.120.14.38 - - [20/Apr/2021 21:58:30] code 400, message Bad request version ('À\x14À')
+74.120.14.38 - - [20/Apr/2021 21:58:30] "[35m[1m {  w­±üNõæ¤îõi5vC©á¨ÀYÕýFé  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+74.120.14.38 - - [20/Apr/2021 21:58:31] "[37mGET / HTTP/1.1[0m" 200 -
+74.120.14.38 - - [20/Apr/2021 21:58:32] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.55 - - [21/Apr/2021 08:57:47] code 400, message Bad request version ('À\x14À')
+162.142.125.55 - - [21/Apr/2021 08:57:47] "[35m[1m {  wEzþý@DkµWTñ&XÍ0&ÑéTÀ  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.55 - - [21/Apr/2021 08:57:49] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.55 - - [21/Apr/2021 08:57:49] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [21/Apr/2021 18:47:54] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03éf{bÃFýã(\x92\x8e\x9c%ÇÕí\x8búf¶\x82\x9cØQ8ùÕ®U¾\x94(\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.39 - - [21/Apr/2021 18:47:54] "[35m[1m {  wéf{bÃFýã(%ÇÕíúf¶ØQ8ùÕ®U¾(  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.39 - - [21/Apr/2021 18:47:56] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [21/Apr/2021 18:47:56] "[37mGET / HTTP/1.1[0m" 200 -
+157.48.240.234 - - [22/Apr/2021 02:12:58] "[37mGET / HTTP/1.1[0m" 200 -
+157.48.240.234 - - [22/Apr/2021 02:12:58] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+142.93.160.127 - - [22/Apr/2021 09:29:26] "[37mHEAD / HTTP/1.0[0m" 200 -
+142.93.160.127 - - [22/Apr/2021 09:29:26] "[33mGET /system_api.php HTTP/1.1[0m" 404 -
+142.93.160.127 - - [22/Apr/2021 09:29:27] "[33mGET /system_api.php HTTP/1.1[0m" 404 -
+142.93.160.127 - - [22/Apr/2021 09:29:27] "[33mGET /c/version.js HTTP/1.1[0m" 404 -
+142.93.160.127 - - [22/Apr/2021 09:29:27] "[33mGET /streaming/clients_live.php HTTP/1.1[0m" 404 -
+142.93.160.127 - - [22/Apr/2021 09:29:28] "[33mGET /stalker_portal/c/version.js HTTP/1.1[0m" 404 -
+142.93.160.127 - - [22/Apr/2021 09:29:28] "[33mGET /client_area/ HTTP/1.1[0m" 404 -
+142.93.160.127 - - [22/Apr/2021 09:29:28] "[33mGET /stalker_portal/c/ HTTP/1.1[0m" 404 -
+142.93.160.127 - - [22/Apr/2021 09:29:28] "[33mGET /stream/live.php HTTP/1.1[0m" 404 -
+91.241.19.60 - - [22/Apr/2021 11:35:01] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+91.241.19.60 - - [22/Apr/2021 11:35:01] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.53 - - [22/Apr/2021 12:18:11] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x14\x99\xad&\x8c°Ö°ü\x8cÑ\xa0ùGó*\x94u\x04\x03\x86fÁ\x93ýr\x9eÔ©\tFá\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+162.142.125.53 - - [22/Apr/2021 12:18:11] "[35m[1m {  w­&°Ö°üÑ ùGó*ufÁýrÔ©	Fá  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.53 - - [22/Apr/2021 12:18:13] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.53 - - [22/Apr/2021 12:18:14] "[37mGET / HTTP/1.1[0m" 200 -
+89.248.165.74 - - [23/Apr/2021 09:49:57] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+89.248.165.74 - - [23/Apr/2021 09:49:57] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.54 - - [23/Apr/2021 12:03:18] code 400, message Bad request version ('À\x14À')
+162.142.125.54 - - [23/Apr/2021 12:03:18] "[35m[1m {  wD><g<ÆZCG-;½Rùl^æ1ÐûJï-W  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.54 - - [23/Apr/2021 12:03:20] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.54 - - [23/Apr/2021 12:03:20] "[37mGET / HTTP/1.1[0m" 200 -
+185.142.236.38 - - [23/Apr/2021 19:21:04] "[37mGET / HTTP/1.1[0m" 200 -
+185.142.236.38 - - [23/Apr/2021 19:21:05] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+185.142.236.38 - - [23/Apr/2021 19:21:09] code 400, message Bad HTTP/0.9 request type ('\x03!')
+185.142.236.38 - - [23/Apr/2021 19:21:09] "[35m[1m!`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            [0m" HTTPStatus.BAD_REQUEST -
+162.142.125.56 - - [24/Apr/2021 04:18:00] code 400, message Bad request version ('À\x14À')
+162.142.125.56 - - [24/Apr/2021 04:18:00] "[35m[1m {  wÌhî Ó~þ@±Ì¾ü4ôî¶#¦XÞ.ÊÆ},x  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.56 - - [24/Apr/2021 04:18:01] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [24/Apr/2021 04:18:02] "[37mGET / HTTP/1.1[0m" 200 -
+212.83.175.232 - - [24/Apr/2021 17:39:32] code 400, message Bad request syntax ('\x03\x00\x00\x13\x0eà\x00\x00\x00\x00\x00\x01\x00\x08\x00\x03\x00\x00\x00')
+212.83.175.232 - - [24/Apr/2021 17:39:32] "[35m[1m  à          [0m" HTTPStatus.BAD_REQUEST -
+162.142.125.53 - - [25/Apr/2021 00:31:01] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03ºù\x1d\x90»Î\x1c@N3Ö\x17\x8f:g¸0¯o\x84JoÐ_ú\x97¾\x87\x9aþ¼s\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+162.142.125.53 - - [25/Apr/2021 00:31:01] "[35m[1m {  wºù»Î@N3Ö:g¸0¯oJoÐ_ú¾þ¼s  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.53 - - [25/Apr/2021 00:31:03] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.53 - - [25/Apr/2021 00:31:03] "[37mGET / HTTP/1.1[0m" 200 -
+209.222.101.2 - - [25/Apr/2021 11:55:48] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00+&à\x00\x00\x00\x00\x00Cookie:')
+209.222.101.2 - - [25/Apr/2021 11:55:48] "[35m[1m  +&à     Cookie: mstshash=hello[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.37 - - [25/Apr/2021 19:20:50] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03U¸\x7fð*\x95@»Áe_v\x84¶g\xa0\x81\x81\x92\x1dsVÁ:¡±:\x90ßG\x1b¿\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+162.142.125.37 - - [25/Apr/2021 19:20:50] "[35m[1m {  wU¸ð*@»Áe_v¶g sVÁ:¡±:ßG¿  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.37 - - [25/Apr/2021 19:20:52] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.37 - - [25/Apr/2021 19:20:52] "[37mGET / HTTP/1.1[0m" 200 -
+134.122.33.97 - - [25/Apr/2021 20:54:40] "[37mGET / HTTP/1.0[0m" 200 -
+162.142.125.55 - - [26/Apr/2021 17:15:53] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03Izü\x059S\x10ï\x8dØåbª\x8a\x06æ¨Ã§÷´[é(\x96\x01ºïâ\x8c¥\x8d\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.55 - - [26/Apr/2021 17:15:53] "[35m[1m {  wIzü9SïØåbªæ¨Ã§÷´[é(ºïâ¥  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.55 - - [26/Apr/2021 17:15:55] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.55 - - [26/Apr/2021 17:15:56] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [27/Apr/2021 11:03:32] code 400, message Bad request version ('À\x14À')
+162.142.125.39 - - [27/Apr/2021 11:03:32] "[35m[1m {  wNp5QßÙñ­HÙñÔdO1è×-ø:ÜY}ÎçúÖ  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.39 - - [27/Apr/2021 11:03:34] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [27/Apr/2021 11:03:34] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [28/Apr/2021 00:16:35] code 400, message Bad request version ('À\x14À')
+162.142.125.39 - - [28/Apr/2021 00:16:35] "[35m[1m {  wÔÙcpO^ba`jÿã,äéÜ¾Ñ/åÂÇÛõ  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.39 - - [28/Apr/2021 00:16:37] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [28/Apr/2021 00:16:37] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.37 - - [28/Apr/2021 05:09:25] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x81\x18\x8d\x1e\x8aôa\x81\x9b\x0b\rF\x19µlæ\x0fqóJLèln\x04&e\x19*ù\x08\x8c\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+162.142.125.37 - - [28/Apr/2021 05:09:25] "[35m[1m {  wôaFµlæqóJLèln&e*ù  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.37 - - [28/Apr/2021 05:09:26] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.37 - - [28/Apr/2021 05:09:27] "[37mGET / HTTP/1.1[0m" 200 -
+74.120.14.38 - - [29/Apr/2021 15:20:01] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [29/Apr/2021 15:57:24] code 400, message Bad request version ('\x9bMa{d')
+162.142.125.56 - - [29/Apr/2021 15:57:24] "[35m[1m {  w0{>÷¦Õ@rÖ1rX@W`ÒbMa{d[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.56 - - [29/Apr/2021 15:57:26] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [29/Apr/2021 15:57:26] "[37mGET / HTTP/1.1[0m" 200 -
+178.62.89.244 - - [29/Apr/2021 18:33:31] "[37mHEAD / HTTP/1.0[0m" 200 -
+178.62.89.244 - - [29/Apr/2021 18:33:32] "[33mGET /system_api.php HTTP/1.1[0m" 404 -
+178.62.89.244 - - [29/Apr/2021 18:33:32] "[33mGET /system_api.php HTTP/1.1[0m" 404 -
+178.62.89.244 - - [29/Apr/2021 18:33:32] "[33mGET /c/version.js HTTP/1.1[0m" 404 -
+178.62.89.244 - - [29/Apr/2021 18:33:32] "[33mGET /streaming/clients_live.php HTTP/1.1[0m" 404 -
+178.62.89.244 - - [29/Apr/2021 18:33:33] "[33mGET /stalker_portal/c/version.js HTTP/1.1[0m" 404 -
+178.62.89.244 - - [29/Apr/2021 18:33:33] "[33mGET /client_area/ HTTP/1.1[0m" 404 -
+178.62.89.244 - - [29/Apr/2021 18:33:33] "[33mGET /stalker_portal/c/ HTTP/1.1[0m" 404 -
+178.62.89.244 - - [29/Apr/2021 18:33:34] "[33mGET /stream/live.php HTTP/1.1[0m" 404 -
+162.142.125.54 - - [30/Apr/2021 09:55:13] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03L?[Ì®\x06Ðß\x04ü\x80\x05µ\x83Õ°ù«\x02³ÌDñâ\x86bpp"{j9\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.54 - - [30/Apr/2021 09:55:13] "[35m[1m {  wL?[Ì®ÐßüµÕ°ù«³ÌDñâbpp"{j9  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.54 - - [30/Apr/2021 09:55:15] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.54 - - [30/Apr/2021 09:55:15] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.40 - - [01/May/2021 05:14:12] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03ºS\x063o¸¿¶\\\x97}å\x89C\x08\x80]@Ú\x82?@\x8e)\x91\x10M\x99gèº1\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.40 - - [01/May/2021 05:14:12] "[35m[1m {  wºS3o¸¿¶\}åC]@Ú?@)Mgèº1  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.40 - - [01/May/2021 05:14:14] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.40 - - [01/May/2021 05:14:14] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.54 - - [01/May/2021 11:26:20] code 400, message Bad request version ('"\x87£ÿ\x9f|\x96»\x7f\x16Õraýv\x8c\x89ø')
+162.142.125.54 - - [01/May/2021 11:26:20] "[35m[1m {  w¤ñ@bR yî/"£ÿ|»Õraývø[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.54 - - [01/May/2021 11:26:22] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.54 - - [01/May/2021 11:26:23] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.40 - - [02/May/2021 20:19:47] "[37mGET / HTTP/1.1[0m" 200 -
+139.59.184.250 - - [02/May/2021 20:30:27] "[37mGET / HTTP/1.0[0m" 200 -
+162.142.125.40 - - [02/May/2021 21:35:35] code 400, message Bad request version ('À\x14À')
+162.142.125.40 - - [02/May/2021 21:35:35] "[35m[1m {  wÜAÓ"nk­D7År¤DÙjN:oyÚ®ÏTÈ2êi  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.40 - - [02/May/2021 21:35:36] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.40 - - [02/May/2021 21:35:37] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.53 - - [03/May/2021 04:52:56] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03Ë¡\xa0É´t\x1adR\x8cíØÀ\x08[\x03³\r´o\r\x1f\x89\x10_§Ab×î\x19\x96\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+162.142.125.53 - - [03/May/2021 04:52:56] "[35m[1m {  wË¡ É´tdRíØÀ[³´o_§Ab×î  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.53 - - [03/May/2021 04:52:57] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.53 - - [03/May/2021 04:52:58] "[37mGET / HTTP/1.1[0m" 200 -
+78.128.112.18 - - [03/May/2021 10:43:45] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+78.128.112.18 - - [03/May/2021 10:43:45] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+78.128.112.18 - - [03/May/2021 10:43:45] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+78.128.112.18 - - [03/May/2021 10:43:45] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+167.248.133.39 - - [03/May/2021 22:04:29] code 400, message Bad request version ('À\x14À')
+167.248.133.39 - - [03/May/2021 22:04:29] "[35m[1m {  wý¸BuRE]-h³9dã¡¼<ô"bñl  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+167.248.133.39 - - [03/May/2021 22:04:30] "[37mGET / HTTP/1.1[0m" 200 -
+167.248.133.39 - - [03/May/2021 22:04:31] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.54 - - [04/May/2021 00:06:19] code 400, message Bad request version ('À\x14À')
+162.142.125.54 - - [04/May/2021 00:06:19] "[35m[1m {  w¸F1w3\0-í%[Ä-`3Ù9áÎXG  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.54 - - [04/May/2021 00:06:21] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.54 - - [04/May/2021 00:06:21] "[37mGET / HTTP/1.1[0m" 200 -
+52.71.52.190 - - [04/May/2021 08:14:32] "[37mGET / HTTP/1.1[0m" 200 -
+141.98.10.149 - - [04/May/2021 16:05:31] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+141.98.10.149 - - [04/May/2021 16:05:31] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.128 - - [04/May/2021 23:13:47] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.128 - - [04/May/2021 23:28:08] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [05/May/2021 06:45:06] code 400, message Bad request version ('À\x14À')
+162.142.125.39 - - [05/May/2021 06:45:06] "[35m[1m {  w³ Ë÷O±XqpáÀYp¬ÚBµ¸ImWÖÞ²£+%$  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.39 - - [05/May/2021 06:45:08] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [05/May/2021 06:45:08] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [05/May/2021 20:13:58] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x08joYÊ\x95¦e\x7fÏ$Z\x84Uû')
+162.142.125.56 - - [05/May/2021 20:13:58] "[35m[1m {  wjoYÊ¦eÏ$ZUû[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.56 - - [05/May/2021 20:14:00] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [05/May/2021 20:14:00] "[37mGET / HTTP/1.1[0m" 200 -
+143.198.106.50 - - [06/May/2021 06:09:58] "[37mHEAD / HTTP/1.0[0m" 200 -
+143.198.106.50 - - [06/May/2021 06:09:59] "[33mGET /system_api.php HTTP/1.1[0m" 404 -
+143.198.106.50 - - [06/May/2021 06:09:59] "[33mGET /system_api.php HTTP/1.1[0m" 404 -
+143.198.106.50 - - [06/May/2021 06:10:00] "[33mGET /c/version.js HTTP/1.1[0m" 404 -
+143.198.106.50 - - [06/May/2021 06:10:00] "[33mGET /streaming/clients_live.php HTTP/1.1[0m" 404 -
+143.198.106.50 - - [06/May/2021 06:10:01] "[33mGET /stalker_portal/c/version.js HTTP/1.1[0m" 404 -
+143.198.106.50 - - [06/May/2021 06:10:01] "[33mGET /client_area/ HTTP/1.1[0m" 404 -
+143.198.106.50 - - [06/May/2021 06:10:02] "[33mGET /stalker_portal/c/ HTTP/1.1[0m" 404 -
+143.198.106.50 - - [06/May/2021 06:10:02] "[33mGET /stream/live.php HTTP/1.1[0m" 404 -
+47.241.62.6 - - [06/May/2021 20:30:16] "[37mGET / HTTP/1.0[0m" 200 -
+47.241.62.6 - - [06/May/2021 20:30:50] "[33mGET /nmaplowercheck1620333050 HTTP/1.1[0m" 404 -
+47.241.62.6 - - [06/May/2021 20:30:50] "[37mGET / HTTP/1.0[0m" 200 -
+47.241.62.6 - - [06/May/2021 20:30:50] "[33mPOST /sdk HTTP/1.1[0m" 404 -
+47.241.62.6 - - [06/May/2021 20:30:50] "[37mGET / HTTP/1.1[0m" 200 -
+47.241.62.6 - - [06/May/2021 20:30:50] "[33mGET /HNAP1 HTTP/1.1[0m" 404 -
+47.241.62.6 - - [06/May/2021 20:30:50] "[33mGET /evox/about HTTP/1.1[0m" 404 -
+47.241.62.6 - - [06/May/2021 20:31:00] code 400, message Bad request syntax ('\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03\x91\x16£rí6ù\rZP\x0b\x87M\x1e(Õ\x94çeêÞÌãKnöeå\x03+]`\x00\x00Ú\x00\x05\x00\x04\x00\x02\x00\x01\x00\x16\x003\x009\x00:\x00\x18\x005\x00')
+47.241.62.6 - - [06/May/2021 20:31:00] "[35m[1m  ü£rí6ùZPM(ÕçeêÞÌãKnöeå+]`  Ú      3 9 :  5 [0m" HTTPStatus.BAD_REQUEST -
+47.241.62.6 - - [06/May/2021 20:31:00] code 400, message Bad request syntax ('\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03ÐµY¾|\r¶|ëÖ\x12¥\x18\x0b.#`@Rl\x0fì\x14á\t./\x82ã\x1a8t\x00\x00Ú\x00\x05\x00\x04\x00\x02\x00\x01\x00\x16\x003\x009\x00:\x00\x18\x005\x00')
+47.241.62.6 - - [06/May/2021 20:31:00] "[35m[1m  üÐµY¾|¶|ëÖ¥.#`@Rlìá	./ã8t  Ú      3 9 :  5 [0m" HTTPStatus.BAD_REQUEST -
+47.241.62.6 - - [06/May/2021 20:31:01] "[37mGET / HTTP/1.1[0m" 200 -
+47.241.62.6 - - [06/May/2021 20:31:01] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+162.142.125.40 - - [06/May/2021 23:11:46] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03-Ë¾9]ÙOð\x8fýÝÜÐÒöä±@\x0f\x7f¼ª_ïB\x89Ý,ø±Ô\x89\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.40 - - [06/May/2021 23:11:46] "[35m[1m {  w-Ë¾9]ÙOðýÝÜÐÒöä±@¼ª_ïBÝ,ø±Ô  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.40 - - [06/May/2021 23:11:48] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.40 - - [06/May/2021 23:11:48] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [07/May/2021 05:17:34] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03íá1¹W°A+åÌ\x1e\x17Âtã\x85AüÎô\x7fF-\x0co\x04\x8bý+Ìî\x84\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+162.142.125.56 - - [07/May/2021 05:17:34] "[35m[1m {  wíá1¹W°A+åÌÂtãAüÎôF-oý+Ìî  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.56 - - [07/May/2021 05:17:35] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [07/May/2021 05:17:36] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.55 - - [07/May/2021 12:02:30] code 400, message Bad request version ('À\x14À')
+162.142.125.55 - - [07/May/2021 12:02:30] "[35m[1m {  w"8r:yÃ²´Fó¤6¦ùë¯Õõå²×h  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.55 - - [07/May/2021 12:02:32] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.55 - - [07/May/2021 12:02:33] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [08/May/2021 17:37:57] code 400, message Bad request version ('À\x14À')
+162.142.125.56 - - [08/May/2021 17:37:57] "[35m[1m {  wHäO ºX3G±±W°KÿNªµáxA;i¦  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.56 - - [08/May/2021 17:37:59] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [08/May/2021 17:38:00] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [09/May/2021 12:13:00] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x92\x07ø\x1f\x91kLåù\x86\x1b\x0e\x96\xa0Îgæxó\x81\x90\x97\x80¢s\x98m4þN±\x89\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+162.142.125.56 - - [09/May/2021 12:13:00] "[35m[1m {  wøkLåù Îgæxó¢sm4þN±  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.56 - - [09/May/2021 12:13:02] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [09/May/2021 12:13:02] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.128 - - [09/May/2021 23:35:30] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [10/May/2021 13:01:26] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x02ûQ\x03\x0e¥x\xad\x19\x87Ê\x0fs\x94t5Í7É*r;\x9b_')
+162.142.125.39 - - [10/May/2021 13:01:26] "[35m[1m {  wûQ¥x­Êst5Í7É*r;_Ñîµ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.39 - - [10/May/2021 13:01:28] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [10/May/2021 13:01:28] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.128 - - [10/May/2021 17:13:03] "[37mGET / HTTP/1.1[0m" 200 -
+46.101.77.118 - - [11/May/2021 02:27:56] "[37mGET / HTTP/1.0[0m" 200 -
+162.142.125.56 - - [11/May/2021 02:32:47] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03F\x04\x84î\t¢\r\x1aW©¼\x98Ð¸\x1e§¸äp#¬\x7f®\x7f¹ÇGZe¥¢¿\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+162.142.125.56 - - [11/May/2021 02:32:47] "[35m[1m {  wFî	¢W©¼Ð¸§¸äp#¬®¹ÇGZe¥¢¿  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.56 - - [11/May/2021 02:32:48] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [11/May/2021 02:32:49] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.37 - - [11/May/2021 20:40:28] code 400, message Bad HTTP/0.9 request type ("\x16\x03\x01\x00{\x01\x00\x00w\x03\x03&Jn²$\x8c\x9f\x89þ¨l\x9a\x0e-0Ë&Ç²¿>Á\x17Ó£\x0e×¹V'-w\x00\x00\x1aÀ/À+À\x11À\x07À\x13À")
+162.142.125.37 - - [11/May/2021 20:40:28] "[35m[1m {  w&Jn²$þ¨l-0Ë&Ç²¿>ÁÓ£×¹V'-w  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.37 - - [11/May/2021 20:40:31] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.37 - - [11/May/2021 20:40:32] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.53 - - [12/May/2021 06:34:28] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x0320ØWÍ½~»D\x8b}Ó\x9d¬Í4g%\x9bA´\x8b>óÊ\x1aõ\x1e0\x85\x8e\x8d\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+162.142.125.53 - - [12/May/2021 06:34:28] "[35m[1m {  w20ØWÍ½~»D}Ó¬Í4g%A´>óÊõ0  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.53 - - [12/May/2021 06:34:30] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.53 - - [12/May/2021 06:34:30] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.38 - - [13/May/2021 03:07:30] code 400, message Bad request syntax ("\x16\x03\x01\x00{\x01\x00\x00w\x03\x03*£V¨'")
+162.142.125.38 - - [13/May/2021 03:07:30] "[35m[1m {  w*£V¨'[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.38 - - [13/May/2021 03:07:31] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.38 - - [13/May/2021 03:07:32] "[37mGET / HTTP/1.1[0m" 200 -
+178.62.15.227 - - [13/May/2021 17:10:42] "[37mHEAD / HTTP/1.0[0m" 200 -
+178.62.15.227 - - [13/May/2021 17:10:43] "[33mGET /system_api.php HTTP/1.1[0m" 404 -
+178.62.15.227 - - [13/May/2021 17:10:43] "[33mGET /system_api.php HTTP/1.1[0m" 404 -
+178.62.15.227 - - [13/May/2021 17:10:43] "[33mGET /c/version.js HTTP/1.1[0m" 404 -
+178.62.15.227 - - [13/May/2021 17:10:44] "[33mGET /streaming/clients_live.php HTTP/1.1[0m" 404 -
+178.62.15.227 - - [13/May/2021 17:10:44] "[33mGET /stalker_portal/c/version.js HTTP/1.1[0m" 404 -
+178.62.15.227 - - [13/May/2021 17:10:44] "[33mGET /client_area/ HTTP/1.1[0m" 404 -
+178.62.15.227 - - [13/May/2021 17:10:44] "[33mGET /stalker_portal/c/ HTTP/1.1[0m" 404 -
+178.62.15.227 - - [13/May/2021 17:10:45] "[33mGET /stream/live.php HTTP/1.1[0m" 404 -
+193.142.146.216 - - [14/May/2021 10:08:24] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00+&à\x00\x00\x00\x00\x00Cookie:')
+193.142.146.216 - - [14/May/2021 10:08:24] "[35m[1m  +&à     Cookie: mstshash=hello[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.54 - - [14/May/2021 11:53:28] code 400, message Bad request syntax ("\x16\x03\x01\x00{\x01\x00\x00w\x03\x03¼6J\x1c'\x86OäKT\xa0\x01{A<\x8e\x14=\x00\x1b\x88ÛÞ\x15â\x8a\\û2ß\x16Ê\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À")
+162.142.125.54 - - [14/May/2021 11:53:28] "[35m[1m {  w¼6J'OäKT {A<= ÛÞâ\û2ßÊ  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.54 - - [14/May/2021 11:53:29] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.54 - - [14/May/2021 11:53:30] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [14/May/2021 22:43:35] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03j}Þ\x92uåÿg&¿ÚdÌL#Ï\x8dÝ;yÄ¾hvx´\x8fSX\x862?\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.56 - - [14/May/2021 22:43:35] "[35m[1m {  wj}Þuåÿg&¿ÚdÌL#ÏÝ;yÄ¾hvx´SX2?  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.56 - - [14/May/2021 22:43:37] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [14/May/2021 22:43:37] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.38 - - [15/May/2021 16:04:05] code 400, message Bad request version ('À\x14À')
+162.142.125.38 - - [15/May/2021 16:04:05] "[35m[1m {  w`´úþ4zýSrØAu	páÙLEZáL\{uÃ  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.38 - - [15/May/2021 16:04:07] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.38 - - [15/May/2021 16:04:07] "[37mGET / HTTP/1.1[0m" 200 -
+194.26.29.139 - - [16/May/2021 00:16:27] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+194.26.29.139 - - [16/May/2021 00:16:27] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+194.26.29.139 - - [16/May/2021 00:16:27] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+194.26.29.139 - - [16/May/2021 00:16:27] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+89.248.165.120 - - [16/May/2021 00:34:19] code 400, message Bad request syntax ('\x03\x00\x00\x13\x0eà\x00\x00\x00\x00\x00\x01\x00\x08\x00\x02\x00\x00\x00')
+89.248.165.120 - - [16/May/2021 00:34:19] "[35m[1m  à          [0m" HTTPStatus.BAD_REQUEST -
+162.142.125.37 - - [16/May/2021 11:51:15] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03H\x8fX\x15Ñe±EÝA]Ó}8N\x01\x97zX7\x00/®\x0fP¾ó\x8eG{tO\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.37 - - [16/May/2021 11:51:15] "[35m[1m {  wHXÑe±EÝA]Ó}8NzX7 /®P¾óG{tO  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.37 - - [16/May/2021 11:51:16] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.37 - - [16/May/2021 11:51:17] "[37mGET / HTTP/1.1[0m" 200 -
+165.227.32.104 - - [17/May/2021 11:56:27] "[37mGET / HTTP/1.0[0m" 200 -
+162.142.125.40 - - [17/May/2021 12:23:54] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.53 - - [17/May/2021 17:24:38] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03~Û')
+162.142.125.53 - - [17/May/2021 17:24:38] "[35m[1m {  w~Û[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.53 - - [17/May/2021 17:24:40] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.53 - - [17/May/2021 17:24:41] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.37 - - [18/May/2021 16:00:02] code 400, message Bad request version ('À\x14À')
+162.142.125.37 - - [18/May/2021 16:00:02] "[35m[1m {  wÙÂ>Z«Ãy-ºHmÛ®æK0Ð»	4âëÑ¿¹Ä  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.37 - - [18/May/2021 16:00:04] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.37 - - [18/May/2021 16:00:04] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.55 - - [19/May/2021 11:01:39] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03i!Âæ\x99Ð~*Ø:\x81\x00\xad©DÞÒo\x19XK¯\x97\x96é\x95mèn2\x94a\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.55 - - [19/May/2021 11:01:39] "[35m[1m {  wi!ÂæÐ~*Ø: ­©DÞÒoXK¯émèn2a  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.55 - - [19/May/2021 11:01:40] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.55 - - [19/May/2021 11:01:41] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.55 - - [19/May/2021 21:01:42] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x8be¼\x96ç\x7f¨\xadw\x9bèBl\x08"«\x9fi2Ôúí\x84"®È\x7f\x81ÔpÚ\x92\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.55 - - [19/May/2021 21:01:42] "[35m[1m {  we¼ç¨­wèBl"«i2Ôúí"®ÈÔpÚ  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.55 - - [19/May/2021 21:01:43] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.55 - - [19/May/2021 21:01:44] "[37mGET / HTTP/1.1[0m" 200 -
+45.93.201.46 - - [20/May/2021 13:12:46] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+45.93.201.46 - - [20/May/2021 13:12:46] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+45.93.201.46 - - [20/May/2021 20:15:37] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+45.93.201.46 - - [20/May/2021 20:15:37] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.40 - - [20/May/2021 20:35:16] code 400, message Bad request version ('À\x14À')
+162.142.125.40 - - [20/May/2021 20:35:16] "[35m[1m {  w¸n`°ë²î©à}$2ÜLjÕãrKÏ¡ð$Ùu  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.40 - - [20/May/2021 20:35:18] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.40 - - [20/May/2021 20:35:18] "[37mGET / HTTP/1.1[0m" 200 -
+157.40.77.220 - - [21/May/2021 06:23:55] "[37mGET / HTTP/1.1[0m" 200 -
+157.40.77.220 - - [21/May/2021 06:23:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+157.40.77.220 - - [21/May/2021 06:25:17] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 98, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials e24sm3497882pgi.17 - gsmtp')
+157.40.77.220 - - [21/May/2021 06:25:18] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+157.40.77.220 - - [21/May/2021 06:25:18] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+157.40.77.220 - - [21/May/2021 06:25:18] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+157.40.77.220 - - [21/May/2021 06:25:18] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+157.40.77.220 - - [21/May/2021 06:25:18] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+157.40.77.220 - - [21/May/2021 06:25:19] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+157.40.77.220 - - [21/May/2021 06:25:40] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 98, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials n11sm3834727pff.96 - gsmtp')
+157.40.77.220 - - [21/May/2021 06:25:40] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+157.40.77.220 - - [21/May/2021 06:25:40] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+157.40.77.220 - - [21/May/2021 06:25:40] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+157.40.77.220 - - [21/May/2021 06:25:41] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+157.40.77.220 - - [21/May/2021 06:25:41] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+157.40.92.11 - - [21/May/2021 08:52:25] "[37mGET / HTTP/1.1[0m" 200 -
+157.40.71.42 - - [21/May/2021 09:19:46] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+162.142.125.128 - - [21/May/2021 19:53:28] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [21/May/2021 21:51:20] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x1eÒ=Î¡Ä¤.ty¬ó\x91â¿¡ìµÀó\x82ÉV\x1ae2\x0c¾<\x1c·m\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+162.142.125.39 - - [21/May/2021 21:51:20] "[35m[1m {  wÒ=Î¡Ä¤.ty¬óâ¿¡ìµÀóÉVe2¾<·m  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+74.120.14.38 - - [22/May/2021 00:08:32] code 400, message Bad request version ('À\x14À')
+74.120.14.38 - - [22/May/2021 00:08:32] "[35m[1m {  wyKr6y_|ÑG|Õ¼Þñò/u¾ÈÈí.`Ü¥¡  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+74.120.14.38 - - [22/May/2021 00:08:34] "[37mGET / HTTP/1.1[0m" 200 -
+74.120.14.38 - - [22/May/2021 00:08:34] "[37mGET / HTTP/1.1[0m" 200 -
+87.251.70.129 - - [22/May/2021 01:51:59] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+87.251.70.129 - - [22/May/2021 01:51:59] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+87.251.70.129 - - [22/May/2021 02:52:22] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+87.251.70.129 - - [22/May/2021 02:52:22] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.39 - - [22/May/2021 17:46:13] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03.\x12\x88nJ^ú\x82I\x9erø\x13\x96«{\x9c\x8f=\x13Lx\x06\x80\x94O\x19¡Â~\x01ú\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.39 - - [22/May/2021 17:46:13] "[35m[1m {  w.nJ^úIrø«{=LxO¡Â~ú  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.39 - - [22/May/2021 17:46:15] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.39 - - [22/May/2021 17:46:16] "[37mGET / HTTP/1.1[0m" 200 -
+193.142.146.216 - - [22/May/2021 21:26:53] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+193.142.146.216 - - [22/May/2021 21:26:53] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+78.128.112.14 - - [22/May/2021 22:54:21] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+78.128.112.14 - - [22/May/2021 22:54:21] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+157.40.86.81 - - [23/May/2021 07:02:39] "[37mGET / HTTP/1.1[0m" 200 -
+157.40.86.81 - - [23/May/2021 07:02:40] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+162.142.125.37 - - [23/May/2021 08:04:47] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x032i\x9fhÅõñÔ®¬e(¯\x81\x10\x8cÖ±p\x07S\x8aSù\x06¸ôSa¡\x18«\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.37 - - [23/May/2021 08:04:47] "[35m[1m {  w2ihÅõñÔ®¬e(¯Ö±pSSù¸ôSa¡«  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.37 - - [23/May/2021 08:04:49] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.37 - - [23/May/2021 08:04:49] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [24/May/2021 03:54:36] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03Ç\x9cJÚ\x84:Å\x98\x87jJ\x0f\x9a\x0bdÿ÷\x9b\x19\x00Ï\x8c¬;)²¹¸«Ûñ\x0c\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+162.142.125.56 - - [24/May/2021 03:54:36] "[35m[1m {  wÇJÚ:ÅjJdÿ÷ Ï¬;)²¹¸«Ûñ  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.56 - - [24/May/2021 03:54:37] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.56 - - [24/May/2021 03:54:38] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.128 - - [24/May/2021 03:57:04] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.40 - - [24/May/2021 04:43:49] code 400, message Bad request version ('À\x14À')
+162.142.125.40 - - [24/May/2021 04:43:49] "[35m[1m {  wN;ÿWl|ÙrH]ÄHEÝûµug;v[¼?×Z  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.40 - - [24/May/2021 04:43:50] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.40 - - [24/May/2021 04:43:51] "[37mGET / HTTP/1.1[0m" 200 -
+146.196.45.3 - - [24/May/2021 11:45:53] "[37mGET / HTTP/1.1[0m" 200 -
+146.196.45.3 - - [24/May/2021 11:45:54] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+146.196.45.3 - - [24/May/2021 11:48:16] "[37mGET / HTTP/1.1[0m" 200 -
+146.196.45.3 - - [24/May/2021 11:48:35] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 98, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials w15sm14534835pjy.1 - gsmtp')
+146.196.45.3 - - [24/May/2021 11:48:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+146.196.45.3 - - [24/May/2021 11:48:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+146.196.45.3 - - [24/May/2021 11:48:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+146.196.45.3 - - [24/May/2021 11:48:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+146.196.45.3 - - [24/May/2021 11:48:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+146.196.45.3 - - [24/May/2021 11:48:35] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+146.196.45.3 - - [24/May/2021 11:49:53] "[37mGET / HTTP/1.1[0m" 200 -
+146.196.45.3 - - [24/May/2021 11:50:32] "[37mPOST /addDetails HTTP/1.1[0m" 200 -
+165.232.178.229 - - [24/May/2021 11:58:55] "[37mGET / HTTP/1.0[0m" 200 -
+89.248.165.52 - - [24/May/2021 12:30:11] code 400, message Bad request syntax ('\x04\x01\x00\x19h/7!\x00')
+89.248.165.52 - - [24/May/2021 12:30:11] "[35m[1m h/7! [0m" HTTPStatus.BAD_REQUEST -
+89.248.165.52 - - [24/May/2021 12:31:11] code 400, message Bad request syntax ('\x05\x01\x00')
+89.248.165.52 - - [24/May/2021 12:31:11] "[35m[1m [0m" HTTPStatus.BAD_REQUEST -
+89.248.165.52 - - [24/May/2021 12:31:12] "[33mCONNECT hotmail-com.olc.protection.outlook.com:25 HTTP/1.1[0m" 404 -
+162.142.125.38 - - [25/May/2021 08:17:06] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03¶©¯â(ë\x9f2ðÎC\x13"\x9aÙþ\x184\x86]\x97ö]±\x96ú87½¶ro\x00\x00\x1aÀ/À+À\x11À\x07À\x13À')
+162.142.125.38 - - [25/May/2021 08:17:06] "[35m[1m {  w¶©¯â(ë2ðÎC"Ùþ4]ö]±ú87½¶ro  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.38 - - [25/May/2021 08:17:07] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.38 - - [25/May/2021 08:17:08] "[37mGET / HTTP/1.1[0m" 200 -
+167.248.133.37 - - [25/May/2021 23:58:09] code 400, message Bad request version ('À\x14À')
+167.248.133.37 - - [25/May/2021 23:58:09] "[35m[1m {  wòÞ|1¹²`|&<P.sÔÕ¼ÆB±ô(?ïMì  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+167.248.133.37 - - [25/May/2021 23:58:11] "[37mGET / HTTP/1.1[0m" 200 -
+167.248.133.37 - - [25/May/2021 23:58:12] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.54 - - [26/May/2021 00:41:01] code 400, message Bad request syntax ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x02L]\x90S\x953ý\x12¡µ1B¾Vù\x99\x84Tl-Â\xa0ûL%Ã\x1eò.U:\x00\x00\x1aÀ/À+À\x11À\x07À\x13À\tÀ\x14À')
+162.142.125.54 - - [26/May/2021 00:41:01] "[35m[1m {  wL]S3ý¡µ1B¾VùTl-Â ûL%Ãò.U:  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.54 - - [26/May/2021 00:41:03] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.54 - - [26/May/2021 00:41:04] "[37mGET / HTTP/1.1[0m" 200 -
+94.232.47.170 - - [26/May/2021 13:19:39] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+94.232.47.170 - - [26/May/2021 13:19:39] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.37 - - [26/May/2021 16:11:20] code 400, message Bad request version ('À\x14À')
+162.142.125.37 - - [26/May/2021 16:11:20] "[35m[1m {  wôzN(ª2óx¶³{6AcK!öEí²#	#¼uã  À/À+ÀÀÀÀ	ÀÀ[0m" HTTPStatus.BAD_REQUEST -
+162.142.125.37 - - [26/May/2021 16:11:21] "[37mGET / HTTP/1.1[0m" 200 -
+162.142.125.37 - - [26/May/2021 16:11:22] "[37mGET / HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 07:57:26] "[37mGET / HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 07:57:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+157.40.85.205 - - [27/May/2021 07:58:06] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 98, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials o27sm1143917pgb.70 - gsmtp')
+157.40.85.205 - - [27/May/2021 07:58:07] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 07:58:07] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 07:58:07] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 07:58:07] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 07:58:07] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 07:59:26] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 98, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials i20sm1186883pgb.38 - gsmtp')
+157.40.85.205 - - [27/May/2021 07:59:26] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 07:59:26] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 07:59:26] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 07:59:26] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 07:59:26] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 08:01:22] "[37mPOST /addDetails HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 08:03:03] "[37mGET / HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 08:03:46] "[35m[1mPOST /addDetails HTTP/1.1[0m" 500 -
+Traceback (most recent call last):
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2464, in __call__
+    return self.wsgi_app(environ, start_response)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2450, in wsgi_app
+    response = self.handle_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1867, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ubuntu/email_recruiter_app_Flask/sendmail.py", line 98, in addDetails
+    yag.send(email, default_subject, html_msg)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 147, in send
+    self.login()
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 246, in login
+    self._login(self.credentials)
+  File "/home/ubuntu/envs/email_app/lib/python3.6/site-packages/yagmail/sender.py", line 204, in _login
+    self.smtp.login(self.user, password)
+  File "/usr/lib/python3.6/smtplib.py", line 730, in login
+    raise last_exception
+  File "/usr/lib/python3.6/smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "/usr/lib/python3.6/smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Username and Password not accepted. Learn more at\n5.7.8  https://support.google.com/mail/?p=BadCredentials q24sm1115243pgb.19 - gsmtp')
+157.40.85.205 - - [27/May/2021 08:03:46] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 08:03:46] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 08:03:46] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 08:03:47] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 08:03:47] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 08:03:47] "[37mGET /addDetails?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 08:04:13] "[37mPOST /addDetails HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 08:04:41] "[37mPOST /addDetails HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 08:05:43] "[37mGET / HTTP/1.1[0m" 200 -
+157.40.85.205 - - [27/May/2021 08:05:43] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+157.40.85.205 - - [27/May/2021 08:06:16] "[37mPOST /addDetails HTTP/1.1[0m" 200 -
+91.241.19.153 - - [27/May/2021 09:05:34] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+91.241.19.153 - - [27/May/2021 09:05:34] "[35m[1m  /*à     Cookie: mstshash=Administr[0m" HTTPStatus.BAD_REQUEST -
+146.196.45.3 - - [27/May/2021 09:59:09] "[37mGET / HTTP/1.1[0m" 200 -
+146.196.45.3 - - [27/May/2021 09:59:10] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+146.196.45.3 - - [27/May/2021 09:59:43] "[37mPOST /addDetails HTTP/1.1[0m" 200 -
+146.196.45.3 - - [27/May/2021 10:42:32] "[37mGET / HTTP/1.1[0m" 200 -
+146.196.45.3 - - [27/May/2021 10:42:35] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+146.196.45.3 - - [27/May/2021 10:43:26] "[37mPOST /addDetails HTTP/1.1[0m" 200 -
+146.196.45.3 - - [27/May/2021 10:43:31] "[37mGET / HTTP/1.1[0m" 200 -

@@ -47,6 +47,7 @@ app.config['DEBUG'] = True
 
 load_dotenv('.env')
 url = os.getenv('url')
+port = os.getenv('port')
 plot_url = os.getenv('plot_url')
 """ read the list of users"""
 @app.route("/")        # Standard Flask endpoint
@@ -135,4 +136,4 @@ def stuff():
     return jsonify(data)
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0',debug=True,port=5001)
+    app.run(host = '0.0.0.0',debug=True,port=port)

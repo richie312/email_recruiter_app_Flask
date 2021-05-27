@@ -43,11 +43,14 @@ input[type=submit]:hover {
 <h3>Enter Details</h3>
 
 <div class="container">
-  <form action="http://127.0.0.1:5001/addDetails" method="post">
-    <label for="fname">email address</label>
+  <form action="/addDetails" method="post">
+    <label for="fname">Company Name</label>
     <input type="text" id="company" name="Company" placeholder="Amazon">
+    <label for="fname">Enter the Location</label>
     <input type="text" id="location" name="Location" placeholder="Pune">
+    <label for="fname">Recruiter Email Address</label>
     <input type="text" id="email" name="Email Address" placeholder="xxxx@capitalnumbers.com">
+    <label for="fname">Type Your gmail account password</label>
     <input type="password" id="password" name="Password" value="FakePSW" placeholder="xxxx">
     <input type="checkbox" onclick="myFunction()">Show Password
     <script>

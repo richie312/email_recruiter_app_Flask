@@ -1,1 +1,2 @@
-echo "email environment activated"
+#!/usr/bin/env bash
+source /home/ubuntu/envs/email_app/bin/activate
