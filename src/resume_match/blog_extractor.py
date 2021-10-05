@@ -14,7 +14,7 @@ response = requests.get(url)
 data = response.text
 
 
-with open('data.html','w',encoding="utf-8") as outfile:
+with open('data.html', 'w', encoding="utf-8") as outfile:
     outfile.write(data)
 
 soup = BeautifulSoup(response.text,'html.parser')

@@ -10,4 +10,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 5001
 
-CMD ["python3","sendmail.py"]
+CMD ["python3","main.py"]

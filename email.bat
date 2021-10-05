@@ -1,2 +1,2 @@
-#C:\Users\Richie\AppData\Local\Programs\Python\Python36\project_virtual_environments\email\Scripts\activate.bat
+C:\Users\aritra.a.chatterjee\envs\email\Scripts\Activate.bat
 ECHO "email environment activated"

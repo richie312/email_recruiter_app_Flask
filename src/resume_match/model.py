@@ -16,7 +16,7 @@ from datetime import datetime
     
 #Function to read resumes from the folder one by one
 main_dir = os.getcwd()
-data_dir = os.path.join(main_dir,'data')
+data_dir = os.path.join(main_dir, 'data')
 resume_list = os.listdir(data_dir)
 
 # Validation Check

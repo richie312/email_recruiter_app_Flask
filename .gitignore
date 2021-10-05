@@ -2,3 +2,11 @@
 database_auth.json
 encoder.py
 emailapp_local.bat
+auth
+*.bat
+nohup.out
+*__pycache__
+*.idea
+tkinter_app
+venv
+
