@@ -9,4 +9,6 @@ nohup.out
 *.idea
 tkinter_app
 venv
+Jenkinsfile
+.env
 

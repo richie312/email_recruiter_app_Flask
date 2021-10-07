@@ -15,15 +15,9 @@ load_dotenv('.env')
 url = os.getenv('url')
 plot_url = os.getenv('plot_url')
 
-""" read the list of users"""
 @app.route("/")        # Standard Flask endpoint
 def homepage():
     return render_template("user_form.html")
-
-@app.route("/application_history")
-def application_history():
-    application_history_url = plot_url
-    return redirect(webbrowser.open_new_tab(application_history_url))
 
 @app.route('/addDetails', methods=['POST'])
 def addDetails():
@@ -63,12 +57,12 @@ def data():
 def delete():
     templateData = {}
     data = request.form
-    Application.delete(data["Company"])
+    Application(None).delete(data["Company"])
     templateData['redirect_url'] = url_for('application_details')
     return render_template('delete_details_response.html',**templateData)
 
 @app.route('/index_get_data', methods=['GET'])
-def stuff():
+def populate_data():
     response = get_data()
     columns = response['col']
     collection = [dict(zip(columns, response['data'][i])) for i in range(len(response['data']))]
