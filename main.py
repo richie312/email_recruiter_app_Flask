@@ -64,7 +64,7 @@ def delete():
 @app.route('/index_get_data', methods=['GET'])
 def populate_data():
     response = get_data()
-    columns = response['col']
+    columns = [response['col'][i][0] for i in range(len(response['col']))]
     collection = [dict(zip(columns, response['data'][i])) for i in range(len(response['data']))]
     data = {"data": collection}
     return jsonify(data)
