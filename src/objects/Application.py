@@ -6,13 +6,9 @@ from flask import jsonify
 
 class Application(object):
 
-    def __init__(self, arg1=None,*bundle):
+    def __init__(self, bundle):
         # Check whether the instance is initiated with initializer or just using specific class method
-        try:
-            self.initializer = bundle[0]
-        except IndexError:
-            # return empty dictionary
-            self.initializer = {}
+        self.initializer = bundle
         try:
             self.company = self.initializer['Company']
             self.location = self.initializer['Location']
