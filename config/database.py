@@ -15,3 +15,4 @@ def db_connection():
                                          passwd=os.getenv('db_passwd'),
                                          db=os.getenv('dbname'))
     return connection
+

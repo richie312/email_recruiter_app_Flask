@@ -1,11 +1,9 @@
 # -*- coding: utf-8 -*-
 
-import flask
 from flask import Flask, request, json,render_template,redirect,url_for,jsonify,json
 import yagmail
 from dotenv import load_dotenv
 import os
-import webbrowser
 from src.objects.Application import Application, get_data
 app = Flask(__name__)
 app.config['DEBUG'] = True
