@@ -1,7 +1,6 @@
 import os
 import json
 import mysql.connector
-import mysql
 from src.src_context import root_dir
 from dotenv import load_dotenv
 """ decrypt the database details"""

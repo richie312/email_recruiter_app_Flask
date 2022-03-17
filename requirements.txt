@@ -9,7 +9,7 @@ Flask-Compress==1.5.0
 Jinja2==2.11.2
 keyring==21.2.1
 keyrings.alt
-mysql-connector-python
+mysql-connector-python==8.0.28
 plotly==4.8.2
 pycparser==2.20
 python-dateutil==2.8.1
