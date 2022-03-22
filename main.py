@@ -22,8 +22,8 @@ def addDetails():
     data = request.form
     passw = data['Password']
     main_dir = os.getcwd()
-    yagmail.register("richie.chatterjee31@gmail.com", passw)
-    yag = yagmail.SMTP("richie.chatterjee31@gmail.com", passw)
+    yagmail.register("aritra.a.chatterjee@gmail.com", passw)
+    yag = yagmail.SMTP("aritra.a.chatterjee@gmail.com", passw)
     image_folder = os.path.join(main_dir,'images')
     template_folder = os.path.join(main_dir,'templates')
     html_msg = [yagmail.inline(os.path.join(image_folder,"profile2.jpg")),
