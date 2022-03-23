@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, request, json,render_template,redirect,url_for,jsonify,json
-import yagmail, webbrowser
+import yagmail
 from dotenv import load_dotenv
 import os
 from src.objects.Application import Application, get_data
@@ -21,8 +21,7 @@ def homepage():
 
 @app.route("/application_history")
 def application_history():
-    application_history_url = plot_url
-    return redirect(webbrowser.open_new_tab(application_history_url))
+    return redirect("http://localhost:5002")
 
 
 @app.route('/addDetails', methods=['POST'])
