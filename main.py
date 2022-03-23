@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, request, json,render_template,redirect,url_for,jsonify,json
-import yagmail
+import yagmail, webbrowser
 from dotenv import load_dotenv
 import os
 from src.objects.Application import Application, get_data
@@ -11,11 +11,19 @@ app.config['DEBUG'] = True
 # load the environment variables
 load_dotenv('.env')
 url = os.getenv('url')
+port = os.getenv('port')
 plot_url = os.getenv('plot_url')
 
 @app.route("/")        # Standard Flask endpoint
 def homepage():
     return render_template("user_form.html")
+
+
+@app.route("/application_history")
+def application_history():
+    application_history_url = plot_url
+    return redirect(webbrowser.open_new_tab(application_history_url))
+
 
 @app.route('/addDetails', methods=['POST'])
 def addDetails():
