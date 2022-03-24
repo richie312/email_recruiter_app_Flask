@@ -20,7 +20,7 @@ def homepage():
 
 @app.route("/application_history")
 def application_history():
-    return redirect("http://localhost:5002")
+    return redirect(plot_url)
 
 
 @app.route('/addDetails', methods=['POST'])
