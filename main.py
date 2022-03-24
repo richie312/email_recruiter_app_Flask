@@ -10,7 +10,6 @@ app.config['DEBUG'] = True
 
 # load the environment variables
 load_dotenv('.env')
-url = os.getenv('url')
 port = os.getenv('port')
 plot_url = os.getenv('plot_url')
 
@@ -38,8 +37,6 @@ def addDetails():
     main_dir + "/docs/Resume.pdf"]
     # Instantiate the Application object and execute required method.
     obj = Application(data)
-    print(data)
-    print(type(data))
     # Insert data
     obj.add_details()
     email = data['Email Address']
