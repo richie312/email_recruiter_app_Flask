@@ -50,10 +50,10 @@ pipeline {
               }
             steps {
                     script {
-                        sh "docker stop email_recruiter_app_Flask_web"
-                        sh "docker stop email_recruiter_app_Flask_visualisation"
-                        sh "docker rmi email_recruiter_app_Flask_web"
-                        sh "docker rmi email_recruiter_app_Flask_visualisation"
+                        sh "docker stop email_recruiter_app_Flask_web || true"
+                        sh "docker stop email_recruiter_app_Flask_visualisation || true"
+                        sh "docker rmi email_recruiter_app_Flask_web || true"
+                        sh "docker rmi email_recruiter_app_Flask_visualisation  || true"
                     }
                 }
             }
