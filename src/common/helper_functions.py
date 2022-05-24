@@ -9,17 +9,18 @@ import requests
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
+from src.objects.Application import get_data
 
 
-def collect_location_wise_count(url,days = 300):
+def collect_location_wise_count(days = 300):
     """collect_location_wise_count() function takes two arguments;
     the url(where the data is stored in json format) and period
     for the descriptive analysis. Default days is 300.
     """
     # check if the days argument is present or not; by default days is 300
-    
-    response = requests.get(url)  
-    rows= response.json()['data']
+
+    response = get_data()
+    rows= response['data']
     company = [rows[i][0] for i in range(len(rows))]
     location = [rows[i][1] for i in range(len(rows))]
     email = [rows[i][2] for i in range(len(rows))]

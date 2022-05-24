@@ -15,9 +15,8 @@ main_dir = os.getcwd()
 load_dotenv(dotenv_path=os.path.join(main_dir,'.env'))
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-url = os.getenv('url')
 
-data = collect_location_wise_count(url,300)
+data = collect_location_wise_count(300)
 months = list(set(data['month'].values.tolist()))    
 
 server = flask.Flask(__name__)
@@ -64,4 +63,4 @@ def update_graph(selected):
                             legend={"x": 1, "y": 0.7})}
 
 if __name__ == '__main__':
-    app.server.run(host = '0.0.0.0',port = int(os.getenv('port')),debug = True)
+    app.server.run(host = '0.0.0.0',port = 5002,debug = True)
