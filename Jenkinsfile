@@ -51,7 +51,7 @@ pipeline {
             steps {
                     script {
                         sh "docker-compose down || true"
-                        sh "docker rmi $(docker images -a -q) || true"
+                        sh "docker rmi ${(docker images -q -f dangling=true)} || true"
                     }
                 }
             }
