@@ -24,7 +24,7 @@ pipeline {
         stage('BuildPreparations')
         {
             when {
-                  expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == true }
+                  expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == "true" }
               }
             steps
             {
@@ -46,7 +46,7 @@ pipeline {
 
         stage('PreBuild'){
         when {
-                  expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == true }
+                  expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == "true" }
               }
             steps {
                     script {
@@ -60,7 +60,7 @@ pipeline {
 
         stage('BuildStage'){
         when {
-                  expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == true }
+                  expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == "true" }
               }
             steps {
                     script {
