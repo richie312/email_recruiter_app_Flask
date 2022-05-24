@@ -50,10 +50,10 @@ pipeline {
               }
             steps {
                     script {
-                        sh "docker stop email_recruiter_app_Flask_web || true"
-                        sh "docker stop email_recruiter_app_Flask_visualisation || true"
-                        sh "docker rmi email_recruiter_app_Flask_web || true"
-                        sh "docker rmi email_recruiter_app_Flask_visualisation  || true"
+                        sh "docker stop email_recruiter_app_flask_web || true"
+                        sh "docker stop email_recruiter_app_flask_visualisation || true"
+                        sh "docker rmi email_recruiter_app_flask_web || true"
+                        sh "docker rmi email_recruiter_app_flask_visualisation  || true"
                     }
                 }
             }
@@ -64,7 +64,7 @@ pipeline {
               }
             steps {
                     script {
-                        sh "cd email_recruiter_app_Flask"
+                        sh "cd /home/ubuntu/email_recruiter_app_Flask"
                         sh "docker-compose -f docker-compose.yml up --build"
                     }
                 timeout(120){}
