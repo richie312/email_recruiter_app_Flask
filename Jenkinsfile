@@ -13,7 +13,7 @@ pipeline {
         stage("Params"){
 
             steps{
-            checkout([$class: 'GitSCM', branches: [[name: 'master']], extensions: [], userRemoteConfigs: [[credentialsId: '621b2d88-0c28-4ce2-93e3-997889f14448', url: 'https://github.com/richie312/CommonDatabaseAPI.git']]])
+            checkout([$class: 'GitSCM', branches: [[name: 'Develop']], extensions: [], userRemoteConfigs: [[credentialsId: 'gitcred', url: 'https://github.com/richie312/email_recruiter_app_Flask.git']]])
             sh "echo $params.current_status"
             sh "echo $params.merged"
             sh "echo $params.branch"
@@ -24,9 +24,9 @@ pipeline {
 
         stage('BuildPreparations')
         {
-            when {
-                  expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == "closed" }
-              }
+//             when {
+//                   expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == "closed" }
+//               }
             steps
             {
                 script
@@ -45,6 +45,20 @@ pipeline {
         }
 
 
+        stage('PreBuild'){
+        when {
+                  expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == "closed" }
+              }
+            steps {
+                    script {
+                        sh "docker stop email_recruiter_app_Flask_web"
+                        sh "docker stop email_recruiter_app_Flask_visualisation"
+                        sh "docker rmi email_recruiter_app_Flask_web"
+                        sh "docker rmi email_recruiter_app_Flask_visualisation"
+                    }
+                }
+            }
+
         stage('BuildStage'){
         when {
                   expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == "closed" }
@@ -57,19 +71,6 @@ pipeline {
                 timeout(120){}
                 script{
                     echo "The container is active and application is live @ localhost:5001"
-                    }
-                }
-            }
-        stage('PostBuild'){
-        when {
-                  expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == "closed" }
-              }
-            steps {
-                    script {
-                        sh "docker stop email_recruiter_app_Flask_web"
-                        sh "docker stop email_recruiter_app_Flask_visualisation"
-
-
                     }
                 }
             }
