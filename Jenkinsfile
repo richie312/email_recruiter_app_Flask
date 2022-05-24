@@ -50,10 +50,8 @@ pipeline {
               }
             steps {
                     script {
-                        sh "docker stop email_recruiter_app_flask_web || true"
-                        sh "docker stop email_recruiter_app_flask_visualisation || true"
-                        sh "docker rmi email_recruiter_app_flask_web || true"
-                        sh "docker rmi email_recruiter_app_flask_visualisation  || true"
+                        sh "docker-compose down || true"
+                        sh "docker rmi $(docker images -a -q) || true"
                     }
                 }
             }
