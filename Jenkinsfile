@@ -24,9 +24,9 @@ pipeline {
 
         stage('BuildPreparations')
         {
-//             when {
-//                   expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == "closed" }
-//               }
+            when {
+                  expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == "closed" }
+              }
             steps
             {
                 script
