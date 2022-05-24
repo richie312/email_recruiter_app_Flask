@@ -1,0 +1,4 @@
+variable           Expression
+current_status     $.pull_request.state
+merged             $.pull_request.merged # true/false is actually string value.
+branch             $.pull_request.head.repo.default_branch

@@ -64,12 +64,7 @@ pipeline {
               }
             steps {
                     script {
-                        sh "cd /home/ubuntu/email_recruiter_app_Flask"
-                        sh "docker-compose -f docker-compose.yml up --build"
-                    }
-                timeout(120){}
-                script{
-                    echo "The container is active and application is live @ localhost:5001"
+                        sh "echo deployment will be manual due to low memory."
                     }
                 }
             }
