@@ -21,7 +21,6 @@ pipeline {
              }
         }
 
-
         stage('BuildPreparations')
         {
             when {
