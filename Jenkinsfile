@@ -51,7 +51,9 @@ pipeline {
             steps {
                     script {
                         sh "docker-compose down || true"
-                        sh "docker rmi ${(docker images -q -f dangling=true)} || true"
+                        sh "docker system prune --force --all --volumes || true"
+                        sh "docker system prune --all || true"
+
                     }
                 }
             }
