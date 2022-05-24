@@ -1,0 +1,34 @@
+server {
+listen 80;
+server_name www.apply.com;
+location / {
+proxy_pass http://172.31.26.248:5001;
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection 'upgrade';
+proxy_set_header Host $host;
+proxy_cache_bypass $http_upgrade;
+}
+location /viz {
+proxy_pass http://172.31.26.248:5002;
+proxy_http_version 1.1;
+proxy_set_header Upgrade $http_upgrade;
+proxy_set_header Connection 'upgrade';
+proxy_set_header Host $host;
+proxy_cache_bypass $http_upgrade;
+}
+}
+
+## Edit host file
+
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+127.0.0.1       localhost
+255.255.255.255 broadcasthost
+::1             localhost
+204.236.198.128  www.apply.com
+204.236.198.128  www.apply.com/viz
