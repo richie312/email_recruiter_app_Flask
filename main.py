@@ -22,6 +22,17 @@ def homepage():
 def application_history():
     return redirect(plot_url)
 
+@app.route('/update', methods=['POST'])
+def update():
+    data = request.form
+    if data["cache"] == "clear cache":
+        Application.all_contacts = []
+    else:
+        Application.update("update")
+        #post update clear the cache
+        print("Clearing the cache post update.")
+        Application.all_contacts = []
+    return render_template('user_form_response.html')
 
 @app.route('/addDetails', methods=['POST'])
 def addDetails():
@@ -32,13 +43,11 @@ def addDetails():
     yag = yagmail.SMTP("richie.chatterjee31@gmail.com", passw)
     image_folder = os.path.join(main_dir,'images')
     template_folder = os.path.join(main_dir,'templates')
-    html_msg = [yagmail.inline(os.path.join(image_folder,"profile2.jpg")),
+    html_msg = [yagmail.inline(os.path.join(image_folder,"one_page_profile.png")),
     os.path.join(template_folder,"links.html"),
     main_dir + "/docs/Resume.pdf"]
     # Instantiate the Application object and execute required method.
     obj = Application(data)
-    # Insert data
-    obj.add_details()
     email = data['Email Address']
     """Send Email"""
     yag.send(email, obj.subject, html_msg)
@@ -61,7 +70,8 @@ def data():
 def delete():
     templateData = {}
     data = request.form
-    Application(None).delete(data["Company"])
+    print(data)
+    Application(data).delete()
     templateData['redirect_url'] = url_for('application_details')
     return render_template('delete_details_response.html',**templateData)
 
