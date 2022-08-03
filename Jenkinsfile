@@ -9,42 +9,65 @@ pipeline {
             ver = "ver"
     }
 
-    stages {
-        stage('build_preparation') {
-                steps {
-                    script{
-                        git 'https://github.com/richie312/email_recruiter_app_Flask'
-                    }
+        stages {
+        stage("Params"){
+
+            steps{
+            checkout([$class: 'GitSCM', branches: [[name: 'Develop']], extensions: [], userRemoteConfigs: [[credentialsId: 'gitcred', url: 'https://github.com/richie312/email_recruiter_app_Flask.git']]])
+            sh "echo $params.current_status"
+            sh "echo $params.merged"
+            sh "echo $params.branch"
+
+             }
+        }
+
+        stage('BuildPreparations')
+        {
+            when {
+                  expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == "true" }
+              }
+            steps
+            {
+                script
+                {
+                    // calculate GIT lastest commit short-hash
+                    gitCommitHash = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
+                    shortCommitHash = gitCommitHash.take(7)
+                    // calculate a sample version tag
+                    VERSION = shortCommitHash
+                    // set the build display name
+                    currentBuild.displayName = "#${BUILD_ID}-${VERSION}"
+                    IMAGE = "$project_name:$ver"
+                    println "${params.current_status}"
                 }
-    }
-        stage('build_stage'){
+            }
+        }
+
+
+        stage('PreBuild'){
+        when {
+                  expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == "true" }
+              }
             steps {
                     script {
-                        bat"""  echo Intializing docker authentication
-                                docker login -u ${docker_user} -p Kevalasya@123"
-                                set image_name=${docker_user}${slash}${project_name}${semi_colon}${ver}${BUILD_NUMBER}
-                                docker build --no-cache -t %image_name% .
-                                docker run -d %image_name%
-                                echo Waiting for docker recently created container to initialize.
-                        """
-                    }
-                timeout(10){}
-                script{
-                    echo "The container is active and application is live @ localhost:5001"
+                        sh "docker-compose down || true"
+                        sh "docker system prune --force --all --volumes || true"
+                        sh "docker system prune --all || true"
+
                     }
                 }
             }
-        stage('post_build'){
+
+        stage('BuildStage'){
+        when {
+                  expression { return params.branch == "Develop" && params.current_status == "closed" && params.merged == "true" }
+              }
             steps {
                     script {
-                        bat """
-                        echo Updating the docker hub with the recently created image.
-                        set image_name=${docker_user}${slash}${project_name}${semi_colon}${ver}${BUILD_NUMBER}
-                        bat docker push %image_name%
-                        echo Image has been successfully uploaded to the docker hub."""
-
+                        sh "echo deployment will be manual due to low memory."
                     }
                 }
             }
         }
     }
+
