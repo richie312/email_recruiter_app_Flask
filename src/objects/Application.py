@@ -4,7 +4,6 @@ from config.database import Database
 import pandas as pd
 
 
-
 class Application(object):
 
     # initialising with all contact in order to maintain the local cache of contacts.
@@ -16,17 +15,23 @@ class Application(object):
         # Check whether the instance is initiated with initializer or just using specific class method
         self.initializer = bundle
         try:
-            self.company = self.initializer['Company']
-            self.location = self.initializer['Location']
-            self.email = self.initializer['Email Address']
-            self.default_subject = "Aritra_Chatterjee_Resume_DataScience_Python_Developer"
-            self.subject = self.initializer["Subject"] if self.initializer["Subject"] else self.default_subject
+            self.company = self.initializer["Company"]
+            self.location = self.initializer["Location"]
+            self.email = self.initializer["Email Address"]
+            self.default_subject = (
+                "Aritra_Chatterjee_Resume_DataScience_Python_Developer"
+            )
+            self.subject = (
+                self.initializer["Subject"]
+                if self.initializer["Subject"]
+                else self.default_subject
+            )
             Application.all_contacts.append(self)
 
         except KeyError:
             print("Application instance is initialized without initializer.")
 
-        self.application_date = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        self.application_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.conn_row_insertion_type = Database().row_insertion()
         self.cursor = self.conn_row_insertion_type.cursor()
 
@@ -44,25 +49,36 @@ class Application(object):
     def update(self):
         conn = Database().table_insertion().connect()
         df = pd.DataFrame()
-        df["Location"] = [Application.all_contacts[i].location for i in range(len(Application.all_contacts))]
-        df["Application_Date"] = [Application.all_contacts[i].application_date for i in
-                                  range(len(Application.all_contacts))]
-        df["Email_Address"] = [Application.all_contacts[i].email for i in range(len(Application.all_contacts))]
-        df["Company_Name"] = [Application.all_contacts[i].company for i in range(len(Application.all_contacts))]
+        df["Location"] = [
+            Application.all_contacts[i].location
+            for i in range(len(Application.all_contacts))
+        ]
+        df["Application_Date"] = [
+            Application.all_contacts[i].application_date
+            for i in range(len(Application.all_contacts))
+        ]
+        df["Email_Address"] = [
+            Application.all_contacts[i].email
+            for i in range(len(Application.all_contacts))
+        ]
+        df["Company_Name"] = [
+            Application.all_contacts[i].company
+            for i in range(len(Application.all_contacts))
+        ]
         print(df.head())
         df.to_sql(
             "company_email1",
             con=conn,
             schema="ContainerDatabase",
             if_exists="append",
-            index=False
+            index=False,
         )
         print("Details added to the database. Closing the connection.")
         conn.close()
 
     def delete(self):
         query = """delete from company_email1 where Company_Name=%s;"""
-        self.cursor.execute(query,(self.company,))
+        self.cursor.execute(query, (self.company,))
         self.conn_row_insertion_type.commit()
         self.cursor.close()
         self.conn_row_insertion_type.close()
@@ -75,7 +91,9 @@ class Application(object):
         # get the columns
         connection = self.connection.row_insertion()
         cursor = connection.cursor()
-        col_query = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME=%s"
+        col_query = (
+            "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME=%s"
+        )
         cursor.execute(col_query, ("company_email1",))
         cols = cursor.fetchall()
         dict_ = {"col": cols, "data": data}
@@ -84,11 +102,7 @@ class Application(object):
         return dict_
 
     def __repr__(self) -> str:
-        return (
-            f"{self.__class__.__name__}("
-            f"{self.initializer!r}"
-        f")"
-        )
+        return f"{self.__class__.__name__}(" f"{self.initializer!r}" f")"
 
 
 def get_data():

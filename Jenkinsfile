@@ -16,7 +16,7 @@ pipeline {
                         git 'https://github.com/richie312/email_recruiter_app_Flask'
                     }
                 }
-    }    
+    }
         stage('build_stage'){
             steps {
                     script {
