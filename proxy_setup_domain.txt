@@ -39,6 +39,6 @@ proxy_cache_bypass $http_upgrade;
 127.0.0.1       localhost
 255.255.255.255 broadcasthost
 ::1             localhost
-54.221.20.204  www.apply.com
-54.221.20.204  www.apply.com/viz
-54.221.20.204  www.apply.com/jenkins
+54.90.205.108  www.apply.com
+54.90.205.108  www.apply.com/viz
+54.90.205.108  www.apply.com/jenkins
