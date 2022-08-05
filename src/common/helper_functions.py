@@ -94,7 +94,6 @@ def tenure_dict(month_list):
         tenure[i] = calendar_dict[i]
     return tenure
 
-
 if "__name__" == "__main.py__":
     collect_location_wise_count()
     tenure_dict()

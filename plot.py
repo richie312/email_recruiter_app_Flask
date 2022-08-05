@@ -16,7 +16,7 @@ load_dotenv(dotenv_path=os.path.join(main_dir, ".env"))
 
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 
-data = collect_location_wise_count(300)
+data = collect_location_wise_count()
 months = list(set(data["month"].values.tolist()))
 
 server = flask.Flask(__name__)
@@ -25,29 +25,7 @@ app = dash.Dash(__name__, server=server, suppress_callback_exceptions=True)
 
 def app_layout():
     return html.Div(
-        [
-            dcc.Dropdown(
-                id="demo-dropdown",
-                options=[
-                    {"label": "Last Six Months", "value": 180},
-                    {"label": "Last 3 Months", "value": 90},
-                    {"label": "Last One Month", "value": 30},
-                    {"label": "Last One Week", "value": 7},
-                    {"label": "Last 2 Days", "value": 2},
-                ],
-                value=180,
-            ),
-            html.Div(id="dd-output-container"),
-            html.Div(
-                [
-                    html.H1(
-                        "Application Descriptive Statistics - {}".format(
-                            datetime.now().year
-                        )
-                    )
-                ],
-                style={"textAlign": "center"},
-            ),
+[
             dcc.Graph(id="my-graph"),
             html.Div(id="data_pass"),
             html.Div(
