@@ -5,34 +5,30 @@ from flask import (
     request,
     json,
     render_template,
+    make_response,
     redirect,
     url_for,
     jsonify,
     json,
 )
 import yagmail
-from dotenv import load_dotenv
 from flask import Flask, session
 from flask_session import Session
 import os
 from src.objects.Application import Application, get_data
-from flask import Flask, request, jsonify, make_response, render_template
 import uuid  # for public id
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, LoginManager
 import jwt
 from datetime import datetime, timedelta
 from src.server.flask_server import app, db
-from src.Auth.Authentication import token_required
 from src.sql.sqlite import User
-from src.objects.Application import Application
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from src.src_context import root_dir
 from smtplib import SMTPAuthenticationError
 
 load_dotenv(os.path.join(root_dir, '.env'))
-
 # creates Flask object
 app = Flask(__name__,static_folder=os.path.join(root_dir,'images'))
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
@@ -41,6 +37,21 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv("SQLALCHEMY_TRACK_MODIF
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 db = SQLAlchemy(app)
 print(db)
+from functools import wraps
+
+
+
+def login_required(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            return redirect(url_for('login_post'))
+
+    return wrap
+
+
 
 app.config['DEBUG'] = True
 SESSION_TYPE = 'filesystem'
@@ -92,8 +103,10 @@ def login_post():
                 'exp': datetime.utcnow() + timedelta(days=session_time)
             }, app.config['SECRET_KEY'])
             session["user"] = auth.get("email")
+            session['logged_in'] = True
+            session['username'] = user.name
             #return make_response(jsonify({'token': token.decode('UTF-8')}), 201)
-            return render_template("user_form.html", msg= "Hi {}! How are you doing today?".format(session["user"].split('@')[0]))
+            return render_template("user_form.html", msg= "Hi {}! How are you doing today?".format(session["username"]))
 
         #returns 403 if password is wrong
         msg = "Please provide correct credentials. Incase you forget password, please click on forget password."
@@ -190,7 +203,12 @@ def signup():
             return render_template("login.html",msg = "User already exists. Please Log in. In case you forgot password, please click on forgot password password.")
 
 
-
+@app.route("/logout/")
+@login_required
+def logout():
+    session.clear()
+    msg = "You have been logged out!"
+    return render_template("login.html",msg= msg)
 
 
 
@@ -199,6 +217,18 @@ def signup():
 @login_required
 def application_history():
     return redirect(plot_url)
+
+@app.route("/user_profile")
+@login_required
+def user_profile():
+    greetings_map = {
+        "Good Morning!": range(0,11),
+        "Good Afternoon!": range(12,15),
+        "Good Evening!": range(16,24)
+    }
+    greeting = [k for k, v in greetings_map.items() if datetime.now().hour in v]
+    msg = "Hi {}. {}".format(session["username"], greeting[0])
+    return render_template("profile.html", msg = msg)
 
 
 @app.route("/update", methods=["POST"])
@@ -239,21 +269,24 @@ def addDetails():
         yagmail.register("richie.chatterjee31@gmail.com", passw)
         yag = yagmail.SMTP("richie.chatterjee31@gmail.com", passw)
         """Send Email"""
-        yag.send(to = [email, session["user"]], obj.subject, html_msg)
+        yag.send([email, session["user"]], obj.subject, html_msg)
     return render_template("user_form_response.html")
 
 
 @app.route("/application_details", methods=["GET"])
+@login_required
 def application_details():
     return render_template("application_table.html")
 
 
 @app.route("/delete_form", methods=["GET"])
+@login_required
 def delete_form():
     return render_template("delete_details.html")
 
 
 @app.route("/get_data", methods=["GET"])
+@login_required
 def data():
     data = get_data()
     return jsonify(data)
