@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box;}
@@ -37,25 +37,27 @@ input[type=submit]:hover {
 }
 </style>
 </head>
+  <title>Datatables Example</title>
+</head>
 <body>
+<h1>Application Details</h1>
+<form action="/check_cache" method="post">
+<ol>
+<!-- For loop logic of jinja template -->
+{%for i in range(0, len)%}
 
-<h3>Success!</h3>
+  <li><input type="checkbox" name="cache" value= {{msg[i].email}} checked>{{msg[i].company}} | {{msg[i].email}}</li>
 
-<div class="container">
-    <label for="fname">Your mail has been sent to the recruiter</label>
-    <br>
-    <h5>{{msg}}</h5>
-</div>
+{%endfor%}
 
-<script>
-     window.setTimeout(function(){
+</ol>
 
-       // Move to a new location or you can do something else
-       window.location.href = "/dashboard";
-
-       }, 1000);
-
- </script>
-
+<input type="submit" value="Delete">
+</form>
+<br>
+<br>
+ <form action="/update" method="post">
+  <input type="submit" value="Update">
+ </form>
 </body>
 </html>

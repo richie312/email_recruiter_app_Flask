@@ -10,15 +10,14 @@ from flask import (
     url_for,
     jsonify,
     json,
+    session
 )
 import yagmail
-from flask import Flask, session
 from flask_session import Session
 import os
 from src.objects.Application import Application, get_data
 import uuid  # for public id
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user, login_required, LoginManager
 import jwt
 from datetime import datetime, timedelta
 from src.server.flask_server import app, db
@@ -27,6 +26,7 @@ from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from src.src_context import root_dir
 from smtplib import SMTPAuthenticationError
+from functools import wraps
 
 load_dotenv(os.path.join(root_dir, '.env'))
 # creates Flask object
@@ -37,7 +37,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv("SQLALCHEMY_TRACK_MODIF
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 db = SQLAlchemy(app)
 print(db)
-from functools import wraps
 
 
 
@@ -234,14 +233,34 @@ def user_profile():
 @app.route("/update", methods=["POST"])
 def update():
     data = request.form
-    if data["cache"] == "clear cache":
-        Application.all_contacts = []
-    else:
+    try:
+        if data["cache"] == "clear cache":
+            Application.all_contacts = []
+        else:
+            Application.update("update")
+            # post update clear the cache
+            print("Clearing the cache post update.")
+            Application.all_contacts = []
+        return render_template("user_form.html")
+    except KeyError:
         Application.update("update")
         # post update clear the cache
         print("Clearing the cache post update.")
         Application.all_contacts = []
-    return render_template("user_form_response.html")
+        return render_template("user_form.html")
+
+@app.route("/dashboard")
+@login_required
+def dashboard():
+    greetings_map = {
+        "Good Morning!": range(0,11),
+        "Good Afternoon!": range(12,15),
+        "Good Evening!": range(16,24)
+    }
+    greeting = [k for k, v in greetings_map.items() if datetime.now().hour in v]
+    msg = "Hi {}. {}".format(session["username"], greeting[0])
+    return render_template("user_form.html", msg = msg)
+
 
 
 @app.route("/addDetails", methods=["POST"])
@@ -249,12 +268,16 @@ def addDetails():
     data = request.form
     passw = data["Password"]
     main_dir = os.getcwd()
+    if data["resume"]:
+        resume_file = data["resume"]
+    else:
+        resume_file = main_dir + "/docs/Resume.pdf"
     image_folder = os.path.join(main_dir, "images")
     template_folder = os.path.join(main_dir, "templates")
     html_msg = [
         yagmail.inline(os.path.join(image_folder, "one_page_profile.png")),
         os.path.join(template_folder, "links.html"),
-        main_dir + "/docs/Resume.pdf",
+        resume_file,
     ]
     # Instantiate the Application object and execute required method.
     obj = Application(data)
@@ -265,12 +288,17 @@ def addDetails():
         yag = yagmail.SMTP(session["user"], passw)
         """Send Email"""
         yag.send(email, obj.subject, html_msg)
+        msg = ""
+        return render_template("user_form_response.html", msg=msg)
     except SMTPAuthenticationError:
-        yagmail.register("richie.chatterjee31@gmail.com", passw)
-        yag = yagmail.SMTP("richie.chatterjee31@gmail.com", passw)
+        yagmail.register("richie.chatterjee31@gmail.com", os.getenv("passwd"))
+        yag = yagmail.SMTP("richie.chatterjee31@gmail.com", os.getenv("passwd"))
         """Send Email"""
         yag.send([email, session["user"]], obj.subject, html_msg)
-    return render_template("user_form_response.html")
+        msg = """Alert! Hi {}.As your google password is not set, the mail is by default sent by domain owner. 
+                You will be also receiving me the copy. It is recommended that you use gmail account and set google app password.
+                Click on the Set google app password button on dashboard to set it up.""".format(session['username'])
+    return render_template("user_form_response.html", msg = msg)
 
 
 @app.route("/application_details", methods=["GET"])
@@ -278,6 +306,24 @@ def addDetails():
 def application_details():
     return render_template("application_table.html")
 
+@app.route("/check_cache", methods=["GET", "POST"])
+@login_required
+def check_cache():
+    if request.method == 'GET':
+        msg = Application.all_contacts
+        return render_template("cache.html", len = len(msg), msg = msg)
+    if request.method == 'POST':
+        data = request.form.getlist('cache')
+        msg = Application.all_contacts
+        # determine indexes to delete from Application instance based on user input.
+        index = []
+        email_list = [msg[i].email for i in range(len(msg))]
+        for email in data:
+            index.append(email_list.index(email))
+        #delete the indexes,
+        for i in index:
+            msg.pop(i)
+        return render_template("cache.html", len=len(msg), msg=msg)
 
 @app.route("/delete_form", methods=["GET"])
 @login_required
