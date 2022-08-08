@@ -12,13 +12,14 @@ from flask import (
     json,
     session
 )
+import json
 import yagmail
 from flask_session import Session
 import os
 from src.objects.Application import Application, get_data
 import uuid  # for public id
 from werkzeug.security import generate_password_hash, check_password_hash
-import jwt
+import jwt, base64
 from datetime import datetime, timedelta
 from src.server.flask_server import app, db
 from src.sql.sqlite import User
@@ -27,6 +28,7 @@ from dotenv import load_dotenv
 from src.src_context import root_dir
 from smtplib import SMTPAuthenticationError
 from functools import wraps
+from src.common.helper_functions import greetings_map
 
 load_dotenv(os.path.join(root_dir, '.env'))
 # creates Flask object
@@ -36,7 +38,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = os.getenv("SQLALCHEMY_TRACK_MODIFICATIONS")
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 db = SQLAlchemy(app)
-print(db)
 
 
 
@@ -217,17 +218,24 @@ def logout():
 def application_history():
     return redirect(plot_url)
 
-@app.route("/user_profile")
+@app.route("/user_profile", methods = ["GET"])
 @login_required
 def user_profile():
-    greetings_map = {
-        "Good Morning!": range(0,11),
-        "Good Afternoon!": range(12,15),
-        "Good Evening!": range(16,24)
-    }
-    greeting = [k for k, v in greetings_map.items() if datetime.now().hour in v]
-    msg = "Hi {}. {}".format(session["username"], greeting[0])
-    return render_template("profile.html", msg = msg)
+    if request.method == 'GET':
+        greeting = [k for k, v in greetings_map.items() if datetime.now().hour in v]
+        msg = "Hi {}. {}".format(session["username"], greeting[0])
+        user = User.query \
+            .filter_by(email=session["user"]) \
+            .first()
+        git = eval(user.git)
+        image = base64.b64encode(user.image).decode('ascii')
+        projects = eval(user.projects)
+        project_names = [git["name"], projects["project1"]["name"],projects["project2"]["name"]]
+        urls = [git["url"],projects["project1"]["url"],projects["project2"]["url"]]
+        return render_template("profile.html", msg = msg, project_names=project_names,
+                               urls=urls,
+                               len=len(project_names), data=list,
+                               image = image)
 
 
 @app.route("/update", methods=["POST"])
@@ -249,19 +257,54 @@ def update():
         Application.all_contacts = []
         return render_template("user_form.html")
 
-@app.route("/dashboard")
+@app.route("/dashboard", methods=["GET"])
 @login_required
 def dashboard():
-    greetings_map = {
-        "Good Morning!": range(0,11),
-        "Good Afternoon!": range(12,15),
-        "Good Evening!": range(16,24)
-    }
     greeting = [k for k, v in greetings_map.items() if datetime.now().hour in v]
     msg = "Hi {}. {}".format(session["username"], greeting[0])
     return render_template("user_form.html", msg = msg)
 
+@app.route("/settings", methods=["GET","POST"])
+@login_required
+def settings():
+    greeting = [k for k, v in greetings_map.items() if datetime.now().hour in v]
+    msg = "Hi {}. {}".format(session["username"], greeting[0])
+    if request.method == 'GET':
+        message = {"msg": msg, "response": ""}
+        return render_template("settings.html", message = message)
 
+    elif request.method == 'POST':
+        data = request.files
+        if "image" in data.keys():
+            db.session.query(User).filter_by(email=session["user"]).update({"image": data["image"].read()})
+            db.session.commit()
+        if "resume" in data.keys():
+            db.session.query(User).filter_by(email=session["user"]).update({"resume": data["resume"].read()})
+            print("saving the pdf")
+            db.session.commit()
+        message = {"msg": msg, "response": "Details saved successfully."}
+        return render_template("settings.html", message=message)
+
+
+
+@app.route("/project_details", methods=["POST"])
+def project_details():
+    data = request.form
+    projects = {
+        "project1": {"name": data["project1"],
+                     "url": data["project1_url"]},
+        "project2": {"name": data["project2"],
+                     "url": data["project2_url"]}
+    }
+    git = json.dumps({"name":"Git","url":data["Git"]})
+    db.session.query(User).filter_by(email=session["user"]).update({"git": git })
+    db.session.query(User).filter_by(email=session["user"]).update({"projects": json.dumps(projects)})
+
+    db.session.commit()
+    greeting = [k for k, v in greetings_map.items() if datetime.now().hour in v]
+    msg = "Hi {}. {}".format(session["username"], greeting[0])
+    message = {"msg": msg, "response": "Details saved successfully."}
+    return render_template("settings.html", message=message)
 
 @app.route("/addDetails", methods=["POST"])
 def addDetails():
@@ -271,7 +314,17 @@ def addDetails():
     if data["resume"]:
         resume_file = data["resume"]
     else:
-        resume_file = main_dir + "/docs/Resume.pdf"
+        user = User.query \
+            .filter_by(email=session["user"]) \
+            .first()
+        if user.resume is None:
+            resume_file = main_dir + "/docs/Resume.pdf"
+        else:
+            file_ = user.resume
+            resume_file_path = main_dir + "/docs"
+            with open(os.path.join(resume_file_path, "Resume.pdf"), mode="wb") as file:
+                file.write(file_)
+            resume_file = os.path.join(resume_file_path,"Resume.pdf")
     image_folder = os.path.join(main_dir, "images")
     template_folder = os.path.join(main_dir, "templates")
     html_msg = [

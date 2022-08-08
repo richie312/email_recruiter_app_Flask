@@ -1,4 +1,5 @@
 from src.server.flask_server import db
+from sqlalchemy import LargeBinary
 
 
 class User(db.Model):
@@ -10,6 +11,10 @@ class User(db.Model):
     email = db.Column(db.String(70), unique=True)
     password = db.Column(db.String(1000))
     created = db.Column(db.DATETIME)
+    image = db.Column(db.Text, nullable=True)
+    resume = db.Column(db.Text, nullable=True)
+    git = db.Column(db.String(100))
+    projects = db.Column(db.String(100000))
 
     def is_active(self):
         """True, as all users are active."""

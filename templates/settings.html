@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+
+<body>
+
+<div class="w3-bar w3-green">
+  <a href="/application_details" class="w3-bar-item w3-button">Application Details</a>
+  <a href="/user_profile" class="w3-bar-item w3-button">User Profile</a>
+  <a href="/logout" class="w3-bar-item w3-button">LogOut</a>
+
+</div>
+<h3>{{message["msg"]}}</h3>
+
+<div class="container">
+  <form action="/settings" enctype="multipart/form-data" method="post">
+    <label for="fname">Upload Image</label>
+<input type="file" accept="image/*" id="files" name="image" multiple />
+<output id="list"></output>
+<script>
+function handleFileSelect (evt) {
+  // Loop through the FileList and render image files as thumbnails.
+  for (const file of evt.target.files) {
+
+    // Render thumbnail.
+    const span = document.createElement('span')
+    const src = URL.createObjectURL(file)
+    span.innerHTML =
+      `<img style="height: 75px; border: 1px solid #000; margin: 5px"` +
+      `src="${src}" title="${escape(file.name)}">`
+
+    document.getElementById('list').insertBefore(span, null)
+  }
+}
+
+document.getElementById('files').addEventListener('change', handleFileSelect, false);
+</script>
+
+    <br>
+    <br>
+
+    <label for="myfile">Select Resume:</label>
+    <input type="file" id="myfile" name="resume">
+    <br>
+      <br>
+      <input type="submit" value="Update">
+  </form>
+    <h4>{{message["response"]}}</h4>
+</div>
+<div class="container">
+    <form action="/project_details" method="post">
+    <h3>Enter the details of your projects</h3>
+<br>
+    <label for="fname"><i class="fa fa-github" style="font-size:36px"></i></label>
+    <input type="text" id="git" name="Git" placeholder="https://github.com/richie312">
+    <br>
+    <label for="fname">Project</label>
+    <input type="text" id="project1" name="project1" placeholder="ProjectName">
+    <input type="text" id="project1_url" name="project1_url" placeholder="http://api.nirvikalpa-projects.com/">
+    <br>
+    <label for="fname">Project</label>
+    <input type="text" id="project2" name="project2" placeholder="ProjectName">
+    <input type="text" id="project2_url" name="project2_url" placeholder="http://api.nirvikalpa-projects.com/">
+        <br>
+        <input type="submit" value="Save">
+    </form>
+</div>
+
+</body>
+</html>
