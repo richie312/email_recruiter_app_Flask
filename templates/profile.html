@@ -30,6 +30,9 @@
   <a href={{urls[i]}} class="w3-bar-item w3-button">{{project_names[i]}}</a>
 
 {%endfor%}
+    <a href=/settings class="w3-bar-item w3-button">User Settings</a>
+    <a href=/dashboard class="w3-bar-item w3-button">Notify Recruiters</a>
+    <a href=/logout class="w3-bar-item w3-button">LogOut</a>
 
 </div>
 
@@ -38,25 +41,7 @@
     <img width="150" height="200" src="data:;base64,{{ image }}"/>
      </div>
   <div class="column" style="height: 50px">
-        My name is Aritra Chatterjee. I have more than 5 years of experience in
-        the field of Data Science in the domain like Optmisation Modelling,
-        Statistical Modelling, Simulation Modelling, Visualisation,Deep Learning
-        (Computer Vision),Natural Language Processing. The majority of work
-        experience is in Data Cleaning,manipulation and visualisation.
-        25% of my work is in Modelling(statistical and optimisation).
-        I also have experience in IT operation (Serivce Management Analytics,ITIL)
-        which majorly involves visualisation,application development(Shiny Dashboard_R).
-
-        I am also involved in Robotics. I have hands on experience in making robots
-        with Raspberry pi. I have made a car and it is deployed with cam module,
-        temperature sensor (shows temperature) and ultrasonic sensor in order to
-        detect the objects. The robot is wirelessly controlled and its visual comes
-        from the cam deployed on the car which also helps in navigation.
-
-        I am also involved in Budhissm studies (Psychsomatic study of practice) and
-        regularly practice vipassana in order to understand the mind and matter
-        phenomenon. I am also in troduced to the teachings of Non Duality and spent
-        significant time in order to understand the teachings.
+        {{about_me}}
   </div>
 
 </div>

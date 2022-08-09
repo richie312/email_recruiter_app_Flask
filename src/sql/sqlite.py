@@ -15,6 +15,8 @@ class User(db.Model):
     resume = db.Column(db.Text, nullable=True)
     git = db.Column(db.String(100))
     projects = db.Column(db.String(100000))
+    about_me = db.Column(db.String(), nullable=True)
+    profile = db.Column(db.Text, nullable=True)
 
     def is_active(self):
         """True, as all users are active."""

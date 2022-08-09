@@ -36,9 +36,28 @@ input[type=submit]:hover {
   background-color: #f2f2f2;
   padding: 20px;
 }
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+  padding: 20px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#about_me'
+      });
+    </script>
 </head>
 
 <body>
@@ -50,8 +69,8 @@ input[type=submit]:hover {
 
 </div>
 <h3>{{message["msg"]}}</h3>
-
-<div class="container">
+<div class="row">
+<div class="column">
   <form action="/settings" enctype="multipart/form-data" method="post">
     <label for="fname">Upload Image</label>
 <input type="file" accept="image/*" id="files" name="image" multiple />
@@ -80,13 +99,17 @@ document.getElementById('files').addEventListener('change', handleFileSelect, fa
 
     <label for="myfile">Select Resume:</label>
     <input type="file" id="myfile" name="resume">
+      <br>
+    <label for="myfile">Profile Screenshot</label>
+    <input type="file" id="profile" name="profile">
+
     <br>
       <br>
       <input type="submit" value="Update">
   </form>
     <h4>{{message["response"]}}</h4>
 </div>
-<div class="container">
+    <div class="row">
     <form action="/project_details" method="post">
     <h3>Enter the details of your projects</h3>
 <br>
@@ -104,6 +127,17 @@ document.getElementById('files').addEventListener('change', handleFileSelect, fa
         <input type="submit" value="Save">
     </form>
 </div>
-
+</div>
+<br>
+<br>
+<div class="container">
+<h6>About Me</h6>
+    <br>
+    <form action=/project_details method="post">
+      <textarea id="about_me" name="about_me">Hello, World!</textarea>
+        <br>
+        <input type="submit" value="Save">
+    </form>
+</div>
 </body>
 </html>

@@ -228,6 +228,7 @@ def user_profile():
             .filter_by(email=session["user"]) \
             .first()
         git = eval(user.git)
+        about_me = user.about_me
         image = base64.b64encode(user.image).decode('ascii')
         projects = eval(user.projects)
         project_names = [git["name"], projects["project1"]["name"],projects["project2"]["name"]]
@@ -235,7 +236,8 @@ def user_profile():
         return render_template("profile.html", msg = msg, project_names=project_names,
                                urls=urls,
                                len=len(project_names), data=list,
-                               image = image)
+                               image = image,
+                               about_me = about_me)
 
 
 @app.route("/update", methods=["POST"])
@@ -275,12 +277,15 @@ def settings():
 
     elif request.method == 'POST':
         data = request.files
-        if "image" in data.keys():
+        if data["image"].filename != '':
             db.session.query(User).filter_by(email=session["user"]).update({"image": data["image"].read()})
             db.session.commit()
-        if "resume" in data.keys():
+        if data["resume"].filename != '':
             db.session.query(User).filter_by(email=session["user"]).update({"resume": data["resume"].read()})
             print("saving the pdf")
+            db.session.commit()
+        if data["profile"].filename != '':
+            db.session.query(User).filter_by(email=session["user"]).update({"profile": data["profile"].read()})
             db.session.commit()
         message = {"msg": msg, "response": "Details saved successfully."}
         return render_template("settings.html", message=message)
@@ -290,17 +295,24 @@ def settings():
 @app.route("/project_details", methods=["POST"])
 def project_details():
     data = request.form
-    projects = {
-        "project1": {"name": data["project1"],
-                     "url": data["project1_url"]},
-        "project2": {"name": data["project2"],
-                     "url": data["project2_url"]}
-    }
-    git = json.dumps({"name":"Git","url":data["Git"]})
-    db.session.query(User).filter_by(email=session["user"]).update({"git": git })
-    db.session.query(User).filter_by(email=session["user"]).update({"projects": json.dumps(projects)})
+    if "about_me" in data.keys():
+        db.session.query(User).filter_by(email=session["user"]).update({"about_me": data["about_me"]})
+        db.session.commit()
+    if "Git" in data.keys():
+        git = json.dumps({"name":"Git","url":data["Git"]})
+        db.session.query(User).filter_by(email=session["user"]).update({"git": git})
+        db.session.commit()
+    if "projects" in data.keys():
+        projects = {
+            "project1": {"name": data["project1"],
+                         "url": data["project1_url"]},
+            "project2": {"name": data["project2"],
+                         "url": data["project2_url"]}
+        }
 
-    db.session.commit()
+        db.session.query(User).filter_by(email=session["user"]).update({"projects": json.dumps(projects)})
+        db.session.commit()
+
     greeting = [k for k, v in greetings_map.items() if datetime.now().hour in v]
     msg = "Hi {}. {}".format(session["username"], greeting[0])
     message = {"msg": msg, "response": "Details saved successfully."}
@@ -327,8 +339,17 @@ def addDetails():
             resume_file = os.path.join(resume_file_path,"Resume.pdf")
     image_folder = os.path.join(main_dir, "images")
     template_folder = os.path.join(main_dir, "templates")
+
+    if user.profile == '':
+        body = os.path.join(image_folder, "one_page_profile.png")
+    else:
+        profile = user.profile
+        with open(os.path.join(image_folder, "one_page_profile.png"), "wb") as file:
+            file.write(profile)
+        body = os.path.join(image_folder, "one_page_profile.png")
+
     html_msg = [
-        yagmail.inline(os.path.join(image_folder, "one_page_profile.png")),
+        yagmail.inline(body),
         os.path.join(template_folder, "links.html"),
         resume_file,
     ]
