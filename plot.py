@@ -25,7 +25,7 @@ app = dash.Dash(__name__, server=server, suppress_callback_exceptions=True)
 
 def app_layout():
     return html.Div(
-[
+        [
             dcc.Graph(id="my-graph"),
             html.Div(id="data_pass"),
             html.Div(

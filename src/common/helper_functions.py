@@ -13,10 +13,10 @@ from src.objects.Application import get_data
 
 
 greetings_map = {
-        "Good Morning!": list(range(0,12)),
-        "Good Afternoon!": list(range(12,16)),
-        "Good Evening!": list(range(16,24))
-    }
+    "Good Morning!": list(range(0, 12)),
+    "Good Afternoon!": list(range(12, 16)),
+    "Good Evening!": list(range(16, 24)),
+}
 
 
 def collect_location_wise_count(days=300):
@@ -100,6 +100,7 @@ def tenure_dict(month_list):
     for i in month_list:
         tenure[i] = calendar_dict[i]
     return tenure
+
 
 if "__name__" == "__main.py__":
     collect_location_wise_count()
