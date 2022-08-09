@@ -9,10 +9,10 @@ services:
   - 5001:5001
   container_name: web
 
- visualisation:
-  build:
-   context: .
-   dockerfile: plot_app/Dockerfile
-  ports:
-  - 5002:5002
-  container_name: visualisation
+# visualisation:
+#  build:
+#   context: .
+#   dockerfile: plot_app/Dockerfile
+#  ports:
+#  - 5002:5002
+#  container_name: visualisation

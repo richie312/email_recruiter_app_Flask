@@ -15,47 +15,33 @@
   height: 300px; /* Should be removed. Only for demonstration */
 }
 </style>
-<title>Aritra Chatterjee_Projects</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body>
 
 <div class="w3-container" style="width: 1200px">
-  <h2>Check My Projects @</h2>
+    <h3>{{msg}}</h3>
 
 </div>
 
 <div class="w3-bar w3-green">
-  <a href="https://github.com/richie312" class="w3-bar-item w3-button">GitHub</a>
-  <a href="https://richiekalpa.shinyapps.io/Model_App/" class="w3-bar-item w3-button">Nirvikalpa Projects</a>
-  <a href="https://richienirvikalpa.shinyapps.io/WeatherApp/" class="w3-bar-item w3-button">Weather Application</a>
+    {%for i in range(0, len)%}
+<!--populate the users github, projects-->
+  <a href={{urls[i]}} class="w3-bar-item w3-button">{{project_names[i]}}</a>
+
+{%endfor%}
+    <a href=/settings class="w3-bar-item w3-button">User Settings</a>
+    <a href=/dashboard class="w3-bar-item w3-button">Notify Recruiters</a>
+    <a href=/logout class="w3-bar-item w3-button">LogOut</a>
 
 </div>
 
 <div class="row">
     <div class="column">
-    <img src="richie.jpg">
+    <img width="150" height="200" src="data:;base64,{{ image }}"/>
      </div>
   <div class="column" style="height: 50px">
-        My name is Aritra Chatterjee. I have more than 5 years of experience in
-        the field of Data Science in the domain like Optmisation Modelling,
-        Statistical Modelling, Simulation Modelling, Visualisation,Deep Learning
-        (Computer Vision),Natural Language Processing. The majority of work
-        experience is in Data Cleaning,manipulation and visualisation.
-        25% of my work is in Modelling(statistical and optimisation).
-        I also have experience in IT operation (Serivce Management Analytics,ITIL)
-        which majorly involves visualisation,application development(Shiny Dashboard_R).
-
-        I am also involved in Robotics. I have hands on experience in making robots
-        with Raspberry pi. I have made a car and it is deployed with cam module,
-        temperature sensor (shows temperature) and ultrasonic sensor in order to
-        detect the objects. The robot is wirelessly controlled and its visual comes
-        from the cam deployed on the car which also helps in navigation.
-
-        I am also involved in Budhissm studies (Psychsomatic study of practice) and
-        regularly practice vipassana in order to understand the mind and matter
-        phenomenon. I am also in troduced to the teachings of Non Duality and spent
-        significant time in order to understand the teachings.
+        {{about_me}}
   </div>
 
 </div>
@@ -63,7 +49,7 @@
 <div class="row" style="height:700px;width:2000px">
 
   <div class="column" style="height:500px;width:700px">
-    <img src="wordcloud.jpg">
+    <img src="/images/wordcloud.jpg">
   </div>
 
 
@@ -128,36 +114,6 @@
     </body>
   </div>
 </div>
-<div class="row">
-  <div class="row">
-    <body>
-      <div class="w3-bar w3-green" style="width: 1400px">
-        <h3>Robotics: Bruno (Self Driven Car; an initiative by Nirivkalpa Projects)</h2>
-      </div>
-    </body>
-    </div>
-  </div>
-  <div class="row" style="height:400px;width:1200px">
-      <div class="column" style="height:300px;width:400px">
-        <div class="row" ><img src="bruno1.jpg" style="width:120%; height:120%"></div><br>
-
-        <div class="row"><img src="bruno3.jpg" style="width:120%; height:120%"></div>
-
-      </div>
-      <div class="column"><img src="bruno2.jpg" style="width:65%; height:97%"></div>
-      <div class="column" style="height:100px;width:1500px">
-        <body>
-          <h3>Robotics</h3>
-        <p>Raspberry Pi (IOT) and Robotics: Made robot(motor car) with raspberry pi. It is
-            deployed with temperature sensor, ultrasonic distance sensor and raspberry pi cam
-            module. This robot can move wirelessly. The program to control the robot is written
-            in python. Next move is to write function in python in order to make the car self
-            driven.
-            The Robot has ability to detect object and tell the distance. It also shows the
-            temperature and humidity data. The robot is also deployed with cam module which
-            enables it to control it wirelessly. All functions are written in python.</p>
-        </body>
-      </div>
 
   </div>
 

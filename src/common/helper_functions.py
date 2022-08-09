@@ -12,6 +12,13 @@ from datetime import datetime, timedelta
 from src.objects.Application import get_data
 
 
+greetings_map = {
+    "Good Morning!": list(range(0, 12)),
+    "Good Afternoon!": list(range(12, 16)),
+    "Good Evening!": list(range(16, 24)),
+}
+
+
 def collect_location_wise_count(days=300):
     """collect_location_wise_count() function takes two arguments;
     the url(where the data is stored in json format) and period

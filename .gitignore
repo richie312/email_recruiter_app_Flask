@@ -11,3 +11,4 @@ tkinter_app
 venv
 Jenkinsfile
 .env
+flask_session/*
