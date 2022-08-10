@@ -12,7 +12,7 @@ import os
 
 # loads the  env vars from the root project  folder
 main_dir = os.getcwd()
-load_dotenv(dotenv_path=os.path.join(main_dir, ".env"))
+load_dotenv(dotenv_path=os.path.join(main_dir, "../.env"))
 
 external_stylesheets = ["https://codepen.io/chriddyp/pen/bWLwgP.css"]
 
