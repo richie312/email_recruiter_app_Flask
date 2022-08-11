@@ -336,18 +336,28 @@ def project_details():
         )
         db.session.commit()
     if "Git" in data.keys():
-        git = json.dumps({"name": "Git", "url": data["Git"]})
-        db.session.query(User).filter_by(email=session["user"]).update({"git": git})
-        db.session.commit()
-    if "projects" in data.keys():
-        projects = {
-            "project1": {"name": data["project1"], "url": data["project1_url"]},
-            "project2": {"name": data["project2"], "url": data["project2_url"]},
-        }
+        if data["Git"] == '':
+            pass
+        else:
+            git = json.dumps({"name": "Git", "url": data["Git"]})
+            db.session.query(User).filter_by(email=session["user"]).update({"git": git})
+            db.session.commit()
+    projects = {}
+    if "project1" in data.keys() and data["project1"] is not '':
+        projects.update({"project1": {"name": data["project1"], "url": data["project1_url"]}})
+    if "project2" in data.keys() and data["project2"] is not '':
+        projects.update({"project2": {"name": data["project2"], "url": data["project2_url"]}})
 
+    db_proj = db.session.query(User).filter_by(email=session["user"]).first()
+    if db_proj.projects is not None:
+        db_dict =eval(db_proj.projects)
+        db_dict.update(projects)
         db.session.query(User).filter_by(email=session["user"]).update(
-            {"projects": json.dumps(projects)}
-        )
+            {"projects": json.dumps(db_dict)})
+        db.session.commit()
+    else:
+        db.session.query(User).filter_by(email=session["user"]).update(
+            {"projects": json.dumps(projects)})
         db.session.commit()
 
     greeting = [k for k, v in greetings_map.items() if datetime.now().hour in v]
