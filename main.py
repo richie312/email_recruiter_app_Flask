@@ -16,6 +16,7 @@ import json
 import yagmail
 from flask_session import Session
 import os
+import PyPDF2
 from src.objects.Application import Application, get_data
 import uuid  # for public id
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -190,7 +191,7 @@ def signup():
         # creates a dictionary of the form data
         data = request.args if request.args else request.form
         # gets name, email and password
-        name, email = data.get("name"), data.get("email")
+        name, email = data.get("username"), data.get("email")
         password = data.get("password")
         # checking for existing user
         user = User.query.filter_by(email=email).first()
@@ -241,16 +242,25 @@ def user_profile():
         greeting = [k for k, v in greetings_map.items() if datetime.now().hour in v]
         msg = "Hi {}. {}".format(session["username"], greeting[0])
         user = User.query.filter_by(email=session["user"]).first()
-        git = eval(user.git)
+        urls = []
+        project_names = []
+        image = None
         about_me = user.about_me
-        image = base64.b64encode(user.image).decode("ascii")
-        projects = eval(user.projects)
-        project_names = [
-            git["name"],
-            projects["project1"]["name"],
-            projects["project2"]["name"],
-        ]
-        urls = [git["url"], projects["project1"]["url"], projects["project2"]["url"]]
+        try:
+            git = eval(user.git)
+            urls.append(git["url"])
+            projects = eval(user.projects)
+            image = base64.b64encode(user.image).decode("ascii")
+            project_names = [
+                git["name"],
+                projects["project1"]["name"],
+                projects["project2"]["name"],
+            ]
+            urls.append(projects["project1"]["url"], projects["project2"]["url"])
+
+        except TypeError:
+            pass
+
         return render_template(
             "profile.html",
             msg=msg,
@@ -482,6 +492,15 @@ def populate_data():
     data = {"data": collection}
     return jsonify(data)
 
+@app.route("/wordcloud", methods=["GET"])
+def wordcloud():
+    pdf_file = open(os.path.join('docs', "Resume.pdf"), 'rb')
+    read_pdf = PyPDF2.PdfFileReader(pdf_file)
+    number_of_pages = read_pdf.getNumPages()
+    page = read_pdf.getPage(0)
+    page_content = page.extractText()
+    data = {"corpus": page_content.split('\n')}
+    return render_template("wordcloud.html", data=data)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True, port=5001)
