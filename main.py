@@ -249,16 +249,26 @@ def user_profile():
         try:
             git = eval(user.git)
             urls.append(git["url"])
-            projects = eval(user.projects)
+            project_names.append(git["name"])
+        except KeyError:
+            pass
+        try:
             image = base64.b64encode(user.image).decode("ascii")
-            project_names = [
-                git["name"],
-                projects["project1"]["name"],
-                projects["project2"]["name"],
-            ]
-            urls.append(projects["project1"]["url"], projects["project2"]["url"])
-
         except TypeError:
+            pass
+        try:
+            projects = eval(user.projects)
+            project_names.append(
+                projects["project1"]["name"])
+            urls.append(projects["project1"]["url"])
+        except KeyError:
+            pass
+        try:
+            projects = eval(user.projects)
+            project_names.append(
+                projects["project2"]["name"])
+            urls.append(projects["project2"]["url"])
+        except KeyError:
             pass
 
         return render_template(
