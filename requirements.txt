@@ -29,6 +29,6 @@ sqlalchemy
 pre-commit
 Flask-Session
 PyPDF2
-jwt
 flask_sqlalchemy
 pymysql
+PyJWT
