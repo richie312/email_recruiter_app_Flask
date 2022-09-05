@@ -1,9 +1,12 @@
-import os, PyPDF2
+from config.database import Database
+Location = ''
+db = Database()
 
-pdf_file = open(os.path.join('docs', "Resume.pdf"), 'rb')
-read_pdf = PyPDF2.PdfFileReader(pdf_file)
-number_of_pages = read_pdf.getNumPages()
-page = read_pdf.getPage(0)
-page_content = page.extractText()
+conn = db.row_insertion()
+cursor = conn.cursor()
 
-print([page_content])
+query = "select Location from company_email1 where Email_Address = %s"
+
+cursor.execute(query,("karthick.chinnasamy@careernet.co.in",))
+
+data = cursor.fetchall()
