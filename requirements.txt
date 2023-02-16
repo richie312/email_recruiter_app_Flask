@@ -23,7 +23,7 @@ soupsieve==2.0.1
 tqdm==4.47.0
 itsdangerous==1.1.0
 MarkupSafe==1.1.1
-Werkzeug==1.0.1
+Werkzeug==2.2.3
 yagmail==0.11.224
 sqlalchemy
 pre-commit
