@@ -1,6 +1,6 @@
 from __future__ import annotations
 import datetime
-from config.database import Database
+from config.database import Database, db_connection
 import pandas as pd
 
 
@@ -33,6 +33,7 @@ class Application(object):
 
         self.application_date = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.conn_row_insertion_type = Database().row_insertion()
+        self.connection = db_connection()
         self.cursor = self.conn_row_insertion_type.cursor()
 
     def add_details(self):

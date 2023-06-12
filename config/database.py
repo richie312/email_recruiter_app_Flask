@@ -8,6 +8,13 @@ from sqlalchemy import create_engine
 """ decrypt the database details"""
 load_dotenv(os.path.join(root_dir, ".env"))
 
+def db_connection():
+    connection = mysql.connector.connect(host=os.getenv('db_host'),
+                                         user=os.getenv('db_user'),
+                                         port=3306,
+                                         passwd=os.getenv('db_passwd'),
+                                         db=os.getenv('dbname'))
+    return connection
 
 class Database:
     def row_insertion(self):
