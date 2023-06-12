@@ -33,13 +33,8 @@ from src.common.helper_functions import greetings_map
 load_dotenv(os.path.join(root_dir, ".env"))
 # creates Flask object
 app = Flask(__name__, static_folder=os.path.join(root_dir, "images"))
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = os.getenv(
-    "SQLALCHEMY_TRACK_MODIFICATIONS"
-)
-app.config["SQLALCHEMY_COMMIT_ON_TEARDOWN"] = True
-db = SQLAlchemy(app)
+db.init_app(app)
 
 
 def login_required(f):

@@ -14,6 +14,9 @@ app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = os.getenv(
     "SQLALCHEMY_TRACK_MODIFICATIONS"
 )
-db = SQLAlchemy(app)
-print(db)
 app.config["DEBUG"] = True
+db = SQLAlchemy()
+db.init_app(app)
+
+print(db)
+
