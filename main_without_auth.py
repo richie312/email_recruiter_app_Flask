@@ -3,6 +3,7 @@
 from flask import Flask, request,render_template,redirect,url_for,jsonify,session
 import yagmail
 from dotenv import load_dotenv
+from datetime import datetime
 import os
 from smtplib import SMTPAuthenticationError
 from src.objects.Application import Application, get_data
@@ -60,6 +61,7 @@ def addDetails():
     main_dir = os.getcwd()
     if data["resume"]:
         resume_file = data["resume"]
+        resume_file_path = main_dir + "/docs"
     else:
         user = "richie312"
         resume_file = main_dir + "/docs/Resume.pdf"
@@ -92,7 +94,7 @@ def addDetails():
         """Send Email"""
         yag.send([email, "richie.chatterjee31@gmail.com"], obj.subject, html_msg)
         msg = """Alert! Hi {}.As your google password is not set, the mail is by default sent by domain owner.
-                You will be also receiving me the copy. It is recommended that you use gmail account and set google app password.
+                It is recommended that you use gmail account and set google app password.
                 Click on the Set google app password button on dashboard to set it up.""".format(
             "testaccount"
         )
@@ -101,7 +103,7 @@ def addDetails():
 @app.route("/dashboard", methods=["GET"])
 def dashboard():
     greeting = [k for k, v in greetings_map.items() if datetime.now().hour in v]
-    msg = "Hi {}. {}".format(session["username"], greeting[0])
+    msg = "Hi {}. {}".format("Richie", greeting[0])
     return render_template("user_form.html", msg=msg)
 
 @app.route('/application_details', methods=['GET'])
