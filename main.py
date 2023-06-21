@@ -37,7 +37,6 @@ app = Flask(__name__, static_folder=os.path.join(root_dir, "images"))
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
 db.init_app(app)
 
-
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
@@ -100,7 +99,7 @@ def login_post():
                     "public_id": user.public_id,
                     "exp": datetime.utcnow() + timedelta(days=session_time),
                 },
-                app.config["SECRET_KEY"],
+                key = "secret"
             )
             session["user"] = auth.get("email")
             session["logged_in"] = True
