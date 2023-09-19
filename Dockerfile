@@ -8,6 +8,6 @@ COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
-EXPOSE 5001
+EXPOSE 5004
 
 CMD ["python3","main.py"]
