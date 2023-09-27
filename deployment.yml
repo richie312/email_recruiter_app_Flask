@@ -1,0 +1,30 @@
+name: Build & Update Docker Hub Repository
+
+on:
+  push:
+    branches: [ "Develop" ]
+  pull_request:
+    branches: [ "Develop" ]
+
+variables:
+  # Container registry service connection established during pipeline creation
+  containerRegistry: 'appsecbotdev.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: 'latest'
+  default_branch: 'develop'
+  image_name: '$(containerRegistry)/gvm_vulnerabilities:$(tag)'
+  prj_id: '$(project_id)'
+  pr_id: '$(System.PullRequest.PullRequestId)'
+  repo_id: '$(repository_id)'
+  git_secret: '$(git_pat)'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag noTify:$(date +%s)
