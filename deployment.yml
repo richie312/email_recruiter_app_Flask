@@ -12,7 +12,7 @@ variables:
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: 'latest'
   default_branch: 'develop'
-  image_name: '$(containerRegistry)/gvm_vulnerabilities:$(tag)'
+  image_name: '$(containerRegistry)/jban:$(tag)'
   prj_id: '$(project_id)'
   pr_id: '$(System.PullRequest.PullRequestId)'
   repo_id: '$(repository_id)'

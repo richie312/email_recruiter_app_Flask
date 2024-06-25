@@ -1,2 +1,1 @@
-C:\Users\aritra.a.chatterjee\envs\email\Scripts\Activate.bat
-ECHO "email environment activated"
+C:\Users\2307995\envs\email\Scripts\Activate.bat
