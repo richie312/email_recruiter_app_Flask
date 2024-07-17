@@ -1,1 +1,1 @@
-C:\Users\2307995\envs\email\Scripts\Activate.bat
+C:\Users\2307995\envs\email_app\Scripts\Activate.bat
