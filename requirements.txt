@@ -4,8 +4,6 @@ requests
 Flask
 Flask-Compress
 Jinja2
-keyring==21.2.1
-keyrings.alt
 mysql-connector-python
 plotly
 python-dotenv
