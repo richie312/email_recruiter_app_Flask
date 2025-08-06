@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-source /home/ec2-user/envs/email/bin/activate
+source /home/pi/envs/email_app/bin/activate

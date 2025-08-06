@@ -16,3 +16,5 @@ PyPDF2
 flask_sqlalchemy
 pymysql
 PyJWT
+keyring
+keyrings.alt

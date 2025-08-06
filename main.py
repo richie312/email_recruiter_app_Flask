@@ -34,6 +34,13 @@ from src.common.helper_functions import greetings_map
 load_dotenv(os.path.join(root_dir, ".env"))
 # creates Flask object
 app = Flask(__name__, static_folder=os.path.join(root_dir, "images"))
+# MySQL configurations
+# app.config["MYSQL_DATABASE_USER"] = "root"
+# app.config["MYSQL_DATABASE_PASSWORD"] = os.getenv("db_passwd")
+# app.config["MYSQL_DATABASE_DB"] = os.getenv("dbname")
+# app.config["MYSQL_DATABASE_HOST"] = os.getenv("MYSQL_SERVICE_HOST")
+# app.config["MYSQL_DATABASE_PORT"] = int(os.getenv("MYSQL_SERVICE_PORT"))
+# mysql.init_app(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
 db.init_app(app)
 

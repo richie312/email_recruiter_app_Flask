@@ -1,4 +1,4 @@
-FROM python:3.7-slim-buster
+FROM python:3.9-slim
 
 WORKDIR .
 
@@ -12,4 +12,4 @@ RUN pip install --upgrade keyring importlib_metadata
 
 EXPOSE 5001
 
-CMD ["python3","main_without_auth.py"]
+CMD ["python3","main.py"]
