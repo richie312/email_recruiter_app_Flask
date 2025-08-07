@@ -30,6 +30,8 @@ from src.src_context import root_dir
 from smtplib import SMTPAuthenticationError
 from functools import wraps
 from src.common.helper_functions import greetings_map
+from flasgger import Swagger, swag_from
+
 
 load_dotenv(os.path.join(root_dir, ".env"))
 # creates Flask object
@@ -43,6 +45,8 @@ app = Flask(__name__, static_folder=os.path.join(root_dir, "images"))
 # mysql.init_app(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
 db.init_app(app)
+
+swagger = Swagger(app)
 
 def login_required(f):
     @wraps(f)
@@ -72,7 +76,8 @@ def homepage():
 
 
 # route for logging user in
-@app.route("/login", methods=["GET", "POST"])
+@swag_from('api_routes.yml', endpoint='login')
+@app.route("/login", endpoint='login', methods=["GET", "POST"])
 def login_post():
     if request.method == "GET":
         return render_template("login.html", msg="")
@@ -123,6 +128,7 @@ def login_post():
 
 
 @app.route("/password_reset", methods=["GET", "POST"])
+@swag_from()
 def reset_password():
 
     if request.method == "GET":
@@ -162,7 +168,7 @@ def reset_password():
 
             return render_template("set_new_password.html", msg=msg)
 
-
+@swag_from('api_routes.yml', endpoint='/new_password')
 @app.route("/new_password", methods=["GET", "POST"])
 def new_password():
     if request.method == "GET":
@@ -235,8 +241,8 @@ def logout():
 def application_history():
     return redirect(plot_url)
 
-
-@app.route("/user_profile", methods=["GET"])
+@swag_from('api_routes.yml', endpoint='user_profile')
+@app.route("/user_profile", endpoint='user_profile',  methods=["GET"])
 @login_required
 def user_profile():
     if request.method == "GET":

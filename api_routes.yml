@@ -1,0 +1,120 @@
+swagger: "2.0"
+info:
+  title: API Documentation
+  description: Documentation for all API routes
+  version: "1.0.0"
+
+paths:
+  login:
+    post:
+      tags:
+        - Authentication
+      summary: User login
+      description: This endpoint allows users to log in to the system.
+      parameters:
+        - name: email
+          in: formData
+          type: string
+          required: true
+          description: User's email address
+        - name: password
+          in: formData
+          type: string
+          required: true
+          description: User's password
+      responses:
+        200:
+          description: Login successful
+        401:
+          description: Invalid credentials
+
+  new_password:
+    post:
+      tags:
+        - Password Management
+      summary: Update the user's password
+      description: This endpoint allows users to update their password using a secret token.
+      parameters:
+        - name: secret
+          in: query
+          type: string
+          required: true
+          description: Secret token for password reset
+        - name: new_password
+          in: query
+          type: string
+          required: true
+          description: The new password to set
+      responses:
+        200:
+          description: Password updated successfully
+        400:
+          description: Invalid secret token
+  
+  user_profile:
+    get:
+      tags:
+        - User Management
+      summary: Get user profile
+      description: This endpoint retrieves the profile information of the logged-in user.
+      responses:
+        200:
+          description: Successfully retrieved user profile
+          schema:
+            type: object
+            properties:
+              id:
+                type: integer
+                description: User ID
+              name:
+                type: string
+                description: User's name
+              email:
+                type: string
+                description: User's email address
+        401:
+          description: Unauthorized access
+    post:
+      tags:
+        - User Management
+      summary: Update user profile
+      description: This endpoint updates the profile information of the logged-in user.
+      parameters:
+        - name: name
+          in: formData
+          type: string
+          required: false
+          description: User's name
+        - name: email
+          in: formData
+          type: string
+          required: false
+          description: User's email address
+      responses:
+        200:
+          description: Successfully updated user profile
+        400:
+          description: Invalid input data
+        401:
+          description: Unauthorized access
+  
+  agent_test_api:
+    get:
+      tags:
+        - Agent Testing
+      summary: Test agent functionality
+      description: This endpoint is used to test the functionality of an agent.
+      responses:
+        200:
+          description: Agent test successful
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: Status of the test
+              result:
+                type: string
+                description: Result of the agent test
+        500:
+          description: Internal server error

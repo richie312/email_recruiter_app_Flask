@@ -18,3 +18,6 @@ pymysql
 PyJWT
 keyring
 keyrings.alt
+flasgger
+openai
+pydantic
