@@ -66,39 +66,39 @@ def addDetails():
         user = "richie312"
         resume_file = main_dir + "/docs/Resume.pdf"
         resume_file_path = main_dir + "/docs"
-    resume_file = os.path.join(resume_file_path, "Resume.pdf")
-    image_folder = os.path.join(main_dir, "images")
-    template_folder = os.path.join(main_dir, "templates")
+    # resume_file = os.path.join(resume_file_path, "Resume.pdf")
+    # image_folder = os.path.join(main_dir, "images")
+    # template_folder = os.path.join(main_dir, "templates")
 
-    body = os.path.join(image_folder, "one_page_profile.png")
+    # body = os.path.join(image_folder, "one_page_profile.png")
 
-    html_msg = [
-        yagmail.inline(body),
-        os.path.join(template_folder, "links.html"),
-        resume_file,
-    ]
-    # Instantiate the Application object and execute required method.
-    obj = Application(data)
-    email = data["Email Address"]
+    # html_msg = [
+    #     yagmail.inline(body),
+    #     os.path.join(template_folder, "links.html"),
+    #     resume_file,
+    # ]
+    # # Instantiate the Application object and execute required method.
+    # obj = Application(data)
+    # email = data["Email Address"]
 
-    try:
-        yagmail.register("richie.chatterjee31@gmail.com", passw)
-        yag = yagmail.SMTP("richie.chatterjee31@gmail.com", passw)
-        """Send Email"""
-        yag.send(email, obj.subject, html_msg)
-        msg = ""
-        return render_template("user_form_response.html", msg=msg)
-    except SMTPAuthenticationError:
-        yagmail.register("richie.chatterjee31@gmail.com", os.getenv("passwd"))
-        yag = yagmail.SMTP("richie.chatterjee31@gmail.com", os.getenv("passwd"))
-        """Send Email"""
-        yag.send([email, "richie.chatterjee31@gmail.com"], obj.subject, html_msg)
-        msg = """Alert! Hi {}.As your google password is not set, the mail is by default sent by domain owner.
-                It is recommended that you use gmail account and set google app password.
-                Click on the Set google app password button on dashboard to set it up.""".format(
-            "testaccount"
-        )
-    return render_template("user_form_response.html", msg=msg)
+    # try:
+    #     yagmail.register("richie.chatterjee31@gmail.com", passw)
+    #     yag = yagmail.SMTP("richie.chatterjee31@gmail.com", passw)
+    #     """Send Email"""
+    #     yag.send(email, obj.subject, html_msg)
+    #     msg = ""
+    #     return render_template("user_form_response.html", msg=msg)
+    # except SMTPAuthenticationError:
+    #     yagmail.register("richie.chatterjee31@gmail.com", os.getenv("passwd"))
+    #     yag = yagmail.SMTP("richie.chatterjee31@gmail.com", os.getenv("passwd"))
+    #     """Send Email"""
+    #     yag.send([email, "richie.chatterjee31@gmail.com"], obj.subject, html_msg)
+    #     msg = """Alert! Hi {}.As your google password is not set, the mail is by default sent by domain owner.
+    #             It is recommended that you use gmail account and set google app password.
+    #             Click on the Set google app password button on dashboard to set it up.""".format(
+    #         "testaccount"
+    #     )
+    return render_template("user_form_response.html", msg="msg")
 
 @app.route("/dashboard", methods=["GET"])
 def dashboard():

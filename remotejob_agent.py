@@ -1,4 +1,6 @@
 import os
+import json
+import requests
 from openai import OpenAI
 from pydantic import BaseModel
 from src.src_context import root_dir
@@ -54,3 +56,10 @@ class JobSearchEvent(BaseModel):
 # Step 4: produce the data to a kafka topic.
 # --------------------------------------------------------------
 
+reponse = requests.post("http://192.168.1.13:5000/produce", 
+                        json = {"topic": "test-topic",
+                                "value": json.dumps(sample_Agent_remote_job)})
+if reponse.status_code == 200:
+    print("Data produced to Kafka topic successfully.")
+else:
+    print(f"Failed to produce data to Kafka topic: {reponse.status_code}, {reponse.text}")

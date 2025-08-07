@@ -12,6 +12,7 @@ from flask import (
     json,
     session,
 )
+import requests
 import json
 import yagmail
 from flask_session import Session
@@ -518,6 +519,18 @@ def wordcloud():
     page_content = page.extractText()
     data = {"corpus": page_content.split('\n')}
     return render_template("wordcloud.html", data=data)
+
+# Asynchronous Kafka Route Listener, infinite loop
+@app.route("/job_details", methods=["GET"])
+def job_details():
+    job_posting_data = requests.get("http://127.0.0.1:5000/consume")
+    job_data=job_posting_data.content.decode("utf-8")
+    # columns = list(job_data.keys())
+    # collection = [
+    #     dict(zip(columns, job_data["data"][i])) for i in range(len(job_data["data"]))
+    # ]
+    # data = {"data": collection}
+    return render_template("job_posting.html", job_data=json.loads(job_data))
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True, port=os.getenv("port"))
