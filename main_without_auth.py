@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, request,render_template,redirect,url_for,jsonify,session
-import yagmail
+import yagmail, requests, json
 from dotenv import load_dotenv
 from datetime import datetime
 import os
 from smtplib import SMTPAuthenticationError
 from src.objects.Application import Application, get_data
 app = Flask(__name__)
-app.config['DEBUG'] = True
+
 
 # load the environment variables
 load_dotenv('.env')
@@ -134,6 +134,27 @@ def populate_data():
     collection = [dict(zip(columns, response['data'][i])) for i in range(len(response['data']))]
     data = {"data": collection}
     return jsonify(data)
+# Asynchronous Kafka Route Listener, infinite loop
+@app.route("/job_details", methods=["GET"])
+def job_details():
+    collection = []
+    job_posting_data = requests.get("http://192.168.1.13:5000/consume")
+    job_data=json.loads(job_posting_data.content.decode("utf-8"))
+    columns = list(json.loads(job_data["data"][0]).keys())
+    row_values = [list(json.loads(job_data["data"][i]).values()) for i in range(len(job_data["data"]))]
+    total_no_jobs = len(row_values)
+    # unpack the values in row_values
+    for row in range(len(row_values)):
+        values = [row_values[row][i][0] for i in range(len(row_values[0])) if row_values[row][i] != []]
+        collection.append(dict(zip(columns, values)))
+    # Retrieve existing data from cache
+    data = {"data": collection}
+    print(data)
+    return jsonify(data)
+
+@app.route('/show_jobs', methods=['GET'])
+def show_jobs():
+    return render_template('job_posting.html')
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0',debug=True,port=5001)

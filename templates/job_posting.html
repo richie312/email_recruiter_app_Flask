@@ -20,10 +20,10 @@
 <table id="example" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>Company</th>
+                <th>Company_Name</th>
+                <th>Description</th>
+                <th>Email_Address</th>
                 <th>Location</th>
-                <th>Email</th>
-                <th>Application Date</th>
             </tr>
         </thead>
     </table>
@@ -32,7 +32,7 @@ function setupData() {
     $(document).ready(function () {
         $('#example').DataTable({
             "ajax": {
-                "url": "/index_get_data",
+                "url": "/job_details",
                 "datatype": "json",
                 "dataSrc": "data",
                 "type": "GET",
@@ -41,9 +41,9 @@ function setupData() {
             },
             "columns": [
                 {"data": "Company_Name"},
-                {"data": "Location"},
+                {"data": "Description"},
                 {"data": "Email_Address"},
-                {"data": "Application_Date"}
+                {"data": "Location"}
             ]
         });
     });

@@ -56,7 +56,7 @@ class JobSearchEvent(BaseModel):
 # Step 4: produce the data to a kafka topic.
 # --------------------------------------------------------------
 
-reponse = requests.post("http://192.168.1.13:5000/produce", 
+reponse = requests.post("http://127.0.0.1:5000/produce", 
                         json = {"topic": "test-topic",
                                 "value": json.dumps(sample_Agent_remote_job)})
 if reponse.status_code == 200:
