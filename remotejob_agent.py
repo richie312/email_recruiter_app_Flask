@@ -1,6 +1,7 @@
 import os
 import json
 import requests
+from typing import List
 from openai import OpenAI
 from pydantic import BaseModel
 from src.src_context import root_dir
@@ -17,49 +18,49 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 class JobSearchEvent(BaseModel):
-    Company_Name: list[str]
-    Location: list[str]
-    Email_Address: list[str]
-    Description: list[str]
+    Company_Name: List[str]
+    Location: List[str]
+    Email_Address: List[str]
+    Description: List[str]
 
 # --------------------------------------------------------------
 # Step 2: Call the model
 # --------------------------------------------------------------
 
-# completion = client.beta.chat.completions.parse(
-#     model="gpt-4o",
-#     messages=[
-#         {"role": "system", "content": "Extract the event information."},
-#         {
-#             "role": "user",
-#             "content": """Act as a career advisor. Your tech stack includes [python, kubernetes,  
-#             docker, data engineering, spark, kafka, Flask, Django, Fast API, redis, 
-#             git, AWS, Azure, Databaricks]. Suggest relevant job that align with 
-#             this skillset. Recommend specific job  focusing on these technologies along with 12 
-#             years of experience.,"""
-#         },
-#     ],
-#     response_format=JobSearchEvent,
-# )
+completion = client.beta.chat.completions.parse(
+    model="gpt-4o",
+    messages=[
+        {"role": "system", "content": "Extract the event information."},
+        {
+            "role": "user",
+            "content": """Act as a career advisor. Your tech stack includes [python, kubernetes,  
+            docker, data engineering, spark, kafka, Flask, Django, Fast API, redis, 
+            git, AWS, Azure, Databaricks]. Suggest relevant job that align with 
+            this skillset. Recommend specific job  focusing on these technologies along with 12 
+            years of experience.,"""
+        },
+    ],
+    response_format=JobSearchEvent,
+)
 
 # --------------------------------------------------------------
 # Step 3: Parse the response
 # --------------------------------------------------------------
 
-# event = completion.choices[0].message.parsed
-# print(event.Company_Name)
-# print(event.Location)
-# print(event.Email_Address)
-# print(event.Description)
+event = completion.choices[0].message.parsed
+print(event.Company_Name)
+print(event.Location)
+print(event.Email_Address)
+print(event.Description)
  
 # --------------------------------------------------------------
 # Step 4: produce the data to a kafka topic.
 # --------------------------------------------------------------
 
-reponse = requests.post("http://127.0.0.1:5000/produce", 
-                        json = {"topic": "test-topic",
-                                "value": json.dumps(sample_Agent_remote_job)})
-if reponse.status_code == 200:
-    print("Data produced to Kafka topic successfully.")
-else:
-    print(f"Failed to produce data to Kafka topic: {reponse.status_code}, {reponse.text}")
+# reponse = requests.post("http://127.0.0.1:5003/produce", 
+#                         json = {"topic": "test-topic",
+#                                 "value": json.dumps(sample_Agent_remote_job)})
+# if reponse.status_code == 200:
+#     print("Data produced to Kafka topic successfully.")
+# else:
+#     print(f"Failed to produce data to Kafka topic: {reponse.status_code}, {reponse.text}")

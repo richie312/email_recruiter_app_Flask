@@ -520,7 +520,7 @@ def wordcloud():
     data = {"corpus": page_content.split('\n')}
     return render_template("wordcloud.html", data=data)
 
-# Asynchronous Kafka Route Listener, infinite loop
+
 @app.route("/job_details", methods=["GET"])
 def job_details():
     job_posting_data = requests.get("http://127.0.0.1:5000/consume")

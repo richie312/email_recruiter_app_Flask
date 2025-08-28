@@ -134,7 +134,7 @@ def populate_data():
     collection = [dict(zip(columns, response['data'][i])) for i in range(len(response['data']))]
     data = {"data": collection}
     return jsonify(data)
-# Asynchronous Kafka Route Listener, infinite loop
+
 @app.route("/job_details", methods=["GET"])
 def job_details():
     collection = []
