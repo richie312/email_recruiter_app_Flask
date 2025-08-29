@@ -56,16 +56,18 @@ def application_history():
 
 @app.route('/addDetails', methods=['POST'])
 def addDetails():
-    data = request.form
-    passw = data["Password"]
+    data = request.values
+
+    #TODO fetch the password from environment variable
+    #passw = data["Password"]
     main_dir = os.getcwd()
-    if data["resume"]:
-        resume_file = data["resume"]
-        resume_file_path = main_dir + "/docs"
-    else:
-        user = "richie312"
-        resume_file = main_dir + "/docs/Resume.pdf"
-        resume_file_path = main_dir + "/docs"
+    # if data["resume"]:
+    #     resume_file = data["resume"]
+    #     resume_file_path = main_dir + "/docs"
+    # else:
+    #     user = "richie312"
+    #     resume_file = main_dir + "/docs/Resume.pdf"
+    #     resume_file_path = main_dir + "/docs"
     # resume_file = os.path.join(resume_file_path, "Resume.pdf")
     # image_folder = os.path.join(main_dir, "images")
     # template_folder = os.path.join(main_dir, "templates")
@@ -98,7 +100,7 @@ def addDetails():
     #             Click on the Set google app password button on dashboard to set it up.""".format(
     #         "testaccount"
     #     )
-    return render_template("user_form_response.html", msg="msg")
+    return render_template("user_form_response.html", msg=data)
 
 @app.route("/dashboard", methods=["GET"])
 def dashboard():

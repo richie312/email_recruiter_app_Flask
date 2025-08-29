@@ -20,6 +20,7 @@
 <table id="example" class="display" style="width:100%">
         <thead>
             <tr>
+                <th></th> <!-- Add this empty header for the radio button column -->
                 <th>Company_Name</th>
                 <th>Description</th>
                 <th>Email_Address</th>
@@ -27,28 +28,83 @@
             </tr>
         </thead>
     </table>
-<script>
-function setupData() {
-    $(document).ready(function () {
-        $('#example').DataTable({
-            "ajax": {
-                "url": "/job_details",
-                "datatype": "json",
-                "dataSrc": "data",
-                "type": "GET",
-                "contentType":"application/json",
-                "serverSide": true
-            },
-            "columns": [
-                {"data": "Company_Name"},
-                {"data": "Description"},
-                {"data": "Email_Address"},
-                {"data": "Location"}
-            ]
-        });
-    });
-}
-$( window ).on( "load", setupData );
-</script>
+    <h3><button id="submitBtn" class="btn btn-primary">Apply</button></h3>
+    <script>
+        function setupData() {
+            $(document).ready(function () {
+                var table = $('#example').DataTable({
+                    "ajax": {
+                        "url": "/job_details",
+                        "datatype": "json",
+                        "dataSrc": "data",
+                        "type": "GET",
+                        "contentType": "application/json",
+                        "serverSide": true
+                    },
+                    "columns": [
+                        {
+                            "data": null,
+                            "defaultContent": '<input type="radio" name="select_row">',
+                            "orderable": false
+                        },
+                        { "data": "Company_Name" },
+                        { "data": "Description" },
+                        { "data": "Email_Address" },
+                        { "data": "Location" }
+                    ],
+                    select: {
+                        style: 'single'
+                    }
+                });
+        
+                // Event handler for the radio button click
+                $('#example tbody').on('click', 'input[type="radio"]', function() {
+                    var row = table.row($(this).closest('tr'));
+                    if (!row.node().hasClass('selected')) {
+                        row.select();
+                    }
+                });
+        
+                // Sync radio button state with Datatables selection
+                table.on('select', function(e, dt, type, indexes) {
+                    if (type === 'row') {
+                        $(table.row(indexes).node()).find('input[type="radio"]').prop('checked', true);
+                    }
+                });
+                table.on('deselect', function(e, dt, type, indexes) {
+                    $(table.row(indexes).node()).find('input[type="radio"]').prop('checked', false);
+                });
+                
+                // **NEW:** Event handler for the submit button
+                $('#submitBtn').on('click', function() {
+                    var selectedData = table.rows({ selected: true }).data();
+                    
+                    if (selectedData.length) {
+                        var requestBody = selectedData[0]; // Get the data object from the selected row
+                        
+                        $.ajax({
+                            url: '/addDetails', // Replace with your server's endpoint
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify(requestBody), // Convert data to JSON string for the body
+                            success: function(response) {
+                                alert('Data successfully submitted!');
+                                console.log(response);
+                                // Optional: Reload the table or provide user feedback
+                                // table.ajax.reload();
+                            },
+                            error: function(xhr, status, error) {
+                                alert('Error submitting data: ' + error);
+                                console.error(xhr.responseText);
+                            }
+                        });
+                    } else {
+                        alert('Please select a row before submitting.');
+                    }
+                });
+            });
+        }
+        $(window).on("load", setupData);
+        </script>               
 </body>
 </html>
