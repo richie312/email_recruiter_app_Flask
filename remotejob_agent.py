@@ -37,7 +37,7 @@ completion = client.beta.chat.completions.parse(
             docker, data engineering, spark, kafka, Flask, Django, Fast API, redis, 
             git, AWS, Azure, Databaricks]. Suggest relevant job that align with 
             this skillset. Recommend specific job  focusing on these technologies along with 12 
-            years of experience.,"""
+            years of experience. Also Job location must be from India. Remote jobs is also fine.,"""
         },
     ],
     response_format=JobSearchEvent,
@@ -47,20 +47,17 @@ completion = client.beta.chat.completions.parse(
 # Step 3: Parse the response
 # --------------------------------------------------------------
 
-event = completion.choices[0].message.parsed
-print(event.Company_Name)
-print(event.Location)
-print(event.Email_Address)
-print(event.Description)
+event = completion.choices[0].message.content
+
  
 # --------------------------------------------------------------
 # Step 4: produce the data to a kafka topic.
 # --------------------------------------------------------------
 
-# reponse = requests.post("http://127.0.0.1:5003/produce", 
-#                         json = {"topic": "test-topic",
-#                                 "value": json.dumps(sample_Agent_remote_job)})
-# if reponse.status_code == 200:
-#     print("Data produced to Kafka topic successfully.")
-# else:
-#     print(f"Failed to produce data to Kafka topic: {reponse.status_code}, {reponse.text}")
+response = requests.post("http://192.168.1.4:5003/produce", 
+                        json = {"topic": "test-topic",
+                                "value": event})
+if response.status_code == 200:
+    print("Data produced to Kafka topic successfully.")
+else:
+    print(f"Failed to produce data to Kafka topic: {response.status_code}, {response.text}")

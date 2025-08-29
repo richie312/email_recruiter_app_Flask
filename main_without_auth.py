@@ -138,14 +138,13 @@ def populate_data():
 @app.route("/job_details", methods=["GET"])
 def job_details():
     collection = []
-    job_posting_data = requests.get("http://192.168.1.13:5000/consume")
+    job_posting_data = requests.get("http://192.168.1.4:5003/consume")
     job_data=json.loads(job_posting_data.content.decode("utf-8"))
     columns = list(json.loads(job_data["data"][0]).keys())
     row_values = [list(json.loads(job_data["data"][i]).values()) for i in range(len(job_data["data"]))]
-    total_no_jobs = len(row_values)
     # unpack the values in row_values
-    for row in range(len(row_values)):
-        values = [row_values[row][i][0] for i in range(len(row_values[0])) if row_values[row][i] != []]
+    for row in range(len(row_values[0])):
+        values = [row_values[0][i][row-1] for i in range(len(row_values[0]))]
         collection.append(dict(zip(columns, values)))
     # Retrieve existing data from cache
     data = {"data": collection}
@@ -157,4 +156,4 @@ def show_jobs():
     return render_template('job_posting.html')
 
 if __name__ == '__main__':
-    app.run(host = '0.0.0.0',debug=True,port=5001)
+    app.run(host = '0.0.0.0',debug=True,port=5000)
