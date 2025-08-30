@@ -1,4 +1,5 @@
 import os
+import datetime
 import json
 import requests
 from typing import List
@@ -53,10 +54,14 @@ event = completion.choices[0].message.content
 # --------------------------------------------------------------
 # Step 4: produce the data to a kafka topic.
 # --------------------------------------------------------------
-
+#Add two more keys to the event dictionary
+payload = json.loads(event)
+# Generate a UUID for each job entry
+application_date = [datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") for i in range(len(payload["Company_Name"]))]
+payload["Application_Date"] = application_date
 response = requests.post("http://192.168.1.4:5003/produce", 
                         json = {"topic": "test-topic",
-                                "value": event})
+                                "value": json.dumps(payload)})
 if response.status_code == 200:
     print("Data produced to Kafka topic successfully.")
 else:

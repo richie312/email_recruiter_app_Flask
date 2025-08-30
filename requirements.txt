@@ -21,3 +21,4 @@ keyrings.alt
 flasgger
 openai
 pydantic
+flask-login

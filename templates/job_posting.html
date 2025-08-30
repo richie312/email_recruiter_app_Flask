@@ -25,6 +25,7 @@
                 <th>Description</th>
                 <th>Email_Address</th>
                 <th>Location</th>
+                <th>Application_Date</th>
             </tr>
         </thead>
     </table>
@@ -50,7 +51,8 @@
                         { "data": "Company_Name" },
                         { "data": "Description" },
                         { "data": "Email_Address" },
-                        { "data": "Location" }
+                        { "data": "Location" },
+                        {"data": "Application_Date"},
                     ],
                     select: {
                         style: 'single'
@@ -83,7 +85,7 @@
                         var requestBody = selectedData[0]; // Get the data object from the selected row
                         
                         $.ajax({
-                            url: '/addDetails', // Replace with your server's endpoint
+                            url: '/apply_job', // Replace with your server's endpoint
                             type: 'POST',
                             contentType: 'application/json',
                             data: JSON.stringify(requestBody), // Convert data to JSON string for the body

@@ -19,7 +19,7 @@ class Application(object):
             self.location = self.initializer["Location"]
             self.email = self.initializer["Email Address"]
             self.default_subject = (
-                "Aritra_Chatterjee_Resume_DataScience_Python_Developer"
+                "Aritra_Chatterjee_Resume_Data Engineering, Distributed systems, Microservices and PlatformEngineering(AWS & Azure)"
             )
             self.subject = (
                 self.initializer["Subject"]
@@ -41,10 +41,20 @@ class Application(object):
         sql_query = "INSERT INTO company_email1 (Company_Name, Location, Email_Address, Application_Date)\
         VALUES (%s, %s, %s,%s)"
         val = (self.company, self.location, self.email, self.application_date)
-        self.cursor.execute(sql_query, val)
-        self.connection.commit()
-        self.cursor.close()
-        self.connection.close()
+        try:
+            # Execute the query
+            self.cursor.execute(sql_query, val)
+            # Commit the transaction
+            self.connection.commit()
+        except Exception as e:
+            # Log the error (or handle it as needed)
+            print(f"Error while adding details: {e}")
+            # Optionally, rollback the transaction in case of failure
+            self.connection.rollback()
+        finally:
+            # Ensure the cursor and connection are closed
+            self.cursor.close()
+            self.connection.close()
 
     @staticmethod
     def update(self):

@@ -371,9 +371,9 @@ def project_details():
             db.session.query(User).filter_by(email=session["user"]).update({"git": git})
             db.session.commit()
     projects = {}
-    if "project1" in data.keys() and data["project1"] is not '':
+    if "project1" in data.keys() and data["project1"] != '':
         projects.update({"project1": {"name": data["project1"], "url": data["project1_url"]}})
-    if "project2" in data.keys() and data["project2"] is not '':
+    if "project2" in data.keys() and data["project2"] != '':
         projects.update({"project2": {"name": data["project2"], "url": data["project2_url"]}})
 
     db_proj = db.session.query(User).filter_by(email=session["user"]).first()
@@ -429,6 +429,7 @@ def addDetails():
     ]
     # Instantiate the Application object and execute required method.
     obj = Application(data)
+    obj.add_details()
     email = data["Email Address"]
 
     try:
