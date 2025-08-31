@@ -12,3 +12,5 @@ venv
 Jenkinsfile
 .env
 flask_session/*
+deployment.sh
+
