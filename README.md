@@ -46,3 +46,17 @@ The **noTify** is a Flask-based distributed microservice application designed to
    ```bash
    git clone https://github.com/your-username/noTify.git
    cd noTify
+
+   python main.py
+
+   ```
+2. To test the feature of the application, open this on your browser: [http://127.0.0.1:5003](http://127.0.0.1:5003) and sign up. It's free to use.
+
+To use this as a Docker container:
+   - Ensure Docker and Docker Compose are installed on your system.
+   - Run the following command to start the application:
+     ```bash
+     docker-compose up --build
+     ```
+   - Open your browser and navigate to [http://127.0.0.1:5003](http://127.0.0.1:5003).
+
