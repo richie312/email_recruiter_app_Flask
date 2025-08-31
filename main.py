@@ -30,24 +30,36 @@ from dotenv import load_dotenv
 from src.src_context import root_dir
 from smtplib import SMTPAuthenticationError
 from functools import wraps
-from src.common.helper_functions import greetings_map
 from flasgger import Swagger, swag_from
+from src.common.utils import send_mail
 
 
 load_dotenv(os.path.join(root_dir, ".env"))
 # creates Flask object
 app = Flask(__name__, static_folder=os.path.join(root_dir, "images"))
-# MySQL configurations
-# app.config["MYSQL_DATABASE_USER"] = "root"
-# app.config["MYSQL_DATABASE_PASSWORD"] = os.getenv("db_passwd")
-# app.config["MYSQL_DATABASE_DB"] = os.getenv("dbname")
-# app.config["MYSQL_DATABASE_HOST"] = os.getenv("MYSQL_SERVICE_HOST")
-# app.config["MYSQL_DATABASE_PORT"] = int(os.getenv("MYSQL_SERVICE_PORT"))
-# mysql.init_app(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
 db.init_app(app)
 
 swagger = Swagger(app)
+
+# Declare the variables
+greetings_map = {
+    "Good Morning!": list(range(0, 12)),
+    "Good Afternoon!": list(range(12, 16)),
+    "Good Evening!": list(range(16, 24)),
+}
+
+main_dir = os.getcwd()
+resume_file_path = main_dir + "/docs"
+resume_file = os.path.join(resume_file_path, "Resume.pdf")
+image_folder = os.path.join(main_dir, "images")
+template_folder = os.path.join(main_dir, "templates")
+body = os.path.join(image_folder, "one_page_profile.png")
+html_msg = [
+    yagmail.inline(body),
+    os.path.join(template_folder, "links.html"),
+    resume_file,
+]
 
 def login_required(f):
     @wraps(f)
@@ -397,58 +409,22 @@ def project_details():
 @app.route("/addDetails", methods=["POST"])
 def addDetails():
     data = request.form
-    passw = data["Password"]
-    main_dir = os.getcwd()
     if data["resume"]:
         resume_file = data["resume"]
-    else:
-        user = User.query.filter_by(email=session["user"]).first()
-        if user.resume is None:
-            resume_file = main_dir + "/docs/Resume.pdf"
-        else:
-            file_ = user.resume
-            resume_file_path = main_dir + "/docs"
-            with open(os.path.join(resume_file_path, "Resume.pdf"), mode="wb") as file:
-                file.write(file_)
-            resume_file = os.path.join(resume_file_path, "Resume.pdf")
-    image_folder = os.path.join(main_dir, "images")
-    template_folder = os.path.join(main_dir, "templates")
-
-    if user.profile == "":
-        body = os.path.join(image_folder, "one_page_profile.png")
-    else:
-        profile = user.profile
-        with open(os.path.join(image_folder, "one_page_profile.png"), "wb") as file:
-            file.write(profile)
-        body = os.path.join(image_folder, "one_page_profile.png")
-
-    html_msg = [
-        yagmail.inline(body),
-        os.path.join(template_folder, "links.html"),
-        resume_file,
-    ]
+        html_msg = [
+            yagmail.inline(body),
+            os.path.join(template_folder, "links.html"),
+            resume_file,
+        ]
     # Instantiate the Application object and execute required method.
     obj = Application(data)
     obj.add_details()
     email = data["Email Address"]
-
-    try:
-        yagmail.register(session["user"], passw)
-        yag = yagmail.SMTP(session["user"], passw)
-        """Send Email"""
-        yag.send(email, obj.subject, html_msg)
-        msg = ""
-        return render_template("user_form_response.html", msg=msg)
-    except SMTPAuthenticationError:
-        yagmail.register("richie.chatterjee31@gmail.com", os.getenv("passwd"))
-        yag = yagmail.SMTP("richie.chatterjee31@gmail.com", os.getenv("passwd"))
-        """Send Email"""
-        yag.send([email, session["user"]], obj.subject, html_msg)
-        msg = """Alert! Hi {}.As your google password is not set, the mail is by default sent by domain owner.
-                You will be also receiving me the copy. It is recommended that you use gmail account and set google app password.
-                Click on the Set google app password button on dashboard to set it up.""".format(
-            session["username"]
-        )
+    response = send_mail("richie.chatterjee31@gmail.com", 
+              os.getenv("passwd"), 
+              "richie.chatterjee31@gmail.com", 
+              obj.subject, 
+              html_msg=html_msg)
     return render_template("user_form_response.html", msg=msg)
 
 
@@ -523,10 +499,43 @@ def wordcloud():
 
 
 @app.route("/job_details", methods=["GET"])
+@login_required
 def job_details():
-    job_posting_data = requests.get("http://127.0.0.1:5000/consume")
-    job_data=job_posting_data.content.decode("utf-8")
-    return render_template("job_posting.html", job_data=json.loads(job_data))
+    collection = []
+    job_posting_data = requests.get(os.getenv("job_api_url"))
+    job_data=json.loads(job_posting_data.content.decode("utf-8"))
+    columns = list(json.loads(job_data["data"][0]).keys())
+    for iter_ in range(len(job_data["data"])):
+        iter_data = json.loads(job_data["data"][iter_])
+        row_values = [list(iter_data.values()) for i in range(len(iter_data))]
+        # unpack the values in row_values
+        for row in range(len(row_values[0])):
+            values = [row_values[0][i][row-1] for i in range(len(row_values[0]))]
+            collection.append(dict(zip(columns, values)))
+    # Retrieve existing data from cache
+    data = {"data": collection}
+    return jsonify(data)
+
+@app.route('/show_jobs', methods=['GET'])
+@login_required
+def show_jobs():
+    return render_template('job_posting.html')
+
+@app.route('/apply_job', methods=['POST'])
+def apply_job():
+    data = request.get_json()
+    # renaming the keys
+    data["Company"] = data.pop("Company_Name")
+    data["Email Address"] = data.pop("Email_Address")
+    data["Subject"] = ""
+    obj = Application(data)
+    obj.add_details()
+    response = send_mail("richie.chatterjee31@gmail.com", 
+              os.getenv("passwd"), 
+              data["Email Address"], 
+              obj.subject, 
+              html_msg=html_msg)
+    return render_template('job_posting.html', msg=response)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True, port=os.getenv("port"))

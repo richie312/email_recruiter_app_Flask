@@ -121,7 +121,7 @@ def populate_data():
 @app.route("/job_details", methods=["GET"])
 def job_details():
     collection = []
-    job_posting_data = requests.get("http://192.168.1.4:5003/consume")
+    job_posting_data = requests.get(os.getenv("job_api_url"))
     job_data=json.loads(job_posting_data.content.decode("utf-8"))
     columns = list(json.loads(job_data["data"][0]).keys())
     for iter_ in range(len(job_data["data"])):
