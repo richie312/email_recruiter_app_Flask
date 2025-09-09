@@ -45,10 +45,9 @@ class Application(object):
             # Execute the query
             self.cursor.execute(sql_query, val)
             # Commit the transaction
-            self.connection.commit()
+            self.conn_row_insertion_type.commit()
         except Exception as e:
             # Log the error (or handle it as needed)
-            print(f"Error while adding details: {e}")
             # Optionally, rollback the transaction in case of failure
             self.connection.rollback()
         finally:
