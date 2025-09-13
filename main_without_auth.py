@@ -5,13 +5,25 @@ import yagmail, requests, json
 from dotenv import load_dotenv
 from datetime import datetime
 import os
+from pathlib import Path
 from smtplib import SMTPAuthenticationError
 from src.objects.Application import Application, get_data
 from src.common.utils import send_mail
-from flask_login import current_user
+from PythonResumeBuilder.generate_resume import generate_online_resume
+# from flask_login import current_user
 app = Flask(__name__)
 
 
+# Get the absolute path of the current file
+current_file_path = Path(__file__).resolve()
+
+# Get the directory of the current file
+current_dir = current_file_path.parent
+
+# resume_builder_dir
+resume_builder_dir = os.path.join(current_dir, "PythonResumeBuilder")
+
+# 
 # load the environment variables
 load_dotenv('.env')
 port = os.getenv('port')
@@ -138,6 +150,36 @@ def job_details():
 @app.route('/show_jobs', methods=['GET'])
 def show_jobs():
     return render_template('job_posting.html')
+
+@app.route('/render_resume_builder', methods=['GET'])
+def render_resume_builder():
+    # Load default data from files
+    with open(os.path.join(resume_builder_dir,'resume.json'), 'r') as f:
+        DEFAULT_JSON = f.read()
+
+    with open(os.path.join(resume_builder_dir,'template.html'), 'r') as f:
+        DEFAULT_HTML = f.read()
+    return render_template("resume_builder.html", default_json=DEFAULT_JSON, default_html=DEFAULT_HTML)
+
+@app.route('/build-resume', methods=['POST'])
+def build_resume():
+    """
+    Receives JSON and HTML from the client and "builds" the resume on the server.
+    """
+    try:
+        from jinja2 import Environment, FileSystemLoader
+
+        # === Server-side resume building logic ===
+        data = request.get_json()
+        json_data = json.loads(data.get('jsonData'))
+        html_template = data.get('htmlTemplate')
+        env = Environment(loader=FileSystemLoader(os.path.dirname(os.path.abspath(__file__))))
+        template = env.from_string(html_template)
+        generate_online_resume(json_data, template, "resume.pdf")
+    
+
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0',debug=True,port=5000)
