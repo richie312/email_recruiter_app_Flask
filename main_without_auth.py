@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, request,render_template,redirect,url_for,jsonify,session
+from flask import Flask, request,render_template,redirect,url_for,jsonify,session, send_file
 import yagmail, requests, json
 from dotenv import load_dotenv
 from datetime import datetime
@@ -175,9 +175,14 @@ def build_resume():
         html_template = data.get('htmlTemplate')
         env = Environment(loader=FileSystemLoader(os.path.dirname(os.path.abspath(__file__))))
         template = env.from_string(html_template)
-        generate_online_resume(json_data, template, "resume.pdf")
-    
+        pdf_data = generate_online_resume(json_data, template, "resume.pdf")
 
+        return send_file(
+            pdf_data,
+            mimetype='application/pdf',
+            as_attachment=True,
+            download_name='resume.pdf'
+        )
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 

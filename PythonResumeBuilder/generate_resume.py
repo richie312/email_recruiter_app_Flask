@@ -55,10 +55,9 @@ def generate_online_resume(json_data, template_file, output_pdf):
     """
     try:
         # Set up the Jinja2 environment to load the HTML template
-        # env = Environment(loader=FileSystemLoader(os.path.dirname(os.path.abspath(__file__))))
-        # template = env.get_template(template_file)
-        template = Template(template_file)
-        rendered_html = template.render(data=json_data)
+        env = Environment(loader=FileSystemLoader(os.path.dirname(os.path.abspath(__file__))))
+        template = env.get_template(template_file)
+        rendered_html = template.render(**json_data)
         # Use a tempfile or BytesIO for in-memory generation
         # instead of saving to a permanent file.
         buffer = io.BytesIO()
