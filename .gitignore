@@ -10,7 +10,7 @@ nohup.out
 tkinter_app
 venv
 Jenkinsfile
-.env
+*.env
 flask_session/*
 deployment.sh
-
+./PythonResumeBuilder/*

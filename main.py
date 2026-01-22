@@ -33,7 +33,7 @@ from smtplib import SMTPAuthenticationError
 from functools import wraps
 from flasgger import Swagger, swag_from
 from src.common.utils import send_mail
-from PythonResumeBuilder.generate_resume import generate_online_resume
+# from PythonResumeBuilder.generate_resume import generate_online_resume
 
 
 
@@ -508,8 +508,9 @@ def job_details():
         iter_data = json.loads(job_data["data"][iter_])
         row_values = [list(iter_data.values()) for i in range(len(iter_data))]
         # unpack the values in row_values
-        for row in range(len(row_values[0])):
-            values = [row_values[0][i][row-1] for i in range(len(row_values[0]))]
+        # find number of values to iterate through
+        for row in range(len(row_values[0][0])):
+            values = [row_values[0][i][row] for i in range(len(row_values[0]))]
             collection.append(dict(zip(columns, values)))
     # Retrieve existing data from cache
     data = {"data": collection}
@@ -529,7 +530,7 @@ def apply_job():
     data["Subject"] = ""
     obj = Application(data)
     obj.add_details()
-    response = send_mail("richie.chatterjee31@gmail.com", 
+    response = send_mail(data["Email Address"], 
               os.getenv("passwd"), 
               data["Email Address"], 
               obj.subject, 
@@ -547,30 +548,30 @@ def render_resume_builder():
         DEFAULT_HTML = f.read()
     return render_template("resume_builder.html", default_json=DEFAULT_JSON, default_html=DEFAULT_HTML)
 
-@app.route('/build-resume', methods=['POST'])
-def build_resume():
-    """
-    Receives JSON and HTML from the client and "builds" the resume on the server.
-    """
-    try:
-        from jinja2 import Environment, FileSystemLoader
+# @app.route('/build-resume', methods=['POST'])
+# def build_resume():
+#     """
+#     Receives JSON and HTML from the client and "builds" the resume on the server.
+#     """
+#     try:
+#         from jinja2 import Environment, FileSystemLoader
 
-        # === Server-side resume building logic ===
-        data = request.get_json()
-        json_data = json.loads(data.get('jsonData'))
-        html_template = data.get('htmlTemplate')
-        env = Environment(loader=FileSystemLoader(os.path.dirname(os.path.abspath(__file__))))
-        template = env.from_string(html_template)
-        pdf_data = generate_online_resume(json_data, template, "resume.pdf")
+#         # === Server-side resume building logic ===
+#         data = request.get_json()
+#         json_data = json.loads(data.get('jsonData'))
+#         html_template = data.get('htmlTemplate')
+#         env = Environment(loader=FileSystemLoader(os.path.dirname(os.path.abspath(__file__))))
+#         template = env.from_string(html_template)
+#         pdf_data = generate_online_resume(json_data, template, "resume.pdf")
 
-        return send_file(
-            pdf_data,
-            mimetype='application/pdf',
-            as_attachment=True,
-            download_name='resume.pdf'
-        )
-    except Exception as e:
-        return jsonify({'success': False, 'error': str(e)}), 500
+#         return send_file(
+#             pdf_data,
+#             mimetype='application/pdf',
+#             as_attachment=True,
+#             download_name='resume.pdf'
+#         )
+#     except Exception as e:
+#         return jsonify({'success': False, 'error': str(e)}), 500
     
 
 if __name__ == "__main__":

@@ -59,7 +59,7 @@ payload = json.loads(event)
 # Generate a UUID for each job entry
 application_date = [datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") for i in range(len(payload["Company_Name"]))]
 payload["Application_Date"] = application_date
-response = requests.post("http://192.168.1.4:5003/produce", 
+response = requests.post(os.getenv("KAFKA_REST_PROXY_URL"), 
                         json = {"topic": "test-topic",
                                 "value": json.dumps(payload)})
 if response.status_code == 200:

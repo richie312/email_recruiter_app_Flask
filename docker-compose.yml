@@ -1,22 +1,18 @@
-version: '3.3'
-
 services:
-  db:
-    image: mysql:latest
-    command: --default-authentication-plugin=mysql_native_password
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: Nirvikalpa#123
-      MYSQL_USER: root
-    volumes:
-      - /var/lib/mysql_ubuntu_rasp_device:/var/lib/mysql
-    ports:
-      - "3306:3306"
   web:
     image: richie31/notify:latest
+    container_name: noTify
+    env_file:
+      - C:/Users/Richie/Desktop/secret_files/email/.env
     ports:
       - "5001:5001"
-      - "3306:3306"
-    container_name: web
-    depends_on:
-      - db
+    networks:
+      - my_rasp_network
+
+volumes:
+  mysql_ubuntu_rasp_device:
+    external: true
+
+networks:
+  my_rasp_network:
+    external: true
