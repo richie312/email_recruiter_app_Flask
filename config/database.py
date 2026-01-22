@@ -25,6 +25,7 @@ class Database:
             passwd=os.getenv("db_passwd"),
             db=os.getenv("dbname"),
         )
+        print("Database Connection Initialized")
         return connection
 
     def table_insertion(self):

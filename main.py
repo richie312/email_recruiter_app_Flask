@@ -11,12 +11,14 @@ from flask import (
     jsonify,
     json,
     session,
+    send_file
 )
+import requests
 import json
 import yagmail
 from flask_session import Session
 import os
-import PyPDF2
+from pathlib import Path
 from src.objects.Application import Application, get_data
 import uuid  # for public id
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -29,20 +31,45 @@ from dotenv import load_dotenv
 from src.src_context import root_dir
 from smtplib import SMTPAuthenticationError
 from functools import wraps
-from src.common.helper_functions import greetings_map
+from flasgger import Swagger, swag_from
+from src.common.utils import send_mail
+# from PythonResumeBuilder.generate_resume import generate_online_resume
+
+
 
 load_dotenv(os.path.join(root_dir, ".env"))
+# Get the absolute path of the current file
+current_file_path = Path(__file__).resolve()
+
+# Get the directory of the current file
+current_dir = current_file_path.parent
+# resume_builder_dir
+resume_builder_dir = os.path.join(current_dir, "PythonResumeBuilder")
 # creates Flask object
 app = Flask(__name__, static_folder=os.path.join(root_dir, "images"))
-# MySQL configurations
-# app.config["MYSQL_DATABASE_USER"] = "root"
-# app.config["MYSQL_DATABASE_PASSWORD"] = os.getenv("db_passwd")
-# app.config["MYSQL_DATABASE_DB"] = os.getenv("dbname")
-# app.config["MYSQL_DATABASE_HOST"] = os.getenv("MYSQL_SERVICE_HOST")
-# app.config["MYSQL_DATABASE_PORT"] = int(os.getenv("MYSQL_SERVICE_PORT"))
-# mysql.init_app(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("SQLALCHEMY_DATABASE_URI")
 db.init_app(app)
+
+swagger = Swagger(app)
+
+# Declare the variables
+greetings_map = {
+    "Good Morning!": list(range(0, 12)),
+    "Good Afternoon!": list(range(12, 16)),
+    "Good Evening!": list(range(16, 24)),
+}
+
+main_dir = os.getcwd()
+resume_file_path = main_dir + "/docs"
+resume_file = os.path.join(resume_file_path, "Resume.pdf")
+image_folder = os.path.join(main_dir, "images")
+template_folder = os.path.join(main_dir, "templates")
+body = os.path.join(image_folder, "one_page_profile.png")
+html_msg = [
+    yagmail.inline(body),
+    os.path.join(template_folder, "links.html"),
+    resume_file,
+]
 
 def login_required(f):
     @wraps(f)
@@ -72,7 +99,8 @@ def homepage():
 
 
 # route for logging user in
-@app.route("/login", methods=["GET", "POST"])
+@swag_from('api_routes.yml', endpoint='login')
+@app.route("/login", endpoint='login', methods=["GET", "POST"])
 def login_post():
     if request.method == "GET":
         return render_template("login.html", msg="")
@@ -123,6 +151,7 @@ def login_post():
 
 
 @app.route("/password_reset", methods=["GET", "POST"])
+@swag_from()
 def reset_password():
 
     if request.method == "GET":
@@ -162,7 +191,7 @@ def reset_password():
 
             return render_template("set_new_password.html", msg=msg)
 
-
+@swag_from('api_routes.yml', endpoint='/new_password')
 @app.route("/new_password", methods=["GET", "POST"])
 def new_password():
     if request.method == "GET":
@@ -235,8 +264,8 @@ def logout():
 def application_history():
     return redirect(plot_url)
 
-
-@app.route("/user_profile", methods=["GET"])
+@swag_from('api_routes.yml', endpoint='user_profile')
+@app.route("/user_profile", endpoint='user_profile',  methods=["GET"])
 @login_required
 def user_profile():
     if request.method == "GET":
@@ -364,9 +393,9 @@ def project_details():
             db.session.query(User).filter_by(email=session["user"]).update({"git": git})
             db.session.commit()
     projects = {}
-    if "project1" in data.keys() and data["project1"] is not '':
+    if "project1" in data.keys() and data["project1"] != '':
         projects.update({"project1": {"name": data["project1"], "url": data["project1_url"]}})
-    if "project2" in data.keys() and data["project2"] is not '':
+    if "project2" in data.keys() and data["project2"] != '':
         projects.update({"project2": {"name": data["project2"], "url": data["project2_url"]}})
 
     db_proj = db.session.query(User).filter_by(email=session["user"]).first()
@@ -390,58 +419,23 @@ def project_details():
 @app.route("/addDetails", methods=["POST"])
 def addDetails():
     data = request.form
-    passw = data["Password"]
-    main_dir = os.getcwd()
     if data["resume"]:
         resume_file = data["resume"]
-    else:
-        user = User.query.filter_by(email=session["user"]).first()
-        if user.resume is None:
-            resume_file = main_dir + "/docs/Resume.pdf"
-        else:
-            file_ = user.resume
-            resume_file_path = main_dir + "/docs"
-            with open(os.path.join(resume_file_path, "Resume.pdf"), mode="wb") as file:
-                file.write(file_)
-            resume_file = os.path.join(resume_file_path, "Resume.pdf")
-    image_folder = os.path.join(main_dir, "images")
-    template_folder = os.path.join(main_dir, "templates")
-
-    if user.profile == "":
-        body = os.path.join(image_folder, "one_page_profile.png")
-    else:
-        profile = user.profile
-        with open(os.path.join(image_folder, "one_page_profile.png"), "wb") as file:
-            file.write(profile)
-        body = os.path.join(image_folder, "one_page_profile.png")
-
-    html_msg = [
-        yagmail.inline(body),
-        os.path.join(template_folder, "links.html"),
-        resume_file,
-    ]
+        html_msg = [
+            yagmail.inline(body),
+            os.path.join(template_folder, "links.html"),
+            resume_file,
+        ]
     # Instantiate the Application object and execute required method.
     obj = Application(data)
+    obj.add_details()
     email = data["Email Address"]
-
-    try:
-        yagmail.register(session["user"], passw)
-        yag = yagmail.SMTP(session["user"], passw)
-        """Send Email"""
-        yag.send(email, obj.subject, html_msg)
-        msg = ""
-        return render_template("user_form_response.html", msg=msg)
-    except SMTPAuthenticationError:
-        yagmail.register("richie.chatterjee31@gmail.com", os.getenv("passwd"))
-        yag = yagmail.SMTP("richie.chatterjee31@gmail.com", os.getenv("passwd"))
-        """Send Email"""
-        yag.send([email, session["user"]], obj.subject, html_msg)
-        msg = """Alert! Hi {}.As your google password is not set, the mail is by default sent by domain owner.
-                You will be also receiving me the copy. It is recommended that you use gmail account and set google app password.
-                Click on the Set google app password button on dashboard to set it up.""".format(
-            session["username"]
-        )
-    return render_template("user_form_response.html", msg=msg)
+    response = send_mail("richie.chatterjee31@gmail.com", 
+              os.getenv("passwd"), 
+              "richie.chatterjee31@gmail.com", 
+              obj.subject, 
+              html_msg=html_msg)
+    return render_template("user_form_response.html", msg="Successfully Submitted")
 
 
 @app.route("/application_details", methods=["GET"])
@@ -503,15 +497,82 @@ def populate_data():
     data = {"data": collection}
     return jsonify(data)
 
-@app.route("/wordcloud", methods=["GET"])
-def wordcloud():
-    pdf_file = open(os.path.join('docs', "Resume.pdf"), 'rb')
-    read_pdf = PyPDF2.PdfFileReader(pdf_file)
-    number_of_pages = read_pdf.getNumPages()
-    page = read_pdf.getPage(0)
-    page_content = page.extractText()
-    data = {"corpus": page_content.split('\n')}
-    return render_template("wordcloud.html", data=data)
+@app.route("/job_details", methods=["GET"])
+@login_required
+def job_details():
+    collection = []
+    job_posting_data = requests.get(os.getenv("job_api_url"))
+    job_data=json.loads(job_posting_data.content.decode("utf-8"))
+    columns = list(json.loads(job_data["data"][0]).keys())
+    for iter_ in range(len(job_data["data"])):
+        iter_data = json.loads(job_data["data"][iter_])
+        row_values = [list(iter_data.values()) for i in range(len(iter_data))]
+        # unpack the values in row_values
+        # find number of values to iterate through
+        for row in range(len(row_values[0][0])):
+            values = [row_values[0][i][row] for i in range(len(row_values[0]))]
+            collection.append(dict(zip(columns, values)))
+    # Retrieve existing data from cache
+    data = {"data": collection}
+    return jsonify(data)
+
+@app.route('/show_jobs', methods=['GET'])
+@login_required
+def show_jobs():
+    return render_template('job_posting.html')
+
+@app.route('/apply_job', methods=['POST'])
+def apply_job():
+    data = request.get_json()
+    # renaming the keys
+    data["Company"] = data.pop("Company_Name")
+    data["Email Address"] = data.pop("Email_Address")
+    data["Subject"] = ""
+    obj = Application(data)
+    obj.add_details()
+    response = send_mail('richie.chatterjee31@gmail.com',
+              os.getenv("passwd"), 
+              data["Email Address"], 
+              obj.subject, 
+              html_msg=html_msg)
+    return render_template('job_posting.html', msg=response)
+
+
+@app.route('/render_resume_builder', methods=['GET'])
+def render_resume_builder():
+    # Load default data from files
+    with open(os.path.join(resume_builder_dir,'resume.json'), 'r') as f:
+        DEFAULT_JSON = f.read()
+
+    with open(os.path.join(resume_builder_dir,'template.html'), 'r') as f:
+        DEFAULT_HTML = f.read()
+    return render_template("resume_builder.html", default_json=DEFAULT_JSON, default_html=DEFAULT_HTML)
+
+# @app.route('/build-resume', methods=['POST'])
+# def build_resume():
+#     """
+#     Receives JSON and HTML from the client and "builds" the resume on the server.
+#     """
+#     try:
+#         from jinja2 import Environment, FileSystemLoader
+
+#         # === Server-side resume building logic ===
+#         data = request.get_json()
+#         json_data = json.loads(data.get('jsonData'))
+#         html_template = data.get('htmlTemplate')
+#         env = Environment(loader=FileSystemLoader(os.path.dirname(os.path.abspath(__file__))))
+#         template = env.from_string(html_template)
+#         pdf_data = generate_online_resume(json_data, template, "resume.pdf")
+
+#         return send_file(
+#             pdf_data,
+#             mimetype='application/pdf',
+#             as_attachment=True,
+#             download_name='resume.pdf'
+#         )
+#     except Exception as e:
+#         return jsonify({'success': False, 'error': str(e)}), 500
+    
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True, port=os.getenv("port"))

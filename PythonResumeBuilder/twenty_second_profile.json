@@ -1,0 +1,79 @@
+{
+  "name": "Aritra Chatterjee",
+  "title": "Data Engineer & System Design Architect",
+  "contact": {
+    "location": "Flat 403, Udaya Abhi Residency, Gautami Enclave, Hyderabad",
+    "phone": "+918017781327",
+    "email": "richie.chatterjee31@gmail.com",
+    "linkedin": "linkedin.com/in/aritra-chatterjee-482771217",
+    "github": "github.com/richie312"
+  },
+  "summary": "A decade of experience in the domain of Data Engineering, Distributed systems, Databases, Microservices(API Gateway,Event-Driven & Containerisation) and Cloud architecture(AWS & Azure).",
+  "skills": {
+    "programming": ["Python", "Bash", "R"],
+    "big_data": ["Kafka", "Spark"],
+    "orchestration": ["Airflow", "ControlM"],
+    "containerisation": ["Docker", "Kubernetes"],
+    "web_framework": ["Flask", "Django"],
+    "microservices": ["Distributed Systems", "RESTful APIs", "Event-Driven Architecture"],
+    "cloud_devops": ["AWS", "Azure", "GithubActions", "Terraform"],
+    "databases": ["PostgreSQL", "CosmosDB", "MongoDB","Mysql"]
+  },
+  "industry_experience": [
+    {
+      "industry": "Retail",
+      "client": "Coles Supermarket| Australia",
+      "bullets": [
+          "Played a key role in a cloud modernization project, transitioning messaging systems from Azure Service Bus to Confluent Kafka for enhanced performance and real-time capabilities.",
+          "Managed data orchestration schedules using Control-M, controlling data pipeline execution and job dependencies for mission-critical Databricks (PySpark) workloads.",
+          "Contributed to infrastructure as code (IaC) development with Terraform, provisioning and managing Azure resources including Cosmos DB for database needs and Azure Key Vault for secrets management.",
+          "Exposure in KEDA autoscaling for Kubernetes workloads, effectively scaling pods to zero during periods of inactivity and scaling out based on message queues, reducing infrastructure costs.",
+          "Exposure with centralized monitoring strategy with Datadog, integrating logs, metrics, and traces from Databricks, Kafka, and Kubernetes to provide comprehensive observability."
+        ],
+      "tech_stack": ["Kafka", "Azure", "Databricks", "Control-M"]
+    },
+
+    {
+      "industry": "Insurance",
+      "client": "HighMark|US",
+      "bullets": [
+          "Led data platform modernization, migrating legacy COBOL and SAS systems to Python-based pipelines using Databricks and Spark.",
+          "Increased data pipeline robustness by implementing a CI/CD workflow with Jenkins"
+        ],
+      "tech_stack": ["Python", "AWS Lambda", "Jenkins"]
+    },
+    {
+      "industry": "FinancialServices",
+      "client": "SP Global|US",
+      "bullets": [
+          "Architect an automated data processing framework that ingests JSON templates to dynamically apply Spark transformations on datasets.",
+          "Generated structured JSON reports from transformed data, which directly fed predefined Tableau dashboards for business intelligence.",
+          "Leveraged a modern tech stack, including Python, Spark, PostgreSQL, Git, AWS S3, and AWS Fargate, for a scalable and reliable solution.",
+          "Implemented containerized deployment using Docker on AWS Fargate to ensure portability and automated scalability of the framework."
+        ],
+      "tech_stack": ["Python", "AWS Lambda", "Jenkins"]
+    },
+    {
+      "industry": "Healthcare",
+      "client": "Merck|US",
+      "bullets": [
+          "Architect and developed a Python-based API using AWS Lambda to automate the clinical approval process for a Merck client, reducing manual overhead.",
+          "Increased data pipeline robustness by implementing a CI/CD workflow with Jenkins"
+        ],
+      "tech_stack": ["Python", "AWS Lambda", "Jenkins"]
+    }
+  ],
+ 
+  "education": [
+    {
+      "degree": "PGDM",
+      "institution": "Globsyn Business School",
+      "duration": "2007 – 2009"
+    },
+    {
+      "degree": "BA in Economics(Hons), Mathematics & Statistics",
+      "institution": "North Bengal University.",
+      "duration": "2003 – 2006"
+    }
+  ]
+}

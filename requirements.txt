@@ -18,3 +18,8 @@ pymysql
 PyJWT
 keyring
 keyrings.alt
+flasgger
+openai
+pydantic
+flask-login
+weasyprint
