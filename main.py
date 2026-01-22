@@ -530,7 +530,7 @@ def apply_job():
     data["Subject"] = ""
     obj = Application(data)
     obj.add_details()
-    response = send_mail(data["Email Address"], 
+    response = send_mail('richie.chatterjee31@gmail.com',
               os.getenv("passwd"), 
               data["Email Address"], 
               obj.subject, 
