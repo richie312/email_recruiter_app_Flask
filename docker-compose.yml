@@ -3,7 +3,7 @@ services:
     image: richie31/notify:latest
     container_name: noTify
     env_file:
-      - C:/Users/Richie/Desktop/secret_files/email/.env
+      - /home/richie/private-secrets/notify/.env
     ports:
       - "5001:5001"
     networks:
