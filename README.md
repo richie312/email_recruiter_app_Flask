@@ -60,3 +60,28 @@ To use this as a Docker container:
      ```
    - Open your browser and navigate to [http://127.0.0.1:5003](http://127.0.0.1:5003).
 
+### Optional Gmail Helper Service
+
+- The Gmail job scraper is isolated under `email-agent-tests/` and does not need to be imported into `main.py`.
+- Its Python packages live in `email-agent-tests/requirements.txt`, separate from the main app dependencies.
+- The helper runs as its own optional Docker Compose service named `gmail_job_helper`.
+- Because it is behind the `helper` profile, its image and dependencies are only used when you explicitly start that profile.
+
+Run only the main app:
+
+```bash
+docker compose up -d
+```
+
+Run the main app plus the Gmail helper:
+
+```bash
+docker compose --profile helper up -d --build
+```
+
+Notes:
+
+- The helper schedule is controlled by `JOB_SCRAPER_CRON` in `docker-compose.yml`.
+- Set `GMAIL_EMAIL` and `passwd` in the root `.env` file for Gmail IMAP access with an app password.
+- Keep test tooling such as `pytest` in a future separate dev dependency file like `requirements-dev.txt`, not in runtime requirements.
+

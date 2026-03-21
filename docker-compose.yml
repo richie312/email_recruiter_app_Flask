@@ -9,6 +9,27 @@ services:
     networks:
       - my_rasp_network
 
+  gmail_job_helper:
+    build:
+      context: .
+      dockerfile: email-agent-tests/docker/Dockerfile
+    container_name: gmail-job-helper
+    profiles:
+      - helper
+    env_file:
+      - .env
+    environment:
+      JOB_SCRAPER_CRON: "0 * * * *"
+      GMAIL_IMAP_HOST: imap.gmail.com
+      GMAIL_IMAP_PORT: "993"
+      GMAIL_MAX_RESULTS: "50"
+      KAFKA_TOPIC: gmail-job-events
+    volumes:
+      - ./email-agent-tests:/app/email-agent-tests
+    restart: unless-stopped
+    networks:
+      - my_rasp_network
+
 volumes:
   mysql_ubuntu_rasp_device:
     external: true
